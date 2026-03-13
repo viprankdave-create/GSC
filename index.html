@@ -1,712 +1,835 @@
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --red:#E24B4A;--red-l:#FCEBEB;--red-d:#A32D2D;
-  --green:#3B6D11;--green-l:#EAF3DE;
-  --amber:#BA7517;--amber-l:#FAEEDA;
-  --blue:#185FA5;--blue-l:#E6F1FB;
-  --purple:#534AB7;--purple-l:#EEEDFE;
-  --teal:#0F6E56;--teal-l:#E1F5EE;
-  --pink:#993556;--pink-l:#FBEAF0;
-  --bg:#ffffff;--bg2:#f5f4f0;--bg3:#eceae4;
-  --text:#1a1a1a;--muted:#6b6b6b;--border:rgba(0,0,0,0.1);
-  --card:#ffffff;--nav-bg:#ffffff;
+--r:#E24B4A;--rl:#FCEBEB;--rd:#A32D2D;
+--g:#3B6D11;--gl:#EAF3DE;
+--a:#BA7517;--al:#FAEEDA;
+--b:#185FA5;--bl:#E6F1FB;
+--p:#534AB7;--pl:#EEEDFE;
+--t:#0F6E56;--tl:#E1F5EE;
+--pk:#993556;--pkl:#FBEAF0;
+--bg:#fff;--bg2:#f5f4f0;--bg3:#eceae4;
+--tx:#1a1a1a;--mu:#666;--br:rgba(0,0,0,0.1);
+--card:#fff;--nav:#fff;
 }
-body.dark{
-  --bg:#0f0f1a;--bg2:#1a1a2e;--bg3:#242438;
-  --text:#f0f0f0;--muted:#9090a8;--border:rgba(255,255,255,0.1);
-  --card:#1a1a2e;--nav-bg:#0f0f1a;
-  --red-l:#2a1212;--green-l:#0e1f07;--amber-l:#221507;--blue-l:#071526;--purple-l:#110f2e;--teal-l:#071a14;--pink-l:#1f0a13;
-  --red:#ff6b6a;--green:#6db33f;--amber:#e09020;--blue:#4a9de0;--purple:#8b82e8;--teal:#2dc49a;--pink:#d4537e;
+body.dk{
+--bg:#0f0f1a;--bg2:#1a1a2e;--bg3:#242438;
+--tx:#f0f0f0;--mu:#9090a8;--br:rgba(255,255,255,0.1);
+--card:#1a1a2e;--nav:#0f0f1a;
+--rl:#2a1212;--gl:#0e1f07;--al:#221507;--bl:#071526;--pl:#110f2e;--tl:#071a14;--pkl:#1f0a13;
+--r:#ff6b6a;--g:#6db33f;--a:#e09020;--b:#4a9de0;--p:#8b82e8;--t:#2dc49a;--pk:#d4537e;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background 0.3s,color 0.3s;}
-.app{max-width:520px;margin:0 auto;padding-bottom:72px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:520px;margin:0 auto;padding-bottom:72px;}
 
-.topbar{background:var(--bg);border-bottom:0.5px solid var(--border);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:90;transition:background 0.3s;}
-.topbar-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px;color:var(--text);}
-.topbar-logo span{color:var(--red);}
-.topbar-right{display:flex;align-items:center;gap:10px;}
-.clock{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:0.5px;min-width:62px;text-align:right;}
-.toggle-btn{width:36px;height:20px;border-radius:10px;background:var(--bg3);border:0.5px solid var(--border);cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0;}
-.toggle-btn .knob{position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:all 0.2s;}
-body.dark .toggle-btn .knob{left:19px;background:var(--amber);}
-body.dark .toggle-btn{background:#2a2a40;}
-.topbar-pts{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--red);background:var(--red-l);padding:3px 9px;border-radius:20px;}
+/* topbar */
+.tb{background:var(--bg);border-bottom:.5px solid var(--br);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:90;}
+.tb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--tx);}
+.tb-logo s{color:var(--r);text-decoration:none;}
+.tb-r{display:flex;align-items:center;gap:10px;}
+.clk{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--mu);min-width:62px;text-align:right;}
+.tog{width:36px;height:20px;border-radius:10px;background:var(--bg3);border:.5px solid var(--br);cursor:pointer;position:relative;flex-shrink:0;}
+.tog .kn{position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--mu);transition:all .2s;}
+body.dk .tog .kn{left:19px;background:var(--a);}
+body.dk .tog{background:#2a2a40;}
 
-.hero{background:#0f0f1a;color:#fff;padding:28px 20px 24px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(226,75,74,0.15);border-radius:50%;}
-.hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(83,74,183,0.15);border-radius:50%;}
-.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(226,75,74,0.2);border:0.5px solid rgba(226,75,74,0.4);border-radius:20px;padding:4px 11px;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#ff9f9e;margin-bottom:12px;}
-.hero-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.15;margin-bottom:10px;position:relative;z-index:1;}
-.hero-title span{color:#ff6b6a;}
-.hero-desc{font-size:13px;line-height:1.65;opacity:0.75;margin-bottom:18px;position:relative;z-index:1;max-width:340px;}
-.hero-pills{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1;}
-.hero-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 11px;font-size:11px;font-weight:500;}
-.hero-stats{display:flex;gap:0;margin-top:20px;position:relative;z-index:1;border-top:0.5px solid rgba(255,255,255,0.1);padding-top:16px;}
-.hero-stat{flex:1;text-align:center;border-right:0.5px solid rgba(255,255,255,0.1);}
-.hero-stat:last-child{border-right:none;}
-.hero-stat-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#ff6b6a;}
-.hero-stat-lbl{font-size:9px;opacity:0.55;margin-top:2px;letter-spacing:0.3px;}
+/* animated pts badge */
+.pts-badge{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--r);background:var(--rl);padding:3px 9px;border-radius:20px;transition:all .3s;min-width:72px;text-align:center;}
+.pts-badge.flash-up{background:var(--gl);color:var(--g);transform:scale(1.15);}
+.pts-badge.flash-dn{background:var(--rl);color:var(--r);transform:scale(1.15);}
 
-.karma-card{margin:14px 18px;background:#1a1a2e;border-radius:20px;padding:18px;color:#fff;position:relative;overflow:hidden;}
-body.dark .karma-card{background:#242438;border:0.5px solid rgba(255,255,255,0.08);}
-.karma-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(226,75,74,0.18);border-radius:50%;}
-.karma-label{font-size:10px;opacity:0.5;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
-.karma-points{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;line-height:1;}
-.karma-points span{font-size:15px;font-weight:400;opacity:0.5;margin-left:3px;}
-.karma-row{display:flex;gap:10px;margin-top:13px;position:relative;z-index:1;flex-wrap:wrap;}
-.ks{flex:1;min-width:55px;}
-.ks-val{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
-.ks-lbl{font-size:9px;opacity:0.45;margin-top:1px;}
-.level-badge{position:absolute;top:16px;right:16px;z-index:2;background:rgba(226,75,74,0.8);color:#fff;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;}
+/* hero */
+.hero{background:#0f0f1a;color:#fff;padding:26px 20px 22px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(226,75,74,.15);border-radius:50%;}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(226,75,74,.2);border:.5px solid rgba(226,75,74,.4);border-radius:20px;padding:4px 11px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ff9f9e;margin-bottom:10px;}
+.hero-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.15;margin-bottom:8px;position:relative;z-index:1;}
+.hero-title em{color:#ff6b6a;font-style:normal;}
+.hero-desc{font-size:12px;line-height:1.65;opacity:.7;margin-bottom:16px;z-index:1;position:relative;}
+.hero-pills{display:flex;gap:7px;flex-wrap:wrap;z-index:1;position:relative;}
+.pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;font-size:11px;}
+.hero-stats{display:flex;margin-top:18px;border-top:.5px solid rgba(255,255,255,.1);padding-top:14px;z-index:1;position:relative;}
+.hstat{flex:1;text-align:center;border-right:.5px solid rgba(255,255,255,.1);}
+.hstat:last-child{border-right:none;}
+.hstat-v{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#ff6b6a;}
+.hstat-l{font-size:9px;opacity:.5;margin-top:2px;}
 
-.streak-bar{margin:0 18px 14px;background:var(--bg2);border:0.5px solid var(--border);border-radius:14px;padding:12px;transition:background 0.3s;}
+/* karma card */
+.kcard{margin:14px 18px;background:#1a1a2e;border-radius:20px;padding:18px;color:#fff;position:relative;overflow:hidden;}
+body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
+.kcard::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(226,75,74,.18);border-radius:50%;}
+.k-lbl{font-size:10px;opacity:.5;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.k-pts{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;line-height:1;transition:all .3s;}
+.k-pts small{font-size:14px;font-weight:400;opacity:.5;margin-left:3px;}
+.k-row{display:flex;gap:10px;margin-top:12px;z-index:1;position:relative;flex-wrap:wrap;}
+.ks{flex:1;min-width:50px;}
+.ks-v{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
+.ks-l{font-size:9px;opacity:.45;margin-top:1px;}
+.lvl{position:absolute;top:16px;right:16px;z-index:2;background:rgba(226,75,74,.8);color:#fff;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;}
+
+/* animated +/- pop */
+@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-42px) scale(1.3);}}
+.pts-pop{position:fixed;pointer-events:none;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;z-index:999;animation:floatUp .9s ease-out forwards;}
+.pts-pop.earn{color:#3B6D11;} .pts-pop.spend{color:#E24B4A;}
+
+/* streak */
+.streak{margin:0 18px 14px;background:var(--bg2);border:.5px solid var(--br);border-radius:14px;padding:12px;}
 .streak-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.streak-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text);}
-.streak-badge{background:var(--amber-l);color:var(--amber);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
-.streak-dots{display:flex;gap:5px;}
-.sdot{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);}
-.sdot.done{background:var(--amber-l);border-color:var(--amber);color:var(--amber);}
-.sdot.today{background:var(--red-l);border-color:var(--red);color:var(--red);}
-.streak-note{font-size:10px;color:var(--muted);margin-top:6px;}
+.streak-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--tx);}
+.streak-badge{background:var(--al);color:var(--a);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.sdots{display:flex;gap:5px;}
+.sd{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--br);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mu);}
+.sd.done{background:var(--al);border-color:var(--a);color:var(--a);}
+.sd.today{background:var(--rl);border-color:var(--r);color:var(--r);}
+.streak-note{font-size:10px;color:var(--mu);margin-top:6px;}
 
-.section{padding:0 18px;margin-bottom:18px;}
-.section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;}
-.see-all{font-size:10px;color:var(--blue);cursor:pointer;font-weight:600;letter-spacing:0;text-transform:none;}
+/* sections */
+.sec{padding:0 18px;margin-bottom:18px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;}
+.see{font-size:10px;color:var(--b);cursor:pointer;font-weight:600;letter-spacing:0;text-transform:none;}
 
-.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.action-card{background:var(--card);border:0.5px solid var(--border);border-radius:16px;padding:13px;cursor:pointer;transition:all 0.2s;}
-.action-card:hover{border-color:rgba(226,75,74,0.4);transform:translateY(-2px);}
-.action-card.full{grid-column:1/-1;display:flex;align-items:center;gap:13px;}
-.action-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:7px;flex-shrink:0;}
-.action-card.full .action-icon{margin-bottom:0;}
-.icon-red{background:var(--red-l);} .icon-green{background:var(--green-l);} .icon-blue{background:var(--blue-l);}
-.icon-teal{background:var(--teal-l);} .icon-purple{background:var(--purple-l);}
-.action-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text);}
-.action-desc{font-size:10px;color:var(--muted);line-height:1.4;}
-.action-points{display:inline-flex;align-items:center;margin-top:6px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
-.pts-red{background:var(--red-l);color:var(--red);} .pts-green{background:var(--green-l);color:var(--green);}
-.pts-blue{background:var(--blue-l);color:var(--blue);} .pts-teal{background:var(--teal-l);color:var(--teal);}
-.pts-purple{background:var(--purple-l);color:var(--purple);}
-.full-info{flex:1;}
+/* action grid */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.ac{background:var(--card);border:.5px solid var(--br);border-radius:16px;padding:13px;cursor:pointer;transition:all .2s;}
+.ac:hover{border-color:rgba(226,75,74,.4);transform:translateY(-2px);}
+.ac.full{grid-column:1/-1;display:flex;align-items:center;gap:12px;}
+.ai{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:7px;flex-shrink:0;}
+.ac.full .ai{margin-bottom:0;}
+.ai-r{background:var(--rl);} .ai-g{background:var(--gl);} .ai-b{background:var(--bl);} .ai-t{background:var(--tl);} .ai-p{background:var(--pl);}
+.an{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:2px;color:var(--tx);}
+.ad{font-size:10px;color:var(--mu);line-height:1.4;}
+.ap{display:inline-flex;align-items:center;margin-top:6px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
+.ap-r{background:var(--rl);color:var(--r);} .ap-g{background:var(--gl);color:var(--g);} .ap-b{background:var(--bl);color:var(--b);} .ap-t{background:var(--tl);color:var(--t);} .ap-p{background:var(--pl);color:var(--p);}
+.afi{flex:1;}
 
-.event-card{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:14px;margin-bottom:9px;cursor:pointer;transition:all 0.2s;}
-.event-card:hover{border-color:var(--teal);transform:translateY(-1px);}
-.event-header{display:flex;align-items:flex-start;gap:11px;margin-bottom:9px;}
-.event-date-box{background:var(--red-l);border-radius:10px;padding:6px 9px;text-align:center;flex-shrink:0;}
-.event-date-day{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--red);line-height:1;}
-.event-date-mon{font-size:9px;color:var(--red);text-transform:uppercase;}
-.event-info{flex:1;}
-.event-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;color:var(--text);}
-.event-meta{font-size:10px;color:var(--muted);}
-.event-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px;}
+/* event card */
+.ec{background:var(--card);border:.5px solid var(--br);border-radius:14px;padding:13px;margin-bottom:9px;transition:all .2s;}
+.ec:hover{border-color:var(--t);}
+.ec-hd{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.datebox{background:var(--rl);border-radius:10px;padding:6px 9px;text-align:center;flex-shrink:0;}
+.datebox-d{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--r);line-height:1;}
+.datebox-m{font-size:9px;color:var(--r);text-transform:uppercase;}
+.ei{flex:1;}
+.etitle{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;color:var(--tx);}
+.emeta{font-size:10px;color:var(--mu);}
+.etags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
 .etag{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:600;}
-.etag-health{background:var(--green-l);color:var(--green);} .etag-edu{background:var(--blue-l);color:var(--blue);}
-.etag-free{background:var(--teal-l);color:var(--teal);} .etag-weekend{background:var(--amber-l);color:var(--amber);}
-.event-footer{display:flex;justify-content:space-between;align-items:center;}
-.event-pts{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--green);}
-.join-btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:6px 13px;border-radius:9px;border:none;background:var(--teal);color:#fff;cursor:pointer;}
-.join-btn.joined{background:var(--green-l);color:var(--green);border:1px solid var(--green);}
+.tag-h{background:var(--gl);color:var(--g);} .tag-e{background:var(--bl);color:var(--b);} .tag-f{background:var(--tl);color:var(--t);} .tag-w{background:var(--al);color:var(--a);}
+.efooter{display:flex;justify-content:space-between;align-items:center;}
+.epts{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--g);}
+.jbtn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:6px 13px;border-radius:9px;border:none;background:var(--t);color:#fff;cursor:pointer;transition:all .2s;}
+.jbtn:hover{opacity:.85;}
+.jbtn.jd{background:var(--gl);color:var(--g);border:1px solid var(--g);cursor:default;}
 
-.vol-slot{background:var(--card);border:0.5px solid var(--border);border-radius:13px;padding:12px;margin-bottom:7px;display:flex;gap:11px;align-items:center;}
-.vol-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
-.vol-info{flex:1;}
-.vol-title{font-size:12px;font-weight:500;color:var(--text);}
-.vol-sub{font-size:10px;color:var(--muted);margin-top:1px;}
-.vol-pts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--green);}
+/* vol slot */
+.vslot{background:var(--card);border:.5px solid var(--br);border-radius:13px;padding:11px;margin-bottom:7px;display:flex;gap:10px;align-items:center;}
+.vi{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.vinfo{flex:1;}
+.vtitle{font-size:12px;font-weight:500;color:var(--tx);}
+.vsub{font-size:10px;color:var(--mu);margin-top:1px;}
+.vpts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--g);}
 
-.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.impact-box{background:var(--bg2);border-radius:12px;padding:12px;text-align:center;}
-.impact-val{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;}
-.impact-lbl{font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;}
+/* blood req */
+.breq{background:var(--card);border:.5px solid var(--br);border-radius:13px;padding:12px;margin-bottom:7px;}
+.breq.urg{border-color:rgba(226,75,74,.4);background:var(--rl);}
+.bg-grp{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--r);}
 
-.blood-request{background:var(--card);border:0.5px solid var(--border);border-radius:13px;padding:12px;margin-bottom:7px;display:flex;align-items:center;gap:10px;}
-.blood-request.urg{border-color:rgba(226,75,74,0.4);background:var(--red-l);}
-.blood-group{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--red);width:38px;text-align:center;flex-shrink:0;}
-.req-info{flex:1;}
-.req-hospital{font-size:12px;font-weight:500;color:var(--text);}
-.req-location{font-size:10px;color:var(--muted);margin-top:1px;}
-.req-urgency{font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;}
-.urg-high{background:#F7C1C1;color:#791F1F;} .urg-med{background:var(--amber-l);color:var(--amber);}
-
-.lb-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border);}
+/* leaderboard */
+.lbi{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid var(--br);}
 .rank{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;width:24px;text-align:center;flex-shrink:0;}
-.rank.gold{color:#BA7517;} .rank.silver{color:#888780;} .rank.bronze{color:#993C1D;}
-.lb-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;flex-shrink:0;}
-.av-r{background:var(--red-l);color:var(--red);} .av-b{background:var(--blue-l);color:var(--blue);}
-.av-g{background:var(--green-l);color:var(--green);} .av-a{background:var(--amber-l);color:var(--amber);}
-.av-p{background:var(--purple-l);color:var(--purple);} .av-t{background:var(--teal-l);color:var(--teal);}
+.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;flex-shrink:0;}
 .lb-info{flex:1;}
-.lb-name{font-size:12px;font-weight:500;color:var(--text);}
-.lb-acts{font-size:9px;color:var(--muted);margin-top:1px;}
-.lb-pts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--green);}
-.you-row{background:var(--blue-l);border-radius:10px;padding:10px 11px;margin:0 -11px;}
+.lb-name{font-size:12px;font-weight:500;color:var(--tx);}
+.lb-acts{font-size:9px;color:var(--mu);margin-top:1px;}
+.lb-pts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--g);}
+.you-row{background:var(--bl);border-radius:10px;padding:10px 11px;margin:0 -11px;}
 
-.notif-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid var(--border);}
-.notif-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
-.notif-title{font-size:12px;font-weight:500;line-height:1.4;color:var(--text);}
-.notif-time{font-size:10px;color:var(--muted);margin-top:2px;}
-.notif-tag{font-size:9px;padding:2px 6px;border-radius:20px;margin-left:4px;font-weight:600;}
-.tag-u{background:#F7C1C1;color:#791F1F;} .tag-e{background:var(--amber-l);color:var(--amber);}
+/* REWARDS */
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.rcard{background:var(--card);border:.5px solid var(--br);border-radius:15px;padding:13px;position:relative;overflow:hidden;transition:all .2s;}
+.rcard.buyable{cursor:pointer;}
+.rcard.buyable:hover{border-color:rgba(59,109,17,.5);transform:translateY(-2px);}
+.rcard.locked{opacity:.55;}
+.rcard.got{border-color:var(--g);background:var(--gl);}
+.rbrand{font-size:10px;color:var(--mu);margin-bottom:2px;}
+.rtitle{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:4px;color:var(--tx);}
+.rcost{font-size:11px;font-weight:600;margin-top:3px;}
+.rcost.ok{color:var(--g);}
+.rcost.no{color:var(--mu);}
+.rtype{font-size:9px;padding:2px 7px;border-radius:20px;margin-bottom:5px;display:inline-block;}
+.rt-med{background:var(--bl);color:var(--b);} .rt-food{background:var(--gl);color:var(--g);} .rt-cash{background:var(--al);color:var(--a);}
+.rbtn{width:100%;margin-top:8px;padding:7px;border:none;border-radius:9px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;cursor:pointer;transition:all .15s;}
+.rbtn.can{background:var(--g);color:#fff;}
+.rbtn.cant{background:var(--bg2);color:var(--mu);cursor:not-allowed;}
+.rbtn.done{background:var(--gl);color:var(--g);border:1px solid var(--g);cursor:default;}
+.lock-ic{position:absolute;top:10px;right:10px;font-size:11px;opacity:.35;}
+/* balance bar */
+.bal-bar-wrap{margin:0 18px 14px;background:var(--bg2);border:.5px solid var(--br);border-radius:14px;padding:12px;}
+.bal-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.bal-bar-lbl{font-size:10px;color:var(--mu);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.bal-bar-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--tx);}
+.bar-outer{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+.bar-inner{height:100%;background:linear-gradient(90deg,var(--r),var(--a));border-radius:4px;transition:width .5s ease;}
+.bar-labels{display:flex;justify-content:space-between;margin-top:4px;}
+.bar-lbl{font-size:9px;color:var(--mu);}
 
-.rewards-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.reward-card{background:var(--card);border:0.5px solid var(--border);border-radius:15px;padding:13px;cursor:pointer;transition:all 0.2s;}
-.reward-card:hover{transform:translateY(-2px);border-color:rgba(226,75,74,0.3);}
-.reward-brand{font-size:10px;color:var(--muted);margin-bottom:2px;}
-.reward-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:5px;color:var(--text);}
-.reward-cost{font-size:10px;font-weight:500;color:var(--red);}
-.reward-type{font-size:9px;padding:2px 7px;border-radius:20px;margin-bottom:5px;display:inline-block;}
-.type-med{background:var(--blue-l);color:var(--blue);} .type-food{background:var(--green-l);color:var(--green);} .type-cash{background:var(--amber-l);color:var(--amber);}
+/* txn */
+.txn{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--br);}
+.txn-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.txn-info{flex:1;}
+.txn-name{font-size:11px;font-weight:500;color:var(--tx);}
+.txn-note{font-size:10px;color:var(--mu);}
+.txn-pts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;}
+.txn-earn{color:var(--g);} .txn-spend{color:var(--r);}
 
-.quiz-card{background:var(--card);border:0.5px solid var(--border);border-radius:15px;padding:16px;margin-bottom:10px;}
-.quiz-q{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:12px;line-height:1.4;color:var(--text);}
-.quiz-opts{display:flex;flex-direction:column;gap:6px;}
-.quiz-opt{padding:10px 12px;border-radius:9px;border:0.5px solid var(--border);background:var(--bg2);cursor:pointer;font-size:12px;transition:all 0.15s;text-align:left;color:var(--text);}
-.quiz-opt:hover{border-color:var(--blue);background:var(--blue-l);}
-.quiz-opt.correct{border-color:var(--green);background:var(--green-l);color:var(--green);font-weight:500;}
-.quiz-opt.wrong{border-color:var(--red);background:var(--red-l);color:var(--red);}
-.quiz-progress{font-size:10px;color:var(--muted);margin-bottom:5px;display:flex;justify-content:space-between;}
-.progress-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:12px;}
-.progress-fill{height:100%;background:var(--blue);border-radius:2px;transition:width 0.3s;}
-.success-msg{background:var(--green-l);border:0.5px solid var(--green);border-radius:11px;padding:13px;margin-top:10px;text-align:center;display:none;}
-.success-msg.show{display:block;}
-.success-pts{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green);}
+/* quiz */
+.qcard{background:var(--card);border:.5px solid var(--br);border-radius:15px;padding:16px;margin-bottom:10px;}
+.qq{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:12px;line-height:1.4;color:var(--tx);}
+.qopts{display:flex;flex-direction:column;gap:6px;}
+.qopt{padding:10px 12px;border-radius:9px;border:.5px solid var(--br);background:var(--bg2);cursor:pointer;font-size:12px;transition:all .15s;text-align:left;color:var(--tx);}
+.qopt:hover{border-color:var(--b);background:var(--bl);}
+.qopt.ok{border-color:var(--g);background:var(--gl);color:var(--g);font-weight:500;}
+.qopt.no{border-color:var(--r);background:var(--rl);color:var(--r);}
+.prog-bar{height:4px;background:var(--br);border-radius:2px;margin-bottom:12px;}
+.prog-fill{height:100%;background:var(--b);border-radius:2px;transition:width .3s;}
+.quiz-win{background:var(--gl);border:.5px solid var(--g);border-radius:11px;padding:14px;text-align:center;display:none;}
+.quiz-win.show{display:block;}
+.quiz-pts{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--g);}
 
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.stat-box{background:var(--bg2);border-radius:12px;padding:12px;text-align:center;}
-.stat-val{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;}
-.stat-lbl{font-size:9px;color:var(--muted);margin-top:2px;}
+/* notif */
+.ni{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:.5px solid var(--br);}
+.ndot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.ntitle{font-size:12px;font-weight:500;line-height:1.4;color:var(--tx);}
+.ntime{font-size:10px;color:var(--mu);margin-top:2px;}
+.ntag{font-size:9px;padding:2px 6px;border-radius:20px;margin-left:4px;font-weight:600;}
+.ntag-u{background:#F7C1C1;color:#791F1F;} .ntag-e{background:var(--al);color:var(--a);}
 
-.feedback-section{background:var(--card);border:0.5px solid var(--border);border-radius:16px;padding:16px;margin:0 18px 18px;}
-.feedback-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text);}
-.feedback-sub{font-size:11px;color:var(--muted);margin-bottom:14px;}
-.star-row{display:flex;gap:6px;margin-bottom:14px;}
-.star{font-size:24px;cursor:pointer;filter:grayscale(1);transition:filter 0.15s,transform 0.15s;}
-.star.lit{filter:none;}
-.star:hover{transform:scale(1.2);}
-.feedback-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.fcat{font-size:10px;padding:5px 11px;border-radius:20px;border:0.5px solid var(--border);background:var(--bg2);cursor:pointer;color:var(--text);transition:all 0.15s;}
-.fcat.sel{background:var(--blue-l);border-color:var(--blue);color:var(--blue);font-weight:600;}
-.feedback-input{width:100%;padding:10px 12px;border:0.5px solid var(--border);border-radius:11px;background:var(--bg2);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;resize:none;min-height:72px;}
-.feedback-sent{display:none;text-align:center;padding:16px;}
-.feedback-sent.show{display:block;}
+/* profile */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.sbox{background:var(--bg2);border-radius:12px;padding:12px;text-align:center;}
+.sv{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;}
+.sl{font-size:9px;color:var(--mu);margin-top:2px;}
+.fbk{background:var(--card);border:.5px solid var(--br);border-radius:16px;padding:16px;margin:0 18px 18px;}
+.fcat{font-size:10px;padding:5px 11px;border-radius:20px;border:.5px solid var(--br);background:var(--bg2);cursor:pointer;color:var(--tx);}
+.fcat.sel{background:var(--bl);border-color:var(--b);color:var(--b);font-weight:600;}
+.fi{width:100%;padding:10px 12px;border:.5px solid var(--br);border-radius:11px;background:var(--bg2);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;resize:none;min-height:70px;}
 
-.sponsors-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;}
-.sponsor-chip{flex-shrink:0;background:var(--bg2);border:0.5px solid var(--border);border-radius:10px;padding:8px 12px;text-align:center;min-width:78px;}
-.sponsor-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text);}
-.sponsor-type{font-size:9px;color:var(--muted);margin-top:1px;}
+/* sponsors */
+.srow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;}
+.schip{flex-shrink:0;background:var(--bg2);border:.5px solid var(--br);border-radius:10px;padding:8px 12px;text-align:center;min-width:76px;}
+.sname{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--tx);}
+.stype{font-size:9px;color:var(--mu);margin-top:1px;}
 
-.screen{display:none;}
-.screen.active{display:block;}
+/* screens / nav */
+.scr{display:none;} .scr.on{display:block;}
+.nav{border-top:.5px solid var(--br);display:flex;background:var(--nav);position:sticky;bottom:0;z-index:50;}
+.nv{flex:1;padding:9px 3px;text-align:center;cursor:pointer;color:var(--mu);font-size:8px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color .15s;}
+.nv.on{color:var(--r);}
+.nv-ic{font-size:15px;}
+.nb{display:inline-block;background:var(--r);color:#fff;border-radius:50%;width:13px;height:13px;font-size:8px;font-weight:700;line-height:13px;text-align:center;margin-left:1px;}
 
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:100;align-items:flex-end;justify-content:center;}
-.modal-bg.open{display:flex;}
-.modal{background:var(--bg);border-radius:24px 24px 0 0;padding:20px 18px 28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;transition:background 0.3s;}
-.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 15px;}
-.modal-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px;color:var(--text);}
-.modal-sub{font-size:11px;color:var(--muted);margin-bottom:15px;}
-.form-group{margin-bottom:12px;}
-.form-label{font-size:10px;font-weight:500;color:var(--muted);margin-bottom:6px;display:block;letter-spacing:0.3px;}
-.form-input,.form-select{width:100%;padding:10px 12px;border:0.5px solid var(--border);border-radius:11px;background:var(--bg2);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;transition:border 0.15s;}
-.form-input:focus,.form-select:focus{border-color:var(--red);}
-
-.emergency-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:10px;}
-.emerg-btn{padding:11px 7px;border-radius:11px;border:1.5px solid var(--border);background:var(--bg2);cursor:pointer;text-align:center;transition:all 0.15s;}
-.emerg-btn:hover,.emerg-btn.selected{border-color:var(--red);background:var(--red-l);}
-.emerg-btn-icon{font-size:20px;margin-bottom:4px;}
-.emerg-btn-label{font-size:11px;font-weight:600;color:var(--text);line-height:1.2;}
-.emerg-btn-desc{font-size:9px;color:var(--muted);margin-top:2px;line-height:1.2;}
-.sel-label{font-size:11px;color:var(--red);margin-bottom:12px;display:none;font-weight:500;background:var(--red-l);padding:7px 11px;border-radius:9px;}
-.sel-label.show{display:block;}
-
-.urgency-row{display:flex;gap:7px;margin-bottom:14px;}
-.urg-btn{flex:1;padding:9px 6px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg2);cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--text);transition:all 0.15s;}
-.urg-btn.sel-low{border-color:var(--green);background:var(--green-l);color:var(--green);}
-.urg-btn.sel-med{border-color:var(--amber);background:var(--amber-l);color:var(--amber);}
-.urg-btn.sel-high{border-color:var(--red);background:var(--red-l);color:var(--red);}
-
-.verify-box{background:var(--amber-l);border:0.5px solid var(--amber);border-radius:10px;padding:11px;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start;}
-.verify-text{font-size:11px;color:#633806;line-height:1.5;}
-.submit-btn{width:100%;padding:13px;color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity 0.15s;}
-.submit-btn:hover{opacity:0.9;}
-.btn-red{background:var(--red);} .btn-green{background:var(--green);} .btn-blue{background:var(--blue);}
-.btn-teal{background:var(--teal);} .btn-purple{background:var(--purple);}
-
-.nav{border-top:0.5px solid var(--border);display:flex;background:var(--nav-bg);position:sticky;bottom:0;z-index:50;transition:background 0.3s;}
-.nav-item{flex:1;padding:9px 4px;text-align:center;cursor:pointer;color:var(--muted);font-size:8px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.15s;}
-.nav-item.active{color:var(--red);}
-.nav-icon{font-size:15px;}
-.nbubble{display:inline-block;background:var(--red);color:#fff;border-radius:50%;width:13px;height:13px;font-size:8px;font-weight:700;line-height:13px;text-align:center;margin-left:1px;}
+/* modals */
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:flex-end;justify-content:center;}
+.mbg.op{display:flex;}
+.modal{background:var(--bg);border-radius:24px 24px 0 0;padding:20px 18px 28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
+.mh{width:40px;height:4px;background:var(--br);border-radius:2px;margin:0 auto 14px;}
+.mt{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px;color:var(--tx);}
+.ms{font-size:11px;color:var(--mu);margin-bottom:14px;}
+.fg{margin-bottom:11px;}
+.fl{font-size:10px;font-weight:500;color:var(--mu);margin-bottom:5px;display:block;}
+.fi2,.fs{width:100%;padding:10px 12px;border:.5px solid var(--br);border-radius:11px;background:var(--bg2);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;}
+.fi2:focus,.fs:focus{border-color:var(--r);}
+.egrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:10px;}
+.eb{padding:10px 6px;border-radius:11px;border:1.5px solid var(--br);background:var(--bg2);cursor:pointer;text-align:center;transition:all .15s;}
+.eb:hover,.eb.sel{border-color:var(--r);background:var(--rl);}
+.eb-ic{font-size:18px;margin-bottom:3px;}
+.eb-lbl{font-size:11px;font-weight:600;color:var(--tx);line-height:1.2;}
+.eb-desc{font-size:9px;color:var(--mu);margin-top:2px;line-height:1.2;}
+.slab{font-size:11px;color:var(--r);margin-bottom:12px;display:none;font-weight:500;background:var(--rl);padding:7px 11px;border-radius:9px;}
+.slab.show{display:block;}
+.urgrow{display:flex;gap:7px;margin-bottom:13px;}
+.ub{flex:1;padding:9px 5px;border-radius:10px;border:1.5px solid var(--br);background:var(--bg2);cursor:pointer;text-align:center;font-size:11px;font-weight:500;color:var(--tx);transition:all .15s;}
+.ub.u-lo{border-color:var(--g);background:var(--gl);color:var(--g);}
+.ub.u-md{border-color:var(--a);background:var(--al);color:var(--a);}
+.ub.u-hi{border-color:var(--r);background:var(--rl);color:var(--r);}
+.vbox{background:var(--al);border:.5px solid var(--a);border-radius:10px;padding:10px;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start;}
+.vtext{font-size:11px;color:#633806;line-height:1.5;}
+.sbtn{width:100%;padding:13px;color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s;}
+.sbtn:hover{opacity:.9;}
+.btn-r{background:var(--r);} .btn-g{background:var(--g);} .btn-b{background:var(--b);} .btn-t{background:var(--t);} .btn-p{background:var(--p);}
 </style>
 
-<div class="app">
-<div class="topbar">
-  <div class="topbar-logo">Karma<span>+</span></div>
-  <div class="topbar-right">
-    <div class="clock" id="clock">00:00:00</div>
-    <div class="toggle-btn" onclick="toggleDark()"><div class="knob"></div></div>
-    <div class="topbar-pts" id="topbar-pts">1,240 pts</div>
+<!-- floating pops injected by JS -->
+<div id="pops"></div>
+
+<div class="wrap">
+
+<div class="tb">
+  <div class="tb-logo">Karma<s>+</s></div>
+  <div class="tb-r">
+    <div class="clk" id="clk"></div>
+    <div class="tog" onclick="toggleDark()"><div class="kn"></div></div>
+    <div class="pts-badge" id="tbpts">1,240 pts</div>
   </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">🌟 Gamified Social Change</div>
-  <div class="hero-title">Turn good deeds into<br><span>real rewards</span></div>
-  <div class="hero-desc">Karma+ connects volunteers, donors, and companies to build a healthier, more educated community — one action at a time. Every act earns points. Points unlock real benefits.</div>
+  <div class="hero-tag">&#x2605; Gamified Social Change</div>
+  <div class="hero-title">Turn good deeds into<br><em>real rewards</em></div>
+  <div class="hero-desc">Karma+ connects volunteers, donors and companies to build a healthier community. Every act earns points. Points unlock real benefits.</div>
   <div class="hero-pills">
-    <div class="hero-pill">🚑 Book ambulances</div>
-    <div class="hero-pill">🩸 Blood donation</div>
-    <div class="hero-pill">🏥 Health camps</div>
-    <div class="hero-pill">📚 Teach communities</div>
-    <div class="hero-pill">🎁 Earn rewards</div>
+    <div class="pill">&#x1F691; Ambulances</div>
+    <div class="pill">&#x1F9B8; Blood</div>
+    <div class="pill">&#x1F3E5; Health camps</div>
+    <div class="pill">&#x1F4DA; Teach</div>
+    <div class="pill">&#x1F381; Rewards</div>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-val">12K+</div><div class="hero-stat-lbl">Active heroes</div></div>
-    <div class="hero-stat"><div class="hero-stat-val">3,400</div><div class="hero-stat-lbl">Volunteer hrs</div></div>
-    <div class="hero-stat"><div class="hero-stat-val">890</div><div class="hero-stat-lbl">Kids educated</div></div>
-    <div class="hero-stat"><div class="hero-stat-val">48</div><div class="hero-stat-lbl">Events held</div></div>
+    <div class="hstat"><div class="hstat-v">12K+</div><div class="hstat-l">Active heroes</div></div>
+    <div class="hstat"><div class="hstat-v">3,400</div><div class="hstat-l">Volunteer hrs</div></div>
+    <div class="hstat"><div class="hstat-v">890</div><div class="hstat-l">Kids educated</div></div>
+    <div class="hstat"><div class="hstat-v">48</div><div class="hstat-l">Events held</div></div>
   </div>
 </div>
 
 <!-- HOME -->
-<div id="screen-home" class="screen active">
-  <div class="karma-card">
-    <div class="level-badge">HERO LVL 3</div>
-    <div class="karma-label">Total Karma Points</div>
-    <div class="karma-points" id="total-pts">1,240 <span>pts</span></div>
-    <div class="karma-row">
-      <div class="ks"><div class="ks-val">4</div><div class="ks-lbl">Donations</div></div>
-      <div class="ks"><div class="ks-val">3</div><div class="ks-lbl">Ambulances</div></div>
-      <div class="ks"><div class="ks-val">6</div><div class="ks-lbl">Events</div></div>
-      <div class="ks"><div class="ks-val">2</div><div class="ks-lbl">FA badges</div></div>
+<div id="s-home" class="scr on">
+  <!-- balance bar -->
+  <div class="bal-bar-wrap" style="margin-top:14px;">
+    <div class="bal-bar-top">
+      <div class="bal-bar-lbl">Karma Balance</div>
+      <div class="bal-bar-val" id="bb-val">1,240 pts</div>
+    </div>
+    <div class="bar-outer"><div class="bar-inner" id="bb-fill" style="width:31%"></div></div>
+    <div class="bar-labels"><div class="bar-lbl">0</div><div class="bar-lbl">Level 4: 4,000 pts</div></div>
+  </div>
+
+  <div class="kcard">
+    <div class="lvl">HERO LVL 3</div>
+    <div class="k-lbl">Total Karma Points</div>
+    <div class="k-pts" id="kpts">1,240<small>pts</small></div>
+    <div class="k-row">
+      <div class="ks"><div class="ks-v" id="st-don">4</div><div class="ks-l">Donations</div></div>
+      <div class="ks"><div class="ks-v" id="st-amb">3</div><div class="ks-l">Ambulances</div></div>
+      <div class="ks"><div class="ks-v" id="st-ev">6</div><div class="ks-l">Events</div></div>
+      <div class="ks"><div class="ks-v" id="st-fa">2</div><div class="ks-l">FA badges</div></div>
     </div>
   </div>
-  <div class="streak-bar">
-    <div class="streak-top"><div class="streak-title">🔥 Monthly Streak — 3x multiplier active</div><div class="streak-badge">WEEK 3</div></div>
-    <div class="streak-dots"><div class="sdot done">✓</div><div class="sdot done">✓</div><div class="sdot today">★</div><div class="sdot"></div><div class="sdot"></div></div>
-    <div class="streak-note">2 more actions this month to unlock 5x multiplier</div>
+
+  <div class="streak">
+    <div class="streak-top"><div class="streak-title">&#x1F525; Monthly Streak — 3x multiplier</div><div class="streak-badge">WEEK 3</div></div>
+    <div class="sdots"><div class="sd done">&#x2713;</div><div class="sd done">&#x2713;</div><div class="sd today">&#x2605;</div><div class="sd"></div><div class="sd"></div></div>
+    <div class="streak-note">2 more actions to unlock 5x multiplier</div>
   </div>
-  <div class="section">
-    <div class="section-title">Actions</div>
-    <div class="action-grid">
-      <div class="action-card full" onclick="openModal('ambulance')">
-        <div class="action-icon icon-red">🚑</div>
-        <div class="full-info"><div class="action-name">Book Ambulance</div><div class="action-desc">9 emergency types — help dispatched fast</div><div class="action-points pts-red">+50 pts</div></div>
+
+  <div class="sec">
+    <div class="sec-title">Quick Actions</div>
+    <div class="agrid">
+      <div class="ac full" onclick="openM('ambulance')">
+        <div class="ai ai-r">&#x1F691;</div>
+        <div class="afi"><div class="an">Book Ambulance</div><div class="ad">9 emergency types</div><div class="ap ap-r">+50 pts</div></div>
       </div>
-      <div class="action-card" onclick="openModal('blood')"><div class="action-icon icon-green">🩸</div><div class="action-name">Blood Donation</div><div class="action-desc">Verified by hospital</div><div class="action-points pts-green">+200 pts</div></div>
-      <div class="action-card" onclick="switchTab('firstaid')"><div class="action-icon icon-blue">📋</div><div class="action-name">First Aid Quiz</div><div class="action-desc">Learn & earn</div><div class="action-points pts-blue">+100 pts</div></div>
-      <div class="action-card" onclick="switchTab('community')"><div class="action-icon icon-teal">🏥</div><div class="action-name">Health Camp</div><div class="action-desc">Weekend checkups</div><div class="action-points pts-teal">+150 pts</div></div>
-      <div class="action-card" onclick="switchTab('community')"><div class="action-icon icon-purple">📚</div><div class="action-name">Teach & Educate</div><div class="action-desc">Weekend classes</div><div class="action-points pts-purple">+120 pts</div></div>
+      <div class="ac" onclick="openM('blood')"><div class="ai ai-g">&#x1FA78;</div><div class="an">Blood Donation</div><div class="ad">Verified by hospital</div><div class="ap ap-g">+200 pts</div></div>
+      <div class="ac" onclick="go('firstaid')"><div class="ai ai-b">&#x1F4CB;</div><div class="an">First Aid Quiz</div><div class="ad">Learn & earn</div><div class="ap ap-b">+100 pts</div></div>
+      <div class="ac" onclick="go('community')"><div class="ai ai-t">&#x1F3E5;</div><div class="an">Health Camp</div><div class="ad">Weekend checkups</div><div class="ap ap-t">+150 pts</div></div>
+      <div class="ac" onclick="go('community')"><div class="ai ai-p">&#x1F4DA;</div><div class="an">Teach & Educate</div><div class="ad">Weekend classes</div><div class="ap ap-p">+120 pts</div></div>
     </div>
   </div>
-  <div class="section">
-    <div class="section-title">This Weekend <span class="see-all" onclick="switchTab('community')">All events</span></div>
-    <div class="event-card" onclick="openModal('event1')">
-      <div class="event-header"><div class="event-date-box"><div class="event-date-day">15</div><div class="event-date-mon">Mar</div></div><div class="event-info"><div class="event-title">Free Health Checkup Camp</div><div class="event-meta">Lions Club Ground, Vastrapur · 9AM–2PM</div></div></div>
-      <div class="event-tags"><span class="etag etag-health">Health</span><span class="etag etag-free">Free</span><span class="etag etag-weekend">Saturday</span></div>
-      <div class="event-footer"><div style="font-size:10px;color:var(--muted);">23 volunteers needed</div><div class="event-pts">+150 pts</div></div>
+
+  <div class="sec">
+    <div class="sec-title">This Weekend <span class="see" onclick="go('community')">All events</span></div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox"><div class="datebox-d">15</div><div class="datebox-m">Mar</div></div><div class="ei"><div class="etitle">Free Health Checkup Camp</div><div class="emeta">Lions Club Ground · 9AM–2PM</div></div></div>
+      <div class="etags"><span class="etag tag-h">Health</span><span class="etag tag-f">Free</span><span class="etag tag-w">Saturday</span></div>
+      <div class="efooter"><div style="font-size:10px;color:var(--mu)">23 volunteers needed</div><div class="epts">+150 pts</div></div>
     </div>
-    <div class="event-card" onclick="openModal('event2')">
-      <div class="event-header"><div class="event-date-box" style="background:var(--purple-l);"><div class="event-date-day" style="color:var(--purple);">16</div><div class="event-date-mon" style="color:var(--purple);">Mar</div></div><div class="event-info"><div class="event-title">Sunday Education Drive</div><div class="event-meta">Community Hall, Behrampura · 10AM–1PM</div></div></div>
-      <div class="event-tags"><span class="etag etag-edu">Education</span><span class="etag etag-free">Free</span><span class="etag etag-weekend">Sunday</span></div>
-      <div class="event-footer"><div style="font-size:10px;color:var(--muted);">12 teachers needed</div><div class="event-pts">+120 pts</div></div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox" style="background:var(--pl)"><div class="datebox-d" style="color:var(--p)">16</div><div class="datebox-m" style="color:var(--p)">Mar</div></div><div class="ei"><div class="etitle">Sunday Education Drive</div><div class="emeta">Community Hall, Behrampura · 10AM</div></div></div>
+      <div class="etags"><span class="etag tag-e">Education</span><span class="etag tag-f">Free</span><span class="etag tag-w">Sunday</span></div>
+      <div class="efooter"><div style="font-size:10px;color:var(--mu)">12 teachers needed</div><div class="epts">+120 pts</div></div>
     </div>
   </div>
-  <div class="section">
-    <div class="section-title">Urgent Blood <span class="see-all" onclick="switchTab('requests')">See all</span></div>
-    <div class="blood-request urg"><div class="blood-group">O−</div><div class="req-info"><div class="req-hospital">Fortis Hospital</div><div class="req-location">3.2 km · Needed in 6 hrs</div></div><div class="req-urgency urg-high">CRITICAL</div></div>
+
+  <div class="sec">
+    <div class="sec-title">Recent Activity <span class="see" onclick="go('rewards')">All</span></div>
+    <div id="txn-home"></div>
   </div>
-  <div class="section">
-    <div class="section-title">Powered by</div>
-    <div class="sponsors-row">
-      <div class="sponsor-chip"><div style="font-size:17px;margin-bottom:3px;">💊</div><div class="sponsor-name">Apollo</div><div class="sponsor-type">Medical</div></div>
-      <div class="sponsor-chip"><div style="font-size:17px;margin-bottom:3px;">📱</div><div class="sponsor-name">PhonePe</div><div class="sponsor-type">Cashback</div></div>
-      <div class="sponsor-chip"><div style="font-size:17px;margin-bottom:3px;">🍔</div><div class="sponsor-name">Swiggy</div><div class="sponsor-type">Food</div></div>
-      <div class="sponsor-chip"><div style="font-size:17px;margin-bottom:3px;">🔬</div><div class="sponsor-name">Thyrocare</div><div class="sponsor-type">Checkup</div></div>
-      <div class="sponsor-chip"><div style="font-size:17px;margin-bottom:3px;">🛒</div><div class="sponsor-name">Amazon</div><div class="sponsor-type">Voucher</div></div>
+
+  <div class="sec">
+    <div class="sec-title">Powered by</div>
+    <div class="srow">
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F48A;</div><div class="sname">Apollo</div><div class="stype">Medical</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F4F1;</div><div class="sname">PhonePe</div><div class="stype">Cashback</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F354;</div><div class="sname">Swiggy</div><div class="stype">Food</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F52C;</div><div class="sname">Thyrocare</div><div class="stype">Checkup</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F6D2;</div><div class="sname">Amazon</div><div class="stype">Voucher</div></div>
     </div>
   </div>
 </div>
 
 <!-- COMMUNITY -->
-<div id="screen-community" class="screen">
-  <div style="padding:16px 18px 6px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">Volunteer Events</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Sign up for weekend drives near you</div></div>
-  <div class="section" style="margin-top:12px;">
-    <div class="section-title">Weekend Health Camps</div>
-    <div class="event-card">
-      <div class="event-header"><div class="event-date-box"><div class="event-date-day">15</div><div class="event-date-mon">Mar</div></div><div class="event-info"><div class="event-title">Free Health Checkup Camp</div><div class="event-meta">Lions Club Ground, Vastrapur · 9AM–2PM</div></div></div>
-      <div class="event-tags"><span class="etag etag-health">Health</span><span class="etag etag-free">Free checkups</span><span class="etag etag-weekend">Saturday</span></div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:9px;line-height:1.5;">BP, sugar, eye & dental checks. Doctors by Apollo. Volunteers needed for registration and patient assistance.</div>
-      <div class="event-footer"><div><div style="font-size:10px;color:var(--muted);">23 of 40 spots filled</div><div style="height:4px;background:var(--border);border-radius:2px;width:110px;margin-top:4px;"><div style="height:100%;width:57%;background:var(--teal);border-radius:2px;"></div></div></div><button class="join-btn" onclick="joinEvent(this,150)">Join — +150 pts</button></div>
-    </div>
-    <div class="event-card">
-      <div class="event-header"><div class="event-date-box" style="background:var(--pink-l);"><div class="event-date-day" style="color:var(--pink);">22</div><div class="event-date-mon" style="color:var(--pink);">Mar</div></div><div class="event-info"><div class="event-title">Mental Health Awareness Camp</div><div class="event-meta">Community Centre, Nikol · 10AM–3PM</div></div></div>
-      <div class="event-tags"><span class="etag" style="background:var(--pink-l);color:var(--pink);">Mental Health</span><span class="etag etag-free">Free</span></div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:9px;line-height:1.5;">Counselling & stress management for daily wage workers and families.</div>
-      <div class="event-footer"><div><div style="font-size:10px;color:var(--muted);">8 of 20 spots</div><div style="height:4px;background:var(--border);border-radius:2px;width:110px;margin-top:4px;"><div style="height:100%;width:40%;background:var(--pink);border-radius:2px;"></div></div></div><button class="join-btn" onclick="joinEvent(this,150)">Join — +150 pts</button></div>
-    </div>
+<div id="s-community" class="scr">
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Volunteer Events</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Weekend drives near you</div></div>
+  <div class="sec" style="margin-top:12px">
+    <div class="sec-title">Health Camps</div>
+    <div class="ec"><div class="ec-hd"><div class="datebox"><div class="datebox-d">15</div><div class="datebox-m">Mar</div></div><div class="ei"><div class="etitle">Free Health Checkup Camp</div><div class="emeta">Lions Club Ground · 9AM–2PM</div></div></div><div class="etags"><span class="etag tag-h">Health</span><span class="etag tag-f">Free</span><span class="etag tag-w">Saturday</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">BP, sugar, eye & dental. Doctors by Apollo.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">23 of 40 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:57%;background:var(--t);border-radius:2px"></div></div></div><button class="jbtn" onclick="joinEv(this,150,'&#x1F3E5; Health Camp')">Join +150 pts</button></div></div>
+    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--pkl)"><div class="datebox-d" style="color:var(--pk)">22</div><div class="datebox-m" style="color:var(--pk)">Mar</div></div><div class="ei"><div class="etitle">Mental Health Awareness Camp</div><div class="emeta">Community Centre, Nikol · 10AM</div></div></div><div class="etags"><span class="etag" style="background:var(--pkl);color:var(--pk)">Mental Health</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">Counselling for daily wage workers.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">8 of 20 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--pk);border-radius:2px"></div></div></div><button class="jbtn" onclick="joinEv(this,150,'&#x1F9E0; Mental Health Camp')">Join +150 pts</button></div></div>
   </div>
-  <div class="section">
-    <div class="section-title">Education Drives</div>
-    <div class="event-card">
-      <div class="event-header"><div class="event-date-box" style="background:var(--purple-l);"><div class="event-date-day" style="color:var(--purple);">16</div><div class="event-date-mon" style="color:var(--purple);">Mar</div></div><div class="event-info"><div class="event-title">Sunday Education Drive</div><div class="event-meta">Community Hall, Behrampura · 10AM–1PM</div></div></div>
-      <div class="event-tags"><span class="etag etag-edu">Education</span><span class="etag etag-free">Free</span><span class="etag etag-weekend">Sunday</span></div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:9px;line-height:1.5;">Literacy, math and English for kids 8–14. Materials by Teach for India. Any graduate can volunteer.</div>
-      <div class="event-footer"><div><div style="font-size:10px;color:var(--muted);">12 of 30 spots</div><div style="height:4px;background:var(--border);border-radius:2px;width:110px;margin-top:4px;"><div style="height:100%;width:40%;background:var(--purple);border-radius:2px;"></div></div></div><button class="join-btn" style="background:var(--purple);" onclick="joinEvent(this,120)">Join — +120 pts</button></div>
-    </div>
-    <div class="event-card">
-      <div class="event-header"><div class="event-date-box" style="background:var(--blue-l);"><div class="event-date-day" style="color:var(--blue);">23</div><div class="event-date-mon" style="color:var(--blue);">Mar</div></div><div class="event-info"><div class="event-title">Digital Literacy Workshop</div><div class="event-meta">Govt School, Odhav · 11AM–2PM</div></div></div>
-      <div class="event-tags"><span class="etag etag-edu">Digital Skills</span><span class="etag etag-free">Free</span><span class="etag etag-weekend">Sunday</span></div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:9px;line-height:1.5;">Smartphone basics, UPI payments and govt apps for elderly adults.</div>
-      <div class="event-footer"><div><div style="font-size:10px;color:var(--muted);">5 of 15 spots</div><div style="height:4px;background:var(--border);border-radius:2px;width:110px;margin-top:4px;"><div style="height:100%;width:33%;background:var(--blue);border-radius:2px;"></div></div></div><button class="join-btn" style="background:var(--blue);" onclick="joinEvent(this,120)">Join — +120 pts</button></div>
-    </div>
+  <div class="sec">
+    <div class="sec-title">Education Drives</div>
+    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--pl)"><div class="datebox-d" style="color:var(--p)">16</div><div class="datebox-m" style="color:var(--p)">Mar</div></div><div class="ei"><div class="etitle">Sunday Education Drive</div><div class="emeta">Community Hall · 10AM–1PM</div></div></div><div class="etags"><span class="etag tag-e">Education</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">Math & English for kids 8–14. Any graduate can volunteer.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">12 of 30 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--p);border-radius:2px"></div></div></div><button class="jbtn" style="background:var(--p)" onclick="joinEv(this,120,'&#x1F4DA; Education Drive')">Join +120 pts</button></div></div>
+    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--bl)"><div class="datebox-d" style="color:var(--b)">23</div><div class="datebox-m" style="color:var(--b)">Mar</div></div><div class="ei"><div class="etitle">Digital Literacy Workshop</div><div class="emeta">Govt School, Odhav · 11AM</div></div></div><div class="etags"><span class="etag tag-e">Digital</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">UPI & govt apps for elderly adults.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">5 of 15 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:33%;background:var(--b);border-radius:2px"></div></div></div><button class="jbtn" style="background:var(--b)" onclick="joinEv(this,120,'&#x1F4BB; Digital Literacy')">Join +120 pts</button></div></div>
   </div>
-  <div class="section">
-    <div class="section-title">More Volunteer Slots</div>
-    <div class="vol-slot"><div class="vol-icon icon-amber" style="background:var(--amber-l);">🍱</div><div class="vol-info"><div class="vol-title">Food distribution drive</div><div class="vol-sub">Every Sunday · Old City · 7AM</div></div><div><div class="vol-pts">+80 pts</div><button class="join-btn" style="margin-top:5px;font-size:9px;padding:5px 9px;" onclick="joinEvent(this,80)">Join</button></div></div>
-    <div class="vol-slot"><div class="vol-icon" style="background:var(--green-l);">🌳</div><div class="vol-info"><div class="vol-title">Tree plantation drive</div><div class="vol-sub">Last Sunday · Sabarmati</div></div><div><div class="vol-pts">+80 pts</div><button class="join-btn" style="margin-top:5px;font-size:9px;padding:5px 9px;" onclick="joinEvent(this,80)">Join</button></div></div>
-    <div class="vol-slot"><div class="vol-icon" style="background:var(--blue-l);">🧹</div><div class="vol-info"><div class="vol-title">Neighbourhood cleanup</div><div class="vol-sub">2nd Saturday · Your area</div></div><div><div class="vol-pts">+60 pts</div><button class="join-btn" style="margin-top:5px;font-size:9px;padding:5px 9px;" onclick="joinEvent(this,60)">Join</button></div></div>
-    <div class="vol-slot"><div class="vol-icon" style="background:var(--pink-l);">👴</div><div class="vol-info"><div class="vol-title">Visit old age home</div><div class="vol-sub">Every Saturday · 3PM</div></div><div><div class="vol-pts">+90 pts</div><button class="join-btn" style="margin-top:5px;font-size:9px;padding:5px 9px;" onclick="joinEvent(this,90)">Join</button></div></div>
-  </div>
-  <div class="section">
-    <div class="section-title">City Impact</div>
-    <div class="impact-grid">
-      <div class="impact-box"><div class="impact-val" style="color:var(--teal);">1,240</div><div class="impact-lbl">Free checkups given</div></div>
-      <div class="impact-box"><div class="impact-val" style="color:var(--purple);">890</div><div class="impact-lbl">Children educated</div></div>
-      <div class="impact-box"><div class="impact-val" style="color:var(--green);">3,400</div><div class="impact-lbl">Volunteer hours logged</div></div>
-      <div class="impact-box"><div class="impact-val" style="color:var(--amber);">48</div><div class="impact-lbl">Events held this year</div></div>
-    </div>
+  <div class="sec">
+    <div class="sec-title">More Slots</div>
+    <div class="vslot"><div class="vi" style="background:var(--al)">&#x1F371;</div><div class="vinfo"><div class="vtitle">Food distribution</div><div class="vsub">Every Sunday · Old City · 7AM</div></div><div><div class="vpts">+80 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,80,'&#x1F371; Food Drive')">Join</button></div></div>
+    <div class="vslot"><div class="vi" style="background:var(--gl)">&#x1F333;</div><div class="vinfo"><div class="vtitle">Tree plantation</div><div class="vsub">Last Sunday · Sabarmati</div></div><div><div class="vpts">+80 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,80,'&#x1F333; Tree Plantation')">Join</button></div></div>
+    <div class="vslot"><div class="vi" style="background:var(--bl)">&#x1F9F9;</div><div class="vinfo"><div class="vtitle">Neighbourhood cleanup</div><div class="vsub">2nd Saturday</div></div><div><div class="vpts">+60 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,60,'&#x1F9F9; Cleanup')">Join</button></div></div>
+    <div class="vslot"><div class="vi" style="background:var(--pkl)">&#x1F474;</div><div class="vinfo"><div class="vtitle">Visit old age home</div><div class="vsub">Every Saturday · 3PM</div></div><div><div class="vpts">+90 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,90,'&#x1F474; Old Age Home')">Join</button></div></div>
   </div>
 </div>
 
-<!-- REQUESTS -->
-<div id="screen-requests" class="screen">
-  <div style="padding:16px 18px 6px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">Live Blood Requests</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Near Ahmedabad</div></div>
-  <div class="section" style="margin-top:12px;">
-    <div class="blood-request urg" style="flex-direction:column;align-items:flex-start;gap:7px;">
-      <div style="display:flex;align-items:center;gap:10px;width:100%;"><div style="width:42px;height:42px;background:#F7C1C1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#791F1F;flex-shrink:0;">O−</div><div class="req-info"><div class="req-hospital">Fortis Hospital, SG Highway</div><div class="req-location">3.2 km · 20 mins ago</div></div><div class="req-urgency urg-high">CRITICAL</div></div>
-      <div style="font-size:11px;color:#791F1F;">Accident victim in surgery. Need 2 units O− immediately.</div>
-      <button class="submit-btn btn-red" style="margin-top:2px;" onclick="submitAction('blood_respond')">I can donate — +200 pts</button>
+<!-- BLOOD REQUESTS -->
+<div id="s-requests" class="scr">
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Live Blood Requests</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Near Ahmedabad</div></div>
+  <div class="sec" style="margin-top:12px">
+    <div class="breq urg" style="flex-direction:column;align-items:flex-start;gap:7px">
+      <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:#F7C1C1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#791F1F;flex-shrink:0">O&#8722;</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Fortis Hospital, SG Highway</div><div style="font-size:10px;color:var(--mu)">3.2 km · 20 mins ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:#F7C1C1;color:#791F1F">CRITICAL</div></div>
+      <div style="font-size:11px;color:#791F1F">Accident victim. Need 2 units O&#8722; immediately.</div>
+      <button class="sbtn btn-r" onclick="earn(200,'&#x1FA78; Blood Donation','Fortis Hospital')">I can donate — +200 pts</button>
     </div>
-    <div style="height:9px;"></div>
-    <div class="blood-request" style="flex-direction:column;align-items:flex-start;gap:7px;">
-      <div style="display:flex;align-items:center;gap:10px;width:100%;"><div style="width:42px;height:42px;background:var(--green-l);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--green);flex-shrink:0;">B+</div><div class="req-info"><div class="req-hospital">Apollo Hospital, Bopal</div><div class="req-location">5.8 km · 2 hrs ago</div></div><div class="req-urgency urg-med">MODERATE</div></div>
-      <div style="font-size:11px;color:var(--muted);">Scheduled surgery tomorrow.</div>
-      <button class="submit-btn btn-green" style="margin-top:2px;" onclick="submitAction('blood_respond')">I can donate — +200 pts</button>
+    <div style="height:9px"></div>
+    <div class="breq" style="flex-direction:column;align-items:flex-start;gap:7px">
+      <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:var(--gl);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--g);flex-shrink:0">B+</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Apollo Hospital, Bopal</div><div style="font-size:10px;color:var(--mu)">5.8 km · 2 hrs ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:var(--al);color:var(--a)">MODERATE</div></div>
+      <div style="font-size:11px;color:var(--mu)">Scheduled surgery tomorrow.</div>
+      <button class="sbtn btn-g" onclick="earn(200,'&#x1FA78; Blood Donation','Apollo Hospital')">I can donate — +200 pts</button>
     </div>
   </div>
 </div>
 
 <!-- LEADERBOARD -->
-<div id="screen-leaderboard" class="screen">
-  <div style="padding:16px 18px 6px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">City Leaderboard</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Ahmedabad · This month</div></div>
-  <div class="section" style="margin-top:12px;">
-    <div class="lb-item"><div class="rank gold">1</div><div class="lb-avatar av-a">PR</div><div class="lb-info"><div class="lb-name">Priya Rao</div><div class="lb-acts">12 donations · 8 ambulances · 5 camps</div></div><div class="lb-pts">4,800</div></div>
-    <div class="lb-item"><div class="rank silver">2</div><div class="lb-avatar av-g">MK</div><div class="lb-info"><div class="lb-name">Manish Kumar</div><div class="lb-acts">10 donations · 4 education drives</div></div><div class="lb-pts">3,950</div></div>
-    <div class="lb-item"><div class="rank bronze">3</div><div class="lb-avatar av-p">SJ</div><div class="lb-info"><div class="lb-name">Shreya Joshi</div><div class="lb-acts">9 donations · 3 ambulances</div></div><div class="lb-pts">3,100</div></div>
-    <div class="lb-item"><div class="rank" style="color:var(--muted);">4</div><div class="lb-avatar av-r">NK</div><div class="lb-info"><div class="lb-name">Nikhil Khatri</div><div class="lb-acts">7 donations · 4 camps</div></div><div class="lb-pts">2,600</div></div>
-    <div class="lb-item"><div class="rank" style="color:var(--muted);">5</div><div class="lb-avatar av-t">AM</div><div class="lb-info"><div class="lb-name">Ananya Mehta</div><div class="lb-acts">6 donations · 3 education drives</div></div><div class="lb-pts">2,100</div></div>
-    <div style="height:9px;"></div>
-    <div class="you-row lb-item" style="border-bottom:none;"><div class="rank" style="color:var(--blue);">14</div><div class="lb-avatar av-b">AS</div><div class="lb-info"><div class="lb-name">Arjun Sharma <span style="font-size:9px;color:var(--blue);">(You)</span></div><div class="lb-acts">4 donations · 3 ambulances · 6 events</div></div><div class="lb-pts" style="color:var(--blue);">1,240</div></div>
-    <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:7px;">860 pts to reach top 10</div>
+<div id="s-leaderboard" class="scr">
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">City Leaderboard</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Ahmedabad · This month</div></div>
+  <div class="sec" style="margin-top:12px">
+    <div class="lbi"><div class="rank" style="color:#BA7517">1</div><div class="av" style="background:var(--al);color:var(--a)">PR</div><div class="lb-info"><div class="lb-name">Priya Rao</div><div class="lb-acts">12 donations · 8 ambulances</div></div><div class="lb-pts">4,800</div></div>
+    <div class="lbi"><div class="rank" style="color:#888780">2</div><div class="av" style="background:var(--gl);color:var(--g)">MK</div><div class="lb-info"><div class="lb-name">Manish Kumar</div><div class="lb-acts">10 donations · 4 education</div></div><div class="lb-pts">3,950</div></div>
+    <div class="lbi"><div class="rank" style="color:#993C1D">3</div><div class="av" style="background:var(--pl);color:var(--p)">SJ</div><div class="lb-info"><div class="lb-name">Shreya Joshi</div><div class="lb-acts">9 donations · 3 ambulances</div></div><div class="lb-pts">3,100</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">4</div><div class="av" style="background:var(--rl);color:var(--r)">NK</div><div class="lb-info"><div class="lb-name">Nikhil Khatri</div></div><div class="lb-pts">2,600</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">5</div><div class="av" style="background:var(--tl);color:var(--t)">AM</div><div class="lb-info"><div class="lb-name">Ananya Mehta</div></div><div class="lb-pts">2,100</div></div>
+    <div style="height:9px"></div>
+    <div class="you-row lbi" style="border-bottom:none"><div class="rank" style="color:var(--b)">14</div><div class="av" style="background:var(--bl);color:var(--b)">AS</div><div class="lb-info"><div class="lb-name">Arjun Sharma <span style="font-size:9px;color:var(--b)">(You)</span></div></div><div class="lb-pts" style="color:var(--b)" id="lb-mypts">1,240</div></div>
+    <div style="font-size:10px;color:var(--mu);text-align:center;margin-top:7px" id="lb-gap">860 pts to reach top 10</div>
   </div>
 </div>
 
 <!-- REWARDS -->
-<div id="screen-rewards" class="screen">
-  <div style="padding:16px 18px 6px;display:flex;justify-content:space-between;align-items:center;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">Redeem Rewards</div><div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--red);" id="reward-pts-display">1,240 pts</div></div>
-  <div class="section" style="margin-top:12px;">
-    <div class="rewards-grid">
-      <div class="reward-card"><div class="reward-type type-med">Medical</div><div class="reward-brand">Apollo Pharmacy</div><div class="reward-title">20% off medicines</div><div class="reward-cost">🔥 500 pts</div></div>
-      <div class="reward-card"><div class="reward-type type-cash">Cashback</div><div class="reward-brand">PhonePe / GPay</div><div class="reward-title">₹100 cashback</div><div class="reward-cost">🔥 400 pts</div></div>
-      <div class="reward-card"><div class="reward-type type-food">Food</div><div class="reward-brand">Swiggy</div><div class="reward-title">Free delivery x5</div><div class="reward-cost">🔥 300 pts</div></div>
-      <div class="reward-card"><div class="reward-type type-med">Checkup</div><div class="reward-brand">Thyrocare</div><div class="reward-title">Free health checkup</div><div class="reward-cost">🔥 800 pts</div></div>
-      <div class="reward-card"><div class="reward-type type-cash">Voucher</div><div class="reward-brand">Amazon</div><div class="reward-title">₹200 gift card</div><div class="reward-cost">🔥 700 pts</div></div>
-      <div class="reward-card"><div class="reward-type type-med">Dental</div><div class="reward-brand">Clove Dental</div><div class="reward-title">Free consultation</div><div class="reward-cost">🔥 350 pts</div></div>
-    </div>
+<div id="s-rewards" class="scr">
+  <div style="padding:16px 18px 6px;display:flex;justify-content:space-between;align-items:center">
+    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Rewards</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--g)" id="rw-bal">1,240 pts available</div>
+  </div>
+  <div class="sec" style="margin-top:12px">
+    <div class="sec-title">Redeem with Karma Points</div>
+    <div class="rgrid" id="rgrid"></div>
+  </div>
+  <div class="sec">
+    <div class="sec-title">Transaction History</div>
+    <div id="txn-full"></div>
   </div>
 </div>
 
 <!-- FIRST AID -->
-<div id="screen-firstaid" class="screen">
-  <div style="padding:16px 18px 6px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">First Aid Mini-game</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Answer correctly to earn your badge</div></div>
-  <div style="padding:12px 18px 0;">
-    <div class="quiz-progress"><span id="q-num">Question 1 of 4</span><span id="q-score">Score: 0</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:25%"></div></div>
-    <div class="quiz-card"><div class="quiz-q" id="quiz-question"></div><div class="quiz-opts" id="quiz-opts"></div></div>
-    <div class="success-msg" id="quiz-success">
-      <div style="font-size:32px;margin-bottom:7px;">🎉</div>
-      <div class="success-pts" id="earned-pts">+100 pts</div>
-      <div style="font-size:11px;color:var(--green);margin-top:2px;">First Aid Badge Earned!</div>
-      <button class="submit-btn btn-blue" style="margin-top:11px;" onclick="resetQuiz()">Try another module</button>
+<div id="s-firstaid" class="scr">
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">First Aid Quiz</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Answer correctly to earn your badge</div></div>
+  <div style="padding:12px 18px 0">
+    <div style="font-size:10px;color:var(--mu);margin-bottom:5px;display:flex;justify-content:space-between"><span id="qnum">Q 1 of 4</span><span id="qsc">Score: 0</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="pfill" style="width:25%"></div></div>
+    <div class="qcard"><div class="qq" id="qq"></div><div class="qopts" id="qopts"></div></div>
+    <div class="quiz-win" id="qwin">
+      <div style="font-size:28px;margin-bottom:7px">&#x1F389;</div>
+      <div class="quiz-pts" id="qearned">+100 pts</div>
+      <div style="font-size:11px;color:var(--g);margin-top:2px">First Aid Badge Earned!</div>
+      <button class="sbtn btn-b" style="margin-top:11px" onclick="resetQuiz()">Try again</button>
     </div>
   </div>
 </div>
 
 <!-- NOTIFS -->
-<div id="screen-notifs" class="screen">
-  <div style="padding:16px 18px 6px;"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">Notifications</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">3 unread</div></div>
-  <div class="section" style="margin-top:12px;">
-    <div class="notif-item" style="background:var(--red-l);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none;"><div class="notif-dot" style="background:var(--red);margin-top:4px;"></div><div><div class="notif-title">🚨 Urgent O− needed at Fortis Hospital <span class="notif-tag tag-u">URGENT</span></div><div class="notif-time">3.2 km away · 20 minutes ago</div></div></div>
-    <div class="notif-item" style="background:var(--teal-l);border-radius:11px;padding:11px;margin:3px 0;border-bottom:none;"><div class="notif-dot" style="background:var(--teal);margin-top:4px;"></div><div><div class="notif-title">🏥 Health Camp on Sat Mar 15 — 23 slots remaining</div><div class="notif-time">Lions Club Ground · 1 hr ago</div></div></div>
-    <div class="notif-item" style="background:var(--amber-l);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none;"><div class="notif-dot" style="background:var(--amber);margin-top:4px;"></div><div><div class="notif-title">⏰ Apollo coupon expires in 3 days <span class="notif-tag tag-e">EXPIRING</span></div><div class="notif-time">Redeem before March 16</div></div></div>
-    <div style="height:5px;"></div>
-    <div class="notif-item"><div class="notif-dot" style="background:var(--purple);"></div><div><div class="notif-title">📚 Education Drive needs 12 more teachers for Mar 16</div><div class="notif-time">Yesterday</div></div></div>
-    <div class="notif-item"><div class="notif-dot" style="background:var(--green);"></div><div><div class="notif-title">First Aid badge earned! +100 pts added</div><div class="notif-time">Yesterday</div></div></div>
-    <div class="notif-item"><div class="notif-dot" style="background:var(--amber);"></div><div><div class="notif-title">🔥 3x streak multiplier unlocked this month</div><div class="notif-time">2 days ago</div></div></div>
+<div id="s-notifs" class="scr">
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Notifications</div></div>
+  <div class="sec" style="margin-top:12px">
+    <div class="ni" style="background:var(--rl);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--r);margin-top:4px"></div><div><div class="ntitle">Urgent O&#8722; needed at Fortis Hospital <span class="ntag ntag-u">URGENT</span></div><div class="ntime">3.2 km away · 20 minutes ago</div></div></div>
+    <div class="ni" style="background:var(--tl);border-radius:11px;padding:11px;margin:3px 0;border-bottom:none"><div class="ndot" style="background:var(--t);margin-top:4px"></div><div><div class="ntitle">Health Camp Sat Mar 15 — 23 slots left</div><div class="ntime">Lions Club Ground · 1 hr ago</div></div></div>
+    <div class="ni" style="background:var(--al);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--a);margin-top:4px"></div><div><div class="ntitle">Apollo coupon expires in 3 days <span class="ntag ntag-e">EXPIRING</span></div><div class="ntime">Redeem before March 16</div></div></div>
+    <div class="ni"><div class="ndot" style="background:var(--p)"></div><div><div class="ntitle">Education Drive needs 12 more teachers</div><div class="ntime">Yesterday</div></div></div>
+    <div class="ni"><div class="ndot" style="background:var(--g)"></div><div><div class="ntitle">First Aid badge earned! +100 pts added</div><div class="ntime">Yesterday</div></div></div>
   </div>
 </div>
 
 <!-- PROFILE -->
-<div id="screen-profile" class="screen">
-  <div style="padding:20px 18px 10px;text-align:center;">
-    <div style="width:64px;height:64px;border-radius:50%;background:var(--red-l);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--red);margin:0 auto 9px;">A</div>
-    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);">Arjun Sharma</div>
-    <div style="font-size:11px;color:var(--muted);margin-top:2px;">arjun@gmail.com · Blood: O+</div>
-    <div style="margin-top:9px;display:inline-flex;align-items:center;background:var(--red-l);padding:5px 12px;border-radius:20px;"><span style="font-size:10px;color:var(--red);font-family:'Syne',sans-serif;font-weight:700;">HERO LEVEL 3</span></div>
+<div id="s-profile" class="scr">
+  <div style="padding:20px 18px 10px;text-align:center">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--rl);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--r);margin:0 auto 9px">A</div>
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx)">Arjun Sharma</div>
+    <div style="font-size:11px;color:var(--mu);margin-top:2px">arjun@gmail.com · Blood: O+</div>
+    <div style="margin-top:9px;display:inline-flex;align-items:center;background:var(--rl);padding:5px 12px;border-radius:20px"><span style="font-size:10px;color:var(--r);font-family:'Syne',sans-serif;font-weight:700">HERO LEVEL 3</span></div>
   </div>
-  <div class="section">
-    <div class="section-title">Social Passport</div>
-    <div class="stat-grid">
-      <div class="stat-box"><div class="stat-val" style="color:var(--green);">4</div><div class="stat-lbl">Blood Donations</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--red);">3</div><div class="stat-lbl">Ambulances Booked</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--teal);">3</div><div class="stat-lbl">Health Camps</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--purple);">3</div><div class="stat-lbl">Education Drives</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--blue);">2</div><div class="stat-lbl">First Aid Badges</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--amber);">1,240</div><div class="stat-lbl">Total Karma Pts</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--purple);">14</div><div class="stat-lbl">City Rank</div></div>
-      <div class="stat-box"><div class="stat-val" style="color:var(--amber);">🔥 3x</div><div class="stat-lbl">Streak Multiplier</div></div>
+  <div class="sec">
+    <div class="sec-title">Social Passport</div>
+    <div class="sgrid">
+      <div class="sbox"><div class="sv" style="color:var(--g)" id="pp-don">4</div><div class="sl">Blood Donations</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--r)" id="pp-amb">3</div><div class="sl">Ambulances</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--t)">3</div><div class="sl">Health Camps</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--p)">3</div><div class="sl">Education Drives</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--b)">2</div><div class="sl">FA Badges</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--a)" id="pp-total">1,240</div><div class="sl">Total Karma Pts</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--p)">14</div><div class="sl">City Rank</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--a)">&#x1F525; 3x</div><div class="sl">Multiplier</div></div>
     </div>
   </div>
-  <div class="feedback-section">
-    <div class="feedback-title">Share your feedback</div>
-    <div class="feedback-sub">Help us improve Karma+ for everyone</div>
-    <div id="feedback-form">
-      <div class="star-row" id="stars"><span class="star" onclick="rateStar(1)">⭐</span><span class="star" onclick="rateStar(2)">⭐</span><span class="star" onclick="rateStar(3)">⭐</span><span class="star" onclick="rateStar(4)">⭐</span><span class="star" onclick="rateStar(5)">⭐</span></div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">What's this about?</div>
-      <div class="feedback-cats">
-        <div class="fcat" onclick="toggleCat(this)">App design</div>
-        <div class="fcat" onclick="toggleCat(this)">Blood donation</div>
-        <div class="fcat" onclick="toggleCat(this)">Ambulance</div>
-        <div class="fcat" onclick="toggleCat(this)">Events & camps</div>
-        <div class="fcat" onclick="toggleCat(this)">Rewards</div>
-        <div class="fcat" onclick="toggleCat(this)">Bug report</div>
-        <div class="fcat" onclick="toggleCat(this)">Other</div>
+  <div class="fbk">
+    <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;color:var(--tx)">Share feedback</div>
+    <div style="font-size:11px;color:var(--mu);margin-bottom:12px">Help us improve Karma+</div>
+    <div id="fbk-form">
+      <div style="display:flex;gap:6px;margin-bottom:12px" id="stars">
+        <span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(1)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(2)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(3)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(4)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(5)">&#x2B50;</span>
       </div>
-      <textarea class="feedback-input" placeholder="Tell us what you think, what's missing, or what could be better..."></textarea>
-      <button class="submit-btn btn-blue" style="margin-top:10px;" onclick="submitFeedback()">Submit Feedback</button>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px">
+        <div class="fcat" onclick="this.classList.toggle('sel')">Design</div>
+        <div class="fcat" onclick="this.classList.toggle('sel')">Blood</div>
+        <div class="fcat" onclick="this.classList.toggle('sel')">Ambulance</div>
+        <div class="fcat" onclick="this.classList.toggle('sel')">Events</div>
+        <div class="fcat" onclick="this.classList.toggle('sel')">Rewards</div>
+        <div class="fcat" onclick="this.classList.toggle('sel')">Bug</div>
+      </div>
+      <textarea class="fi" placeholder="Tell us what you think..."></textarea>
+      <button class="sbtn btn-b" style="margin-top:10px" onclick="submitFbk()">Submit Feedback</button>
     </div>
-    <div class="feedback-sent" id="feedback-sent"><div style="font-size:36px;margin-bottom:8px;">🙏</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text);">Thank you!</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Your feedback helps us build a better platform.</div></div>
+    <div id="fbk-done" style="display:none;text-align:center;padding:16px"><div style="font-size:32px;margin-bottom:8px">&#x1F64F;</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--tx)">Thank you!</div></div>
   </div>
 </div>
 
 <nav class="nav">
-  <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-icon">🏠</div><div>Home</div></div>
-  <div class="nav-item" onclick="switchTab('community')" id="nav-community"><div class="nav-icon">🤝</div><div>Volunteer</div></div>
-  <div class="nav-item" onclick="switchTab('requests')" id="nav-requests"><div class="nav-icon">🩸</div><div>Blood</div></div>
-  <div class="nav-item" onclick="switchTab('leaderboard')" id="nav-leaderboard"><div class="nav-icon">🏆</div><div>Ranks</div></div>
-  <div class="nav-item" onclick="switchTab('rewards')" id="nav-rewards"><div class="nav-icon">🎁</div><div>Rewards</div></div>
-  <div class="nav-item" onclick="switchTab('firstaid')" id="nav-firstaid"><div class="nav-icon">🩺</div><div>First Aid</div></div>
-  <div class="nav-item" onclick="switchTab('notifs')" id="nav-notifs"><div class="nav-icon">🔔<span class="nbubble">3</span></div><div>Alerts</div></div>
-  <div class="nav-item" onclick="switchTab('profile')" id="nav-profile"><div class="nav-icon">👤</div><div>Profile</div></div>
+  <div class="nv on" onclick="go('home')" id="n-home"><div class="nv-ic">&#x1F3E0;</div><div>Home</div></div>
+  <div class="nv" onclick="go('community')" id="n-community"><div class="nv-ic">&#x1F91D;</div><div>Volunteer</div></div>
+  <div class="nv" onclick="go('requests')" id="n-requests"><div class="nv-ic">&#x1FA78;</div><div>Blood</div></div>
+  <div class="nv" onclick="go('leaderboard')" id="n-leaderboard"><div class="nv-ic">&#x1F3C6;</div><div>Ranks</div></div>
+  <div class="nv" onclick="go('rewards')" id="n-rewards"><div class="nv-ic">&#x1F381;</div><div>Rewards</div></div>
+  <div class="nv" onclick="go('firstaid')" id="n-firstaid"><div class="nv-ic">&#x1FA7A;</div><div>First Aid</div></div>
+  <div class="nv" onclick="go('notifs')" id="n-notifs"><div class="nv-ic">&#x1F514;<span class="nb">3</span></div><div>Alerts</div></div>
+  <div class="nv" onclick="go('profile')" id="n-profile"><div class="nv-ic">&#x1F464;</div><div>Profile</div></div>
 </nav>
 </div>
 
-<!-- AMBULANCE MODAL — updated with 9 types -->
-<div class="modal-bg" id="modal-ambulance" onclick="closeModal(event,'ambulance')">
-  <div class="modal">
-    <div class="modal-handle"></div>
+<!-- AMBULANCE MODAL -->
+<div class="mbg" id="m-ambulance" onclick="closeM(event,'ambulance')">
+  <div class="modal"><div class="mh"></div>
     <div id="amb-form">
-      <div class="modal-title">🚑 Book an Ambulance</div>
-      <div class="modal-sub">Select emergency type — help dispatched immediately</div>
-      <div class="form-group">
-        <label class="form-label">Type of Emergency</label>
-        <div class="emergency-grid">
-          <div class="emerg-btn" onclick="selectEmerg(this,'Cardiac Arrest','Heart attack, chest pain or cardiac emergency')"><div class="emerg-btn-icon">❤️</div><div class="emerg-btn-label">Cardiac</div><div class="emerg-btn-desc">Heart attack or chest pain</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Road Accident','Vehicle collision or trauma injury')"><div class="emerg-btn-icon">🚗</div><div class="emerg-btn-label">Accident</div><div class="emerg-btn-desc">Vehicle or trauma injury</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Breathing Difficulty','Asthma, choking or respiratory distress')"><div class="emerg-btn-icon">🫁</div><div class="emerg-btn-label">Breathing</div><div class="emerg-btn-desc">Asthma or respiratory</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Stroke','Sudden numbness, confusion or speech difficulty')"><div class="emerg-btn-icon">🧠</div><div class="emerg-btn-label">Stroke</div><div class="emerg-btn-desc">Numbness or speech loss</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Fire / Burns','Burn injuries from fire, acid or chemicals')"><div class="emerg-btn-icon">🔥</div><div class="emerg-btn-label">Fire / Burns</div><div class="emerg-btn-desc">Burns or acid injuries</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Maternity','Labour, delivery or pregnancy complication')"><div class="emerg-btn-icon">🤰</div><div class="emerg-btn-label">Maternity</div><div class="emerg-btn-desc">Labour or pregnancy issue</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Child Emergency','Seizure, high fever or injury in a child')"><div class="emerg-btn-icon">👶</div><div class="emerg-btn-label">Child Emergency</div><div class="emerg-btn-desc">Seizure, fever or injury</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Poisoning / Overdose','Chemical, drug or food poisoning')"><div class="emerg-btn-icon">☠️</div><div class="emerg-btn-label">Poisoning</div><div class="emerg-btn-desc">Chemical or overdose</div></div>
-          <div class="emerg-btn" onclick="selectEmerg(this,'Other Emergency','Any other medical emergency')"><div class="emerg-btn-icon">🆘</div><div class="emerg-btn-label">Other</div><div class="emerg-btn-desc">Any other emergency</div></div>
+      <div class="mt">&#x1F691; Book an Ambulance</div><div class="ms">Select emergency type — help dispatched immediately</div>
+      <div class="fg"><label class="fl">Type of Emergency</label>
+        <div class="egrid">
+          <div class="eb" onclick="pickEmerg(this,'Cardiac Arrest')"><div class="eb-ic">&#x2764;&#xFE0F;</div><div class="eb-lbl">Cardiac</div><div class="eb-desc">Heart attack</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Road Accident')"><div class="eb-ic">&#x1F697;</div><div class="eb-lbl">Accident</div><div class="eb-desc">Trauma injury</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Breathing')"><div class="eb-ic">&#x1FAB7;</div><div class="eb-lbl">Breathing</div><div class="eb-desc">Asthma / resp</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Stroke')"><div class="eb-ic">&#x1F9E0;</div><div class="eb-lbl">Stroke</div><div class="eb-desc">Speech / numb</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Fire / Burns')"><div class="eb-ic">&#x1F525;</div><div class="eb-lbl">Fire / Burns</div><div class="eb-desc">Burns / acid</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Maternity')"><div class="eb-ic">&#x1F930;</div><div class="eb-lbl">Maternity</div><div class="eb-desc">Labour / preg</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Child Emergency')"><div class="eb-ic">&#x1F476;</div><div class="eb-lbl">Child</div><div class="eb-desc">Seizure / fever</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Poisoning')"><div class="eb-ic">&#x2620;&#xFE0F;</div><div class="eb-lbl">Poisoning</div><div class="eb-desc">Overdose / chem</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Other')"><div class="eb-ic">&#x1F198;</div><div class="eb-lbl">Other</div><div class="eb-desc">Any emergency</div></div>
         </div>
       </div>
-      <div class="sel-label" id="sel-label">Selected: —</div>
-      <div class="form-group">
-        <label class="form-label">How urgent?</label>
-        <div class="urgency-row">
-          <div class="urg-btn" onclick="selectUrg(this,'low')">🟢 Can wait</div>
-          <div class="urg-btn" onclick="selectUrg(this,'med')">🟡 Urgent</div>
-          <div class="urg-btn" onclick="selectUrg(this,'high')">🔴 Critical</div>
+      <div class="slab" id="slab">Selected: —</div>
+      <div class="fg"><label class="fl">Urgency</label>
+        <div class="urgrow">
+          <div class="ub" onclick="pickUrg(this,'lo')">&#x1F7E2; Can wait</div>
+          <div class="ub" onclick="pickUrg(this,'md')">&#x1F7E1; Urgent</div>
+          <div class="ub" onclick="pickUrg(this,'hi')">&#x1F534; Critical</div>
         </div>
       </div>
-      <div class="form-group"><label class="form-label">Your Location</label><input class="form-input" placeholder="Enter address or use GPS..."/></div>
-      <div class="form-group"><label class="form-label">Patient's Condition</label><input class="form-input" placeholder="Brief description of what happened..."/></div>
-      <div class="form-group"><label class="form-label">Contact Number</label><input class="form-input" placeholder="+91 98765 43210"/></div>
-      <button class="submit-btn btn-red" onclick="dispatchAmb()">Dispatch Ambulance — +50 pts</button>
+      <div class="fg"><label class="fl">Location</label><input class="fi2" placeholder="Address or GPS..."/></div>
+      <div class="fg"><label class="fl">Contact</label><input class="fi2" placeholder="+91 98765 43210"/></div>
+      <button class="sbtn btn-r" onclick="dispatchAmb()">Dispatch — +50 pts</button>
     </div>
-    <div id="amb-success" style="display:none;text-align:center;padding:16px 0;">
-      <div style="font-size:48px;margin-bottom:10px;">🚑</div>
-      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--text);margin-bottom:6px;">Ambulance Dispatched!</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Help is on the way. Stay with the patient and keep the line clear for the driver.</div>
-      <div style="font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--green);margin-bottom:4px;">+50 pts</div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:16px;">added to your Karma balance</div>
-      <button class="submit-btn btn-green" onclick="closeModal(null,'ambulance',true);resetAmb()">Done</button>
+    <div id="amb-ok" style="display:none;text-align:center;padding:14px 0">
+      <div style="font-size:44px;margin-bottom:9px">&#x1F691;</div>
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);margin-bottom:5px">Ambulance Dispatched!</div>
+      <div style="font-size:12px;color:var(--mu);margin-bottom:12px">Help is on the way. Stay with the patient.</div>
+      <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--g)">+50 pts</div>
+      <div style="font-size:11px;color:var(--mu);margin-bottom:14px">added to your balance</div>
+      <button class="sbtn btn-g" onclick="closeM(null,'ambulance',1);resetAmb()">Done</button>
     </div>
   </div>
 </div>
 
 <!-- BLOOD MODAL -->
-<div class="modal-bg" id="modal-blood" onclick="closeModal(event,'blood')">
-  <div class="modal"><div class="modal-handle"></div><div class="modal-title">🩸 Log Blood Donation</div><div class="modal-sub">Verified by hospital or NGO code</div>
-    <div class="verify-box"><div style="font-size:15px;flex-shrink:0;">🔐</div><div class="verify-text">Enter the one-time code given by the hospital after your donation. Each code can only be redeemed once.</div></div>
-    <div class="form-group"><label class="form-label">Verification Code</label><input class="form-input" placeholder="e.g. FORT-2024-BLD-4821" style="font-family:monospace;letter-spacing:1px;"/></div>
-    <div class="form-group"><label class="form-label">Hospital / NGO</label><select class="form-select"><option>Select institution...</option><option>Fortis Hospital</option><option>Apollo Hospital</option><option>Red Cross Society</option><option>Lions Blood Bank</option></select></div>
-    <div class="form-group"><label class="form-label">Date of Donation</label><input class="form-input" type="date"/></div>
-    <button class="submit-btn btn-green" onclick="submitAction('blood')">Submit Donation — +200 pts</button>
+<div class="mbg" id="m-blood" onclick="closeM(event,'blood')">
+  <div class="modal"><div class="mh"></div><div class="mt">&#x1FA78; Log Blood Donation</div><div class="ms">Verified by hospital one-time code</div>
+    <div class="vbox"><div style="font-size:14px;flex-shrink:0">&#x1F510;</div><div class="vtext">Enter the one-time code from the hospital. Each code redeems once only.</div></div>
+    <div class="fg"><label class="fl">Verification Code</label><input class="fi2" placeholder="FORT-2024-BLD-4821" style="font-family:monospace;letter-spacing:1px"/></div>
+    <div class="fg"><label class="fl">Hospital / NGO</label><select class="fs"><option>Select...</option><option>Fortis Hospital</option><option>Apollo Hospital</option><option>Red Cross Society</option><option>Lions Blood Bank</option></select></div>
+    <div class="fg"><label class="fl">Date</label><input class="fi2" type="date"/></div>
+    <button class="sbtn btn-g" onclick="earn(200,'&#x1FA78; Blood Donation','Hospital verified');closeM(null,'blood',1)">Submit — +200 pts</button>
   </div>
 </div>
 
-<!-- EVENT MODALS -->
-<div class="modal-bg" id="modal-event1" onclick="closeModal(event,'event1')">
-  <div class="modal"><div class="modal-handle"></div><div class="modal-title">🏥 Free Health Checkup Camp</div><div class="modal-sub">Sat Mar 15 · Lions Club Ground · 9AM–2PM</div>
-    <div style="background:var(--teal-l);border-radius:11px;padding:12px;margin-bottom:13px;"><div style="font-size:11px;color:var(--teal);line-height:1.6;">BP check, blood sugar, eye & dental screening. Doctors by Apollo. Free for all underprivileged families.</div></div>
-    <div class="form-group"><label class="form-label">Your Role</label><select class="form-select"><option>Select role...</option><option>Patient Registration Desk</option><option>Patient Assistance</option><option>Crowd Management</option><option>Medical Helper (if qualified)</option></select></div>
-    <div class="form-group"><label class="form-label">Medical background? (optional)</label><input class="form-input" placeholder="Nursing, pharmacy, etc."/></div>
-    <button class="submit-btn btn-teal" onclick="submitAction('event');closeModal(null,'event1',true)">Register as Volunteer — +150 pts</button>
-  </div>
-</div>
-
-<div class="modal-bg" id="modal-event2" onclick="closeModal(event,'event2')">
-  <div class="modal"><div class="modal-handle"></div><div class="modal-title">📚 Sunday Education Drive</div><div class="modal-sub">Sun Mar 16 · Community Hall, Behrampura · 10AM–1PM</div>
-    <div style="background:var(--purple-l);border-radius:11px;padding:12px;margin-bottom:13px;"><div style="font-size:11px;color:var(--purple);line-height:1.6;">Literacy, math & English for kids 8–14. Materials by Teach for India. Any graduate can volunteer.</div></div>
-    <div class="form-group"><label class="form-label">What can you teach?</label><select class="form-select"><option>Select subject...</option><option>Mathematics</option><option>English</option><option>Hindi / Gujarati literacy</option><option>General Science</option><option>Drawing & Arts</option></select></div>
-    <button class="submit-btn btn-purple" onclick="submitAction('event');closeModal(null,'event2',true)">Register as Teacher — +120 pts</button>
-  </div>
-</div>
-
-<!-- SUCCESS MODAL -->
-<div class="modal-bg" id="modal-success" onclick="closeModal(event,'success')">
-  <div class="modal" style="text-align:center;"><div class="modal-handle"></div>
-    <div style="font-size:44px;margin-bottom:9px;" id="success-icon">✅</div>
-    <div class="modal-title" id="success-title" style="text-align:center;"></div>
-    <div class="modal-sub" id="success-sub" style="text-align:center;"></div>
-    <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);margin:9px 0;" id="success-pts-val"></div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:16px;">added to your Karma balance</div>
-    <button class="submit-btn btn-green" onclick="closeModal(null,'success',true)">Awesome!</button>
+<!-- REDEEM CONFIRM MODAL -->
+<div class="mbg" id="m-redeem" onclick="closeM(event,'redeem')">
+  <div class="modal" style="text-align:center"><div class="mh"></div>
+    <div style="font-size:40px;margin-bottom:9px" id="rd-ic">&#x1F381;</div>
+    <div class="mt" id="rd-title" style="text-align:center"></div>
+    <div class="ms" id="rd-sub" style="text-align:center"></div>
+    <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--r);margin:10px 0" id="rd-cost"></div>
+    <div style="font-size:11px;color:var(--mu);margin-bottom:5px">will be deducted from your balance</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--g);margin-bottom:16px" id="rd-after"></div>
+    <button class="sbtn btn-r" id="rd-btn">Confirm</button>
+    <button class="sbtn" style="background:var(--bg2);color:var(--mu);margin-top:8px" onclick="closeM(null,'redeem',1)">Cancel</button>
   </div>
 </div>
 
 <script>
-var currentPoints=1240;
-var isDark=false;
+var pts = 1240;
+var dk = false;
+var pendingR = null;
 
-function toggleDark(){isDark=!isDark;document.body.classList.toggle('dark',isDark);}
+var REWARDS = [
+  {ic:'&#x1F48A;',type:'rt-med',typeLbl:'Medical',brand:'Apollo Pharmacy',title:'20% off medicines',cost:500},
+  {ic:'&#x1F4F1;',type:'rt-cash',typeLbl:'Cashback',brand:'PhonePe / GPay',title:'&#x20B9;100 cashback',cost:400},
+  {ic:'&#x1F354;',type:'rt-food',typeLbl:'Food',brand:'Swiggy',title:'Free delivery x5',cost:300},
+  {ic:'&#x1F52C;',type:'rt-med',typeLbl:'Checkup',brand:'Thyrocare',title:'Free health checkup',cost:800},
+  {ic:'&#x1F6D2;',type:'rt-cash',typeLbl:'Voucher',brand:'Amazon',title:'&#x20B9;200 gift card',cost:700},
+  {ic:'&#x1FA77;',type:'rt-med',typeLbl:'Dental',brand:'Clove Dental',title:'Free consultation',cost:350}
+];
+var redeemed = {};
 
-function updateClock(){var now=new Date();document.getElementById('clock').textContent=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');}
-updateClock();setInterval(updateClock,1000);
+var TXN = [
+  {ic:'&#x1FA78;',name:'Blood Donation',note:'Fortis Hospital',pts:200,t:'earn',when:'Mar 10'},
+  {ic:'&#x1F691;',name:'Ambulance Booked',note:'Sector 17',pts:50,t:'earn',when:'Mar 8'},
+  {ic:'&#x1F4CB;',name:'First Aid Badge',note:'CPR Module',pts:100,t:'earn',when:'Mar 5'},
+  {ic:'&#x1F3E5;',name:'Health Camp',note:'Lions Club',pts:150,t:'earn',when:'Mar 2'},
+  {ic:'&#x1F4F1;',name:'Redeemed: &#x20B9;100 cashback',note:'PhonePe',pts:400,t:'spend',when:'Feb 28'}
+];
 
-function switchTab(t){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  var s=document.getElementById('screen-'+t),n=document.getElementById('nav-'+t);
-  if(s)s.classList.add('active');if(n)n.classList.add('active');
+function toggleDark(){dk=!dk;document.body.classList.toggle('dk',dk);}
+
+(function tick(){var n=new Date();document.getElementById('clk').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');setTimeout(tick,1000);})();
+
+function go(id){
+  document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.nv').forEach(function(n){n.classList.remove('on');});
+  var s=document.getElementById('s-'+id),n=document.getElementById('n-'+id);
+  if(s)s.classList.add('on');
+  if(n)n.classList.add('on');
+  if(id==='rewards'){renderRewards();renderTxnFull();}
+}
+function openM(id){document.getElementById('m-'+id).classList.add('op');}
+function closeM(e,id,force){if(force||(e&&e.target===e.currentTarget))document.getElementById('m-'+id).classList.remove('op');}
+
+/* ---- POINTS ENGINE ---- */
+function syncUI(){
+  var f=pts.toLocaleString();
+  document.getElementById('kpts').innerHTML=f+'<small>pts</small>';
+  document.getElementById('tbpts').textContent=f+' pts';
+  document.getElementById('bb-val').textContent=f+' pts';
+  document.getElementById('rw-bal').textContent=f+' pts available';
+  document.getElementById('lb-mypts').textContent=f;
+  document.getElementById('pp-total').textContent=f;
+  var gap=2100-pts;
+  document.getElementById('lb-gap').textContent=gap>0?(gap.toLocaleString()+' pts to reach top 10'):'You\'re in the top 10! &#x1F389;';
+  /* balance bar: 0-4000 */
+  var pct=Math.min(100,Math.round(pts/4000*100));
+  document.getElementById('bb-fill').style.width=pct+'%';
 }
 
-function openModal(id){document.getElementById('modal-'+id).classList.add('open');}
-function closeModal(e,id,force){if(force||(e&&e.target===e.currentTarget))document.getElementById('modal-'+id).classList.remove('open');}
-
-function selectEmerg(el,name,desc){
-  document.querySelectorAll('.emerg-btn').forEach(function(b){b.classList.remove('selected');});
-  el.classList.add('selected');
-  var lbl=document.getElementById('sel-label');
-  lbl.textContent='Selected: '+name+' — '+desc;
-  lbl.classList.add('show');
+function flashBadge(type){
+  var b=document.getElementById('tbpts');
+  b.classList.remove('flash-up','flash-dn');
+  void b.offsetWidth;
+  b.classList.add(type==='earn'?'flash-up':'flash-dn');
+  setTimeout(function(){b.classList.remove('flash-up','flash-dn');},700);
 }
 
-function selectUrg(el,level){
-  document.querySelectorAll('.urg-btn').forEach(function(b){b.className='urg-btn';});
-  el.classList.add('sel-'+level);
+function popAnim(delta, type){
+  var pop=document.createElement('div');
+  pop.className='pts-pop '+(type==='earn'?'earn':'spend');
+  pop.textContent=(type==='earn'?'+':'-')+Math.abs(delta)+' pts';
+  pop.style.left=(Math.random()*60+20)+'%';
+  pop.style.top='80px';
+  document.getElementById('pops').appendChild(pop);
+  setTimeout(function(){pop.remove();},950);
 }
 
+function animCount(from,to,el,suffix){
+  var dur=500,step=16,diff=to-from;
+  var t=0;
+  var id=setInterval(function(){
+    t+=step;
+    var cur=Math.round(from+diff*(t/dur));
+    el.textContent=cur.toLocaleString()+(suffix||'');
+    if(t>=dur){el.textContent=to.toLocaleString()+(suffix||'');clearInterval(id);}
+  },step);
+}
+
+function earn(amount, name, note){
+  var old=pts;
+  pts+=amount;
+  TXN.unshift({ic:amount===200?'&#x1FA78;':amount===50?'&#x1F691;':amount===150?'&#x1F3E5;':'&#x1F4CB;',name:name,note:note,pts:amount,t:'earn',when:'Just now'});
+  animCount(old,pts,document.getElementById('bb-val'),' pts');
+  animCount(old,pts,document.getElementById('kpts'));
+  document.getElementById('kpts').innerHTML=pts.toLocaleString()+'<small>pts</small>';
+  flashBadge('earn');
+  popAnim(amount,'earn');
+  syncUI();
+  renderTxnHome();
+  if(document.getElementById('s-rewards').classList.contains('on')){renderRewards();renderTxnFull();}
+}
+
+function spend(amount, name, note){
+  if(pts<amount)return false;
+  var old=pts;
+  pts-=amount;
+  TXN.unshift({ic:'&#x1F381;',name:'Redeemed: '+name,note:note,pts:amount,t:'spend',when:'Just now'});
+  animCount(old,pts,document.getElementById('bb-val'),' pts');
+  animCount(old,pts,document.getElementById('kpts'));
+  document.getElementById('kpts').innerHTML=pts.toLocaleString()+'<small>pts</small>';
+  flashBadge('spend');
+  popAnim(amount,'spend');
+  syncUI();
+  renderTxnHome();
+  renderRewards();
+  renderTxnFull();
+  return true;
+}
+
+/* ---- TXN RENDER ---- */
+function txnRow(t){
+  var bg=t.t==='earn'?'var(--gl)':'var(--rl)';
+  var sign=t.t==='earn'?'+':'-';
+  return '<div class="txn"><div class="txn-ic" style="background:'+bg+'">'+t.ic+'</div>'
+    +'<div class="txn-info"><div class="txn-name">'+t.name+'</div><div class="txn-note">'+t.note+' &middot; '+t.when+'</div></div>'
+    +'<div class="txn-pts '+(t.t==='earn'?'txn-earn':'txn-spend')+'">'+sign+t.pts+'</div></div>';
+}
+function renderTxnHome(){var el=document.getElementById('txn-home');if(el)el.innerHTML=TXN.slice(0,4).map(txnRow).join('');}
+function renderTxnFull(){var el=document.getElementById('txn-full');if(el)el.innerHTML=TXN.map(txnRow).join('');}
+
+/* ---- REWARDS ---- */
+function renderRewards(){
+  var g=document.getElementById('rgrid');if(!g)return;
+  g.innerHTML='';
+  REWARDS.forEach(function(r,i){
+    var can=pts>=r.cost, got=redeemed[i];
+    var d=document.createElement('div');
+    d.className='rcard '+(got?'got':can?'buyable':'locked');
+    d.innerHTML='<div class="rtype '+r.type+'">'+r.typeLbl+'</div>'
+      +(got?'':'<div class="lock-ic">'+(can?'':'&#x1F512;')+'</div>')
+      +'<div class="rbrand">'+r.brand+'</div>'
+      +'<div class="rtitle">'+r.title+'</div>'
+      +'<div class="rcost '+(can&&!got?'ok':'no')+'">&#x1F525; '+r.cost+' pts</div>'
+      +'<button class="rbtn '+(got?'done':can?'can':'cant')+'">'
+      +(got?'&#x2713; Redeemed':can?'Redeem now':'Need '+(r.cost-pts)+' more pts')
+      +'</button>';
+    if(can&&!got){
+      (function(ri,rv){
+        d.querySelector('.rbtn').addEventListener('click',function(){confirmRedeem(ri,rv);});
+      })(i,r);
+    }
+    g.appendChild(d);
+  });
+}
+
+function confirmRedeem(i,r){
+  pendingR={i:i,r:r};
+  document.getElementById('rd-ic').innerHTML=r.ic;
+  document.getElementById('rd-title').textContent=r.title;
+  document.getElementById('rd-sub').textContent=r.brand;
+  document.getElementById('rd-cost').textContent='-'+r.cost+' pts';
+  document.getElementById('rd-after').textContent='Balance after: '+(pts-r.cost).toLocaleString()+' pts';
+  document.getElementById('rd-btn').onclick=doRedeem;
+  openM('redeem');
+}
+function doRedeem(){
+  if(!pendingR)return;
+  spend(pendingR.r.cost, pendingR.r.title, pendingR.r.brand);
+  redeemed[pendingR.i]=true;
+  closeM(null,'redeem',1);
+  pendingR=null;
+}
+
+/* ---- AMBULANCE ---- */
+function pickEmerg(el,name){
+  document.querySelectorAll('.eb').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+  var l=document.getElementById('slab');l.textContent='Selected: '+name;l.classList.add('show');
+}
+function pickUrg(el,level){
+  document.querySelectorAll('.ub').forEach(function(b){b.className='ub';});
+  el.classList.add('u-'+level);
+}
 function dispatchAmb(){
-  currentPoints+=50;updatePts();
+  earn(50,'&#x1F691; Ambulance Booked','Emergency dispatch');
   document.getElementById('amb-form').style.display='none';
-  document.getElementById('amb-success').style.display='block';
+  document.getElementById('amb-ok').style.display='block';
 }
-
 function resetAmb(){
   document.getElementById('amb-form').style.display='block';
-  document.getElementById('amb-success').style.display='none';
-  document.querySelectorAll('.emerg-btn').forEach(function(b){b.classList.remove('selected');});
-  document.querySelectorAll('.urg-btn').forEach(function(b){b.className='urg-btn';});
-  document.getElementById('sel-label').classList.remove('show');
+  document.getElementById('amb-ok').style.display='none';
+  document.querySelectorAll('.eb').forEach(function(b){b.classList.remove('sel');});
+  document.querySelectorAll('.ub').forEach(function(b){b.className='ub';});
+  document.getElementById('slab').classList.remove('show');
 }
 
-function joinEvent(btn,pts){
-  if(btn.classList.contains('joined'))return;
-  btn.textContent='Joined ✓';btn.classList.add('joined');
-  currentPoints+=pts;updatePts();
+/* ---- JOIN EVENT ---- */
+function joinEv(btn,amount,name){
+  if(btn.classList.contains('jd'))return;
+  btn.textContent='Joined &#x2713;';btn.classList.add('jd');
+  earn(amount,name,'Weekend volunteer event');
 }
 
-function updatePts(){
-  document.getElementById('total-pts').innerHTML=currentPoints.toLocaleString()+' <span>pts</span>';
-  document.getElementById('topbar-pts').textContent=currentPoints.toLocaleString()+' pts';
-  document.getElementById('reward-pts-display').textContent=currentPoints.toLocaleString()+' pts';
-}
-
-function submitAction(type){
-  var cls=type==='blood'?'blood':null;
-  if(cls)closeModal(null,cls,true);
-  var icon,title,sub,pts,add;
-  if(type==='blood'||type==='blood_respond'){icon='🩸';title='Donation Verified!';sub='You may have just saved a life.';pts='+200 pts';add=200;}
-  else if(type==='event'){icon='🤝';title="You're registered!";sub='See you at the event. Thank you.';pts='+150 pts';add=150;}
-  if(!icon)return;
-  currentPoints+=add;updatePts();
-  document.getElementById('success-icon').textContent=icon;
-  document.getElementById('success-title').textContent=title;
-  document.getElementById('success-sub').textContent=sub;
-  document.getElementById('success-pts-val').textContent=pts;
-  openModal('success');
-}
-
-function rateStar(n){document.querySelectorAll('.star').forEach(function(s,i){s.classList.toggle('lit',i<n);});}
-function toggleCat(el){el.classList.toggle('sel');}
-function submitFeedback(){document.getElementById('feedback-form').style.display='none';document.getElementById('feedback-sent').classList.add('show');}
-
-var questions=[
-  {q:"When someone is having a heart attack, what is the FIRST thing you should do?",opts:["Give them water","Call emergency services (112)","Make them lie down flat","Give aspirin immediately"],correct:1},
-  {q:"For a deep bleeding wound, what should you do?",opts:["Remove embedded objects","Apply firm direct pressure with cloth","Elevate and do nothing else","Apply ice directly"],correct:1},
-  {q:"CPR chest compressions should be at what rate?",opts:["30 per minute","60 per minute","100–120 per minute","150 per minute"],correct:2},
-  {q:"Someone is choking but can still cough. What do you do?",opts:["Perform Heimlich immediately","Encourage them to keep coughing","Give them water","Lay them face down"],correct:1}
+/* ---- QUIZ ---- */
+var QS=[
+  {q:"When someone is having a heart attack, what should you do FIRST?",opts:["Give them water","Call emergency services (112)","Make them lie down flat","Give aspirin"],ok:1},
+  {q:"For a deep bleeding wound, the correct action is?",opts:["Remove embedded objects","Apply firm direct pressure","Elevate and do nothing","Apply ice directly"],ok:1},
+  {q:"CPR chest compressions should be at what rate?",opts:["30 per minute","60 per minute","100–120 per minute","150 per minute"],ok:2},
+  {q:"Someone is choking but can still cough. What do you do?",opts:["Perform Heimlich immediately","Encourage them to keep coughing","Give them water","Lay them face down"],ok:1}
 ];
-var currentQ=0,quizScore=0;
-
-function renderQuestion(){
-  var q=questions[currentQ];
-  document.getElementById('quiz-question').textContent=q.q;
-  document.getElementById('q-num').textContent='Question '+(currentQ+1)+' of '+questions.length;
-  document.getElementById('q-score').textContent='Score: '+quizScore;
-  document.getElementById('prog-fill').style.width=Math.round((currentQ+1)/questions.length*100)+'%';
-  var el=document.getElementById('quiz-opts');el.innerHTML='';
-  q.opts.forEach(function(opt,i){var b=document.createElement('button');b.className='quiz-opt';b.textContent=opt;b.onclick=function(){answerQ(i,b,q.correct);};el.appendChild(b);});
+var curQ=0,qScore=0;
+function renderQ(){
+  var q=QS[curQ];
+  document.getElementById('qq').textContent=q.q;
+  document.getElementById('qnum').textContent='Q '+(curQ+1)+' of '+QS.length;
+  document.getElementById('qsc').textContent='Score: '+qScore;
+  document.getElementById('pfill').style.width=Math.round((curQ+1)/QS.length*100)+'%';
+  var c=document.getElementById('qopts');c.innerHTML='';
+  q.opts.forEach(function(o,i){
+    var b=document.createElement('button');b.className='qopt';b.textContent=o;
+    b.onclick=function(){ansQ(i,b,q.ok);};c.appendChild(b);
+  });
 }
-
-function answerQ(chosen,btn,correct){
-  document.querySelectorAll('.quiz-opt').forEach(function(b){b.onclick=null;});
-  if(chosen===correct){btn.classList.add('correct');quizScore++;}
-  else{btn.classList.add('wrong');document.querySelectorAll('.quiz-opt')[correct].classList.add('correct');}
+function ansQ(chosen,btn,ok){
+  document.querySelectorAll('.qopt').forEach(function(b){b.onclick=null;});
+  if(chosen===ok){btn.classList.add('ok');qScore++;}
+  else{btn.classList.add('no');document.querySelectorAll('.qopt')[ok].classList.add('ok');}
   setTimeout(function(){
-    currentQ++;
-    if(currentQ<questions.length){renderQuestion();}
-    else{var earned=Math.round(quizScore/questions.length*100);document.querySelector('.quiz-card').style.display='none';document.getElementById('earned-pts').textContent='+'+earned+' pts';document.getElementById('quiz-success').classList.add('show');currentPoints+=earned;updatePts();}
+    curQ++;
+    if(curQ<QS.length){renderQ();}
+    else{
+      var e=Math.round(qScore/QS.length*100);
+      document.querySelector('.qcard').style.display='none';
+      document.getElementById('qearned').textContent='+'+e+' pts';
+      document.getElementById('qwin').classList.add('show');
+      earn(e,'&#x1F4CB; First Aid Badge','Quiz completed');
+    }
   },900);
 }
+function resetQuiz(){curQ=0;qScore=0;document.getElementById('qwin').classList.remove('show');document.querySelector('.qcard').style.display='block';renderQ();}
 
-function resetQuiz(){currentQ=0;quizScore=0;document.getElementById('quiz-success').classList.remove('show');document.querySelector('.quiz-card').style.display='block';renderQuestion();}
-renderQuestion();
+/* ---- MISC ---- */
+function star(n){document.querySelectorAll('#stars span').forEach(function(s,i){s.style.filter=i<n?'none':'grayscale(1)';});}
+function submitFbk(){document.getElementById('fbk-form').style.display='none';document.getElementById('fbk-done').style.display='block';}
+
+renderQ();
+renderTxnHome();
+syncUI();
 </script>
