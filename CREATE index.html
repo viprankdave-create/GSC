@@ -1,6 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Karma+</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
 --r:#E24B4A;--rl:#FCEBEB;--rd:#A32D2D;
@@ -24,6 +29,58 @@ body.dk{
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
 .wrap{max-width:520px;margin:0 auto;padding-bottom:72px;}
 
+/* ===== LANDING / AUTH ===== */
+#landing{display:flex;flex-direction:column;min-height:100vh;background:#0f0f1a;color:#fff;}
+.land-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 20px;text-align:center;position:relative;overflow:hidden;}
+.land-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:rgba(226,75,74,.12);border-radius:50%;}
+.land-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:rgba(83,74,183,.12);border-radius:50%;}
+.land-logo{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:6px;}
+.land-logo s{color:#ff6b6a;text-decoration:none;}
+.land-tag{display:inline-block;background:rgba(226,75,74,.2);border:.5px solid rgba(226,75,74,.4);border-radius:20px;padding:4px 13px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ff9f9e;margin-bottom:20px;}
+.land-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.2;margin-bottom:12px;}
+.land-title em{color:#ff6b6a;font-style:normal;}
+.land-desc{font-size:12px;line-height:1.7;opacity:.65;max-width:340px;margin:0 auto 24px;}
+.land-pills{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.land-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:20px;padding:5px 11px;font-size:11px;}
+.land-stats{display:flex;gap:0;margin-bottom:30px;border:.5px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;width:100%;max-width:340px;}
+.ls{flex:1;padding:12px 6px;text-align:center;border-right:.5px solid rgba(255,255,255,.1);}
+.ls:last-child{border-right:none;}
+.ls-v{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#ff6b6a;}
+.ls-l{font-size:9px;opacity:.45;margin-top:2px;}
+.auth-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px;}
+.abtn{padding:14px;border-radius:14px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.abtn-r{background:#E24B4A;color:#fff;}
+.abtn-o{background:rgba(255,255,255,.08);color:#fff;border:.5px solid rgba(255,255,255,.25);}
+.abtn:hover{opacity:.88;transform:translateY(-1px);}
+
+/* AUTH MODALS */
+.auth-sheet{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.auth-sheet.op{display:flex;}
+.auth-box{background:#0f0f1a;border-radius:24px 24px 0 0;padding:22px 20px 32px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border-top:.5px solid rgba(255,255,255,.1);}
+.auth-handle{width:40px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;margin:0 auto 18px;}
+.auth-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:4px;}
+.auth-sub{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.auth-fg{margin-bottom:12px;}
+.auth-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.5px;}
+.auth-inp{width:100%;padding:11px 13px;border:.5px solid rgba(255,255,255,.15);border-radius:11px;background:rgba(255,255,255,.07);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
+.auth-inp:focus{border-color:#E24B4A;}
+.auth-inp::placeholder{color:rgba(255,255,255,.3);}
+.auth-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.auth-err{font-size:10px;color:#ff6b6a;margin-top:4px;display:none;}
+.auth-err.show{display:block;}
+.auth-info{background:rgba(226,75,74,.12);border:.5px solid rgba(226,75,74,.3);border-radius:10px;padding:9px 12px;font-size:11px;color:rgba(255,160,158,.9);margin-bottom:14px;line-height:1.5;}
+.auth-submit{width:100%;padding:13px;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:6px;}
+.auth-switch{text-align:center;font-size:11px;color:rgba(255,255,255,.4);margin-top:14px;}
+.auth-switch span{color:#ff9f9e;cursor:pointer;font-weight:600;}
+.auth-captcha{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;margin-bottom:12px;}
+.captcha-q{font-size:14px;font-weight:700;color:#fff;font-family:monospace;}
+.captcha-inp{flex:1;padding:8px 10px;border:.5px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.07);color:#fff;font-family:monospace;font-size:14px;outline:none;max-width:70px;}
+.captcha-refresh{cursor:pointer;font-size:16px;opacity:.5;}
+
+/* MAIN APP */
+#app{display:none;}
+#app.on{display:block;}
+
 /* topbar */
 .tb{background:var(--bg);border-bottom:.5px solid var(--br);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:90;}
 .tb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--tx);}
@@ -34,8 +91,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);trans
 .tog .kn{position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--mu);transition:all .2s;}
 body.dk .tog .kn{left:19px;background:var(--a);}
 body.dk .tog{background:#2a2a40;}
-
-/* animated pts badge */
 .pts-badge{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--r);background:var(--rl);padding:3px 9px;border-radius:20px;transition:all .3s;min-width:72px;text-align:center;}
 .pts-badge.flash-up{background:var(--gl);color:var(--g);transform:scale(1.15);}
 .pts-badge.flash-dn{background:var(--rl);color:var(--r);transform:scale(1.15);}
@@ -44,7 +99,7 @@ body.dk .tog{background:#2a2a40;}
 .hero{background:#0f0f1a;color:#fff;padding:26px 20px 22px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(226,75,74,.15);border-radius:50%;}
 .hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(226,75,74,.2);border:.5px solid rgba(226,75,74,.4);border-radius:20px;padding:4px 11px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ff9f9e;margin-bottom:10px;}
-.hero-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.15;margin-bottom:8px;position:relative;z-index:1;}
+.hero-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1.15;margin-bottom:8px;position:relative;z-index:1;}
 .hero-title em{color:#ff6b6a;font-style:normal;}
 .hero-desc{font-size:12px;line-height:1.65;opacity:.7;margin-bottom:16px;z-index:1;position:relative;}
 .hero-pills{display:flex;gap:7px;flex-wrap:wrap;z-index:1;position:relative;}
@@ -68,7 +123,9 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .ks-l{font-size:9px;opacity:.45;margin-top:1px;}
 .lvl{position:absolute;top:16px;right:16px;z-index:2;background:rgba(226,75,74,.8);color:#fff;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;}
 
-/* animated +/- pop */
+/* rank badge */
+.rank-badge-big{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;margin-top:6px;}
+
 @keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-42px) scale(1.3);}}
 .pts-pop{position:fixed;pointer-events:none;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;z-index:999;animation:floatUp .9s ease-out forwards;}
 .pts-pop.earn{color:#3B6D11;} .pts-pop.spend{color:#E24B4A;}
@@ -113,6 +170,8 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .ei{flex:1;}
 .etitle{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;color:var(--tx);}
 .emeta{font-size:10px;color:var(--mu);}
+.edesc{font-size:11px;color:var(--mu);margin:7px 0;line-height:1.6;background:var(--bg2);border-radius:8px;padding:8px 10px;}
+.edesc strong{color:var(--tx);font-weight:600;}
 .etags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
 .etag{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:600;}
 .tag-h{background:var(--gl);color:var(--g);} .tag-e{background:var(--bl);color:var(--b);} .tag-f{background:var(--tl);color:var(--t);} .tag-w{background:var(--al);color:var(--a);}
@@ -123,17 +182,21 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .jbtn.jd{background:var(--gl);color:var(--g);border:1px solid var(--g);cursor:default;}
 
 /* vol slot */
-.vslot{background:var(--card);border:.5px solid var(--br);border-radius:13px;padding:11px;margin-bottom:7px;display:flex;gap:10px;align-items:center;}
+.vslot{background:var(--card);border:.5px solid var(--br);border-radius:13px;padding:11px;margin-bottom:7px;}
+.vs-top{display:flex;gap:10px;align-items:flex-start;}
 .vi{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .vinfo{flex:1;}
 .vtitle{font-size:12px;font-weight:500;color:var(--tx);}
 .vsub{font-size:10px;color:var(--mu);margin-top:1px;}
+.vdesc{font-size:11px;color:var(--mu);margin:7px 0 0;line-height:1.55;background:var(--bg2);border-radius:8px;padding:8px 10px;display:none;}
+.vslot.exp .vdesc{display:block;}
 .vpts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--g);}
+.vs-btns{display:flex;gap:7px;margin-top:8px;justify-content:flex-end;}
+.vexp{font-size:9px;color:var(--b);cursor:pointer;font-weight:600;text-decoration:underline;}
 
 /* blood req */
 .breq{background:var(--card);border:.5px solid var(--br);border-radius:13px;padding:12px;margin-bottom:7px;}
 .breq.urg{border-color:rgba(226,75,74,.4);background:var(--rl);}
-.bg-grp{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--r);}
 
 /* leaderboard */
 .lbi{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid var(--br);}
@@ -144,6 +207,7 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .lb-acts{font-size:9px;color:var(--mu);margin-top:1px;}
 .lb-pts{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--g);}
 .you-row{background:var(--bl);border-radius:10px;padding:10px 11px;margin:0 -11px;}
+.lb-rank-badge{font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;margin-left:5px;}
 
 /* REWARDS */
 .rgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
@@ -158,12 +222,13 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .rcost.ok{color:var(--g);}
 .rcost.no{color:var(--mu);}
 .rtype{font-size:9px;padding:2px 7px;border-radius:20px;margin-bottom:5px;display:inline-block;}
-.rt-med{background:var(--bl);color:var(--b);} .rt-food{background:var(--gl);color:var(--g);} .rt-cash{background:var(--al);color:var(--a);}
+.rt-med{background:var(--bl);color:var(--b);} .rt-food{background:var(--gl);color:var(--g);} .rt-cash{background:var(--al);color:var(--a);} .rt-wellness{background:var(--pkl);color:var(--pk);}
 .rbtn{width:100%;margin-top:8px;padding:7px;border:none;border-radius:9px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;cursor:pointer;transition:all .15s;}
 .rbtn.can{background:var(--g);color:#fff;}
 .rbtn.cant{background:var(--bg2);color:var(--mu);cursor:not-allowed;}
 .rbtn.done{background:var(--gl);color:var(--g);border:1px solid var(--g);cursor:default;}
 .lock-ic{position:absolute;top:10px;right:10px;font-size:11px;opacity:.35;}
+.rexpiry{font-size:9px;color:var(--mu);margin-top:3px;}
 /* balance bar */
 .bal-bar-wrap{margin:0 18px 14px;background:var(--bg2);border:.5px solid var(--br);border-radius:14px;padding:12px;}
 .bal-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
@@ -184,6 +249,11 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .txn-earn{color:var(--g);} .txn-spend{color:var(--r);}
 
 /* quiz */
+.diff-sel{display:flex;gap:8px;margin-bottom:16px;}
+.diff-btn{flex:1;padding:10px 6px;border-radius:11px;border:1.5px solid var(--br);background:var(--bg2);cursor:pointer;text-align:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--mu);transition:all .15s;}
+.diff-btn.sel-e{border-color:var(--g);background:var(--gl);color:var(--g);}
+.diff-btn.sel-m{border-color:var(--a);background:var(--al);color:var(--a);}
+.diff-btn.sel-h{border-color:var(--r);background:var(--rl);color:var(--r);}
 .qcard{background:var(--card);border:.5px solid var(--br);border-radius:15px;padding:16px;margin-bottom:10px;}
 .qq{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:12px;line-height:1.4;color:var(--tx);}
 .qopts{display:flex;flex-direction:column;gap:6px;}
@@ -196,6 +266,11 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .quiz-win{background:var(--gl);border:.5px solid var(--g);border-radius:11px;padding:14px;text-align:center;display:none;}
 .quiz-win.show{display:block;}
 .quiz-pts{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--g);}
+.qdiff-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:20px;font-weight:700;margin-bottom:10px;}
+.qdiff-e{background:var(--gl);color:var(--g);}
+.qdiff-m{background:var(--al);color:var(--a);}
+.qdiff-h{background:var(--rl);color:var(--r);}
+.qexplain{font-size:11px;color:var(--mu);margin-top:6px;line-height:1.5;background:var(--bg2);border-radius:8px;padding:8px 10px;}
 
 /* notif */
 .ni{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:.5px solid var(--br);}
@@ -214,6 +289,10 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .fcat{font-size:10px;padding:5px 11px;border-radius:20px;border:.5px solid var(--br);background:var(--bg2);cursor:pointer;color:var(--tx);}
 .fcat.sel{background:var(--bl);border-color:var(--b);color:var(--b);font-weight:600;}
 .fi{width:100%;padding:10px 12px;border:.5px solid var(--br);border-radius:11px;background:var(--bg2);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;resize:none;min-height:70px;}
+.prof-edit-btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;padding:5px 12px;border-radius:20px;border:.5px solid var(--br);background:var(--bg2);color:var(--mu);cursor:pointer;}
+.pinfo-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:.5px solid var(--br);}
+.pinfo-lbl{font-size:10px;color:var(--mu);}
+.pinfo-val{font-size:11px;font-weight:500;color:var(--tx);}
 
 /* sponsors */
 .srow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;}
@@ -258,11 +337,162 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 .sbtn{width:100%;padding:13px;color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s;}
 .sbtn:hover{opacity:.9;}
 .btn-r{background:var(--r);} .btn-g{background:var(--g);} .btn-b{background:var(--b);} .btn-t{background:var(--t);} .btn-p{background:var(--p);}
-</style>
 
-<!-- floating pops injected by JS -->
+/* verify code input */
+.vcode-wrap{display:flex;gap:6px;margin-bottom:12px;justify-content:center;}
+.vcode-seg{width:36px;height:44px;border:.5px solid var(--br);border-radius:9px;background:var(--bg2);color:var(--tx);font-family:monospace;font-size:16px;font-weight:700;text-align:center;outline:none;text-transform:uppercase;}
+.vcode-seg:focus{border-color:var(--r);}
+.vcode-dash{font-size:20px;color:var(--mu);align-self:center;}
+
+/* age warning */
+.age-warn{background:var(--rl);border:.5px solid var(--r);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--r);margin-bottom:12px;display:none;}
+.age-warn.show{display:block;}
+
+/* edit profile modal */
+.ep-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+</style>
+</head>
+<body>
+
 <div id="pops"></div>
 
+<!-- ===== LANDING PAGE ===== -->
+<div id="landing">
+  <div class="land-hero">
+    <div class="land-logo">Karma<s>+</s></div>
+    <div class="land-tag">⭐ Gamified Social Change</div>
+    <div class="land-title">Turn good deeds into<br><em>real rewards</em></div>
+    <div class="land-desc">Karma+ connects volunteers, donors and companies to build a healthier community. Every verified act earns points. Points unlock real benefits from top brands.</div>
+    <div class="land-pills">
+      <div class="land-pill">🚑 Ambulances</div>
+      <div class="land-pill">🩸 Blood</div>
+      <div class="land-pill">🏥 Health camps</div>
+      <div class="land-pill">📚 Teach</div>
+      <div class="land-pill">🎁 Rewards</div>
+    </div>
+    <div class="land-stats">
+      <div class="ls"><div class="ls-v">12K+</div><div class="ls-l">Active heroes</div></div>
+      <div class="ls"><div class="ls-v">3,400</div><div class="ls-l">Volunteer hrs</div></div>
+      <div class="ls"><div class="ls-v">890</div><div class="ls-l">Kids educated</div></div>
+      <div class="ls"><div class="ls-v">48</div><div class="ls-l">Events held</div></div>
+    </div>
+    <div class="auth-btns">
+      <button class="abtn abtn-r" onclick="showAuth('register')">🚀 Create Account — It's Free</button>
+      <button class="abtn abtn-o" onclick="showAuth('login')">Already have an account? Sign In</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REGISTER SHEET ===== -->
+<div class="auth-sheet" id="sheet-register">
+  <div class="auth-box">
+    <div class="auth-handle"></div>
+    <div class="auth-title">Create your account</div>
+    <div class="auth-sub">Join 12,000+ heroes making real impact</div>
+    <div class="auth-info">⚠️ Blood donation & ambulance booking require age 18+. Please enter your real date of birth.</div>
+    <div class="auth-row">
+      <div class="auth-fg">
+        <label class="auth-lbl">First Name</label>
+        <input class="auth-inp" id="reg-fname" placeholder="Arjun" maxlength="30"/>
+        <div class="auth-err" id="err-fname">Please enter your first name</div>
+      </div>
+      <div class="auth-fg">
+        <label class="auth-lbl">Last Name</label>
+        <input class="auth-inp" id="reg-lname" placeholder="Sharma" maxlength="30"/>
+        <div class="auth-err" id="err-lname">Please enter your last name</div>
+      </div>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Email Address</label>
+      <input class="auth-inp" id="reg-email" type="email" placeholder="arjun@email.com"/>
+      <div class="auth-err" id="err-email">Please enter a valid email</div>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Mobile Number</label>
+      <input class="auth-inp" id="reg-mobile" type="tel" placeholder="+91 98765 43210" maxlength="15"/>
+      <div class="auth-err" id="err-mobile">Please enter a valid 10-digit mobile number</div>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Date of Birth</label>
+      <input class="auth-inp" id="reg-dob" type="date"/>
+      <div class="auth-err" id="err-dob">You must be at least 13 to register</div>
+    </div>
+    <div class="auth-row">
+      <div class="auth-fg">
+        <label class="auth-lbl">Blood Group</label>
+        <select class="auth-inp" id="reg-blood">
+          <option value="">Select…</option>
+          <option>A+</option><option>A−</option><option>B+</option><option>B−</option>
+          <option>AB+</option><option>AB−</option><option>O+</option><option>O−</option>
+        </select>
+      </div>
+      <div class="auth-fg">
+        <label class="auth-lbl">Gender</label>
+        <select class="auth-inp" id="reg-gender">
+          <option value="">Select…</option>
+          <option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option>
+        </select>
+      </div>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">City</label>
+      <input class="auth-inp" id="reg-city" placeholder="Ahmedabad" maxlength="50"/>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Password</label>
+      <input class="auth-inp" id="reg-pass" type="password" placeholder="At least 8 characters"/>
+      <div class="auth-err" id="err-pass">Password must be at least 8 characters</div>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Confirm Password</label>
+      <input class="auth-inp" id="reg-pass2" type="password" placeholder="Repeat password"/>
+      <div class="auth-err" id="err-pass2">Passwords do not match</div>
+    </div>
+    <!-- CAPTCHA -->
+    <label class="auth-lbl">Human Verification</label>
+    <div class="auth-captcha">
+      <span class="captcha-q" id="cap-q"></span>
+      <span style="color:rgba(255,255,255,.4);margin:0 4px">=</span>
+      <input class="captcha-inp" id="cap-ans" placeholder="?"/>
+      <span class="captcha-refresh" onclick="newCaptcha()" title="New question">🔄</span>
+    </div>
+    <div class="auth-err" id="err-cap" style="margin-top:-8px;margin-bottom:8px">Wrong answer — try again</div>
+    <button class="auth-submit btn-r sbtn" onclick="doRegister()">Create Account →</button>
+    <div class="auth-switch">Already have an account? <span onclick="showAuth('login')">Sign in</span></div>
+  </div>
+</div>
+
+<!-- ===== LOGIN SHEET ===== -->
+<div class="auth-sheet" id="sheet-login">
+  <div class="auth-box">
+    <div class="auth-handle"></div>
+    <div class="auth-title">Welcome back 👋</div>
+    <div class="auth-sub">Sign in to continue your impact journey</div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Email Address</label>
+      <input class="auth-inp" id="log-email" type="email" placeholder="arjun@email.com"/>
+    </div>
+    <div class="auth-fg">
+      <label class="auth-lbl">Password</label>
+      <input class="auth-inp" id="log-pass" type="password" placeholder="Your password"/>
+    </div>
+    <div class="auth-err" id="err-login" style="margin-bottom:8px">Incorrect email or password</div>
+    <!-- CAPTCHA -->
+    <label class="auth-lbl">Human Verification</label>
+    <div class="auth-captcha">
+      <span class="captcha-q" id="cap-q2"></span>
+      <span style="color:rgba(255,255,255,.4);margin:0 4px">=</span>
+      <input class="captcha-inp" id="cap-ans2" placeholder="?"/>
+      <span class="captcha-refresh" onclick="newCaptcha2()" title="New question">🔄</span>
+    </div>
+    <div class="auth-err" id="err-cap2" style="margin-top:-8px;margin-bottom:8px">Wrong answer — try again</div>
+    <button class="auth-submit btn-r sbtn" onclick="doLogin()">Sign In →</button>
+    <div class="auth-switch">Don't have an account? <span onclick="showAuth('register')">Register now</span></div>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="app">
 <div class="wrap">
 
 <div class="tb">
@@ -270,21 +500,21 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
   <div class="tb-r">
     <div class="clk" id="clk"></div>
     <div class="tog" onclick="toggleDark()"><div class="kn"></div></div>
-    <div class="pts-badge" id="tbpts">1,240 pts</div>
+    <div class="pts-badge" id="tbpts">0 pts</div>
   </div>
 </div>
 
-<!-- HERO -->
+<!-- HERO BANNER (always visible in app) -->
 <div class="hero">
-  <div class="hero-tag">&#x2605; Gamified Social Change</div>
+  <div class="hero-tag">⭐ Gamified Social Change</div>
   <div class="hero-title">Turn good deeds into<br><em>real rewards</em></div>
-  <div class="hero-desc">Karma+ connects volunteers, donors and companies to build a healthier community. Every act earns points. Points unlock real benefits.</div>
+  <div class="hero-desc">Karma+ connects volunteers, donors and companies to build a healthier community. Every verified act earns points. Points unlock real benefits.</div>
   <div class="hero-pills">
-    <div class="pill">&#x1F691; Ambulances</div>
-    <div class="pill">&#x1F9B8; Blood</div>
-    <div class="pill">&#x1F3E5; Health camps</div>
-    <div class="pill">&#x1F4DA; Teach</div>
-    <div class="pill">&#x1F381; Rewards</div>
+    <div class="pill">🚑 Ambulances</div>
+    <div class="pill">🩸 Blood</div>
+    <div class="pill">🏥 Health camps</div>
+    <div class="pill">📚 Teach</div>
+    <div class="pill">🎁 Rewards</div>
   </div>
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-v">12K+</div><div class="hstat-l">Active heroes</div></div>
@@ -296,45 +526,44 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 
 <!-- HOME -->
 <div id="s-home" class="scr on">
-  <!-- balance bar -->
   <div class="bal-bar-wrap" style="margin-top:14px;">
     <div class="bal-bar-top">
       <div class="bal-bar-lbl">Karma Balance</div>
-      <div class="bal-bar-val" id="bb-val">1,240 pts</div>
+      <div class="bal-bar-val" id="bb-val">0 pts</div>
     </div>
-    <div class="bar-outer"><div class="bar-inner" id="bb-fill" style="width:31%"></div></div>
-    <div class="bar-labels"><div class="bar-lbl">0</div><div class="bar-lbl">Level 4: 4,000 pts</div></div>
+    <div class="bar-outer"><div class="bar-inner" id="bb-fill" style="width:0%"></div></div>
+    <div class="bar-labels"><div class="bar-lbl">0</div><div class="bar-lbl" id="bar-next-lbl">Rookie: 500 pts</div></div>
   </div>
 
   <div class="kcard">
-    <div class="lvl">HERO LVL 3</div>
+    <div class="lvl" id="kcard-lvl">ROOKIE</div>
     <div class="k-lbl">Total Karma Points</div>
-    <div class="k-pts" id="kpts">1,240<small>pts</small></div>
+    <div class="k-pts" id="kpts">0<small>pts</small></div>
     <div class="k-row">
-      <div class="ks"><div class="ks-v" id="st-don">4</div><div class="ks-l">Donations</div></div>
-      <div class="ks"><div class="ks-v" id="st-amb">3</div><div class="ks-l">Ambulances</div></div>
-      <div class="ks"><div class="ks-v" id="st-ev">6</div><div class="ks-l">Events</div></div>
-      <div class="ks"><div class="ks-v" id="st-fa">2</div><div class="ks-l">FA badges</div></div>
+      <div class="ks"><div class="ks-v" id="st-don">0</div><div class="ks-l">Donations</div></div>
+      <div class="ks"><div class="ks-v" id="st-amb">0</div><div class="ks-l">Ambulances</div></div>
+      <div class="ks"><div class="ks-v" id="st-ev">0</div><div class="ks-l">Events</div></div>
+      <div class="ks"><div class="ks-v" id="st-fa">0</div><div class="ks-l">FA badges</div></div>
     </div>
   </div>
 
   <div class="streak">
-    <div class="streak-top"><div class="streak-title">&#x1F525; Monthly Streak — 3x multiplier</div><div class="streak-badge">WEEK 3</div></div>
-    <div class="sdots"><div class="sd done">&#x2713;</div><div class="sd done">&#x2713;</div><div class="sd today">&#x2605;</div><div class="sd"></div><div class="sd"></div></div>
-    <div class="streak-note">2 more actions to unlock 5x multiplier</div>
+    <div class="streak-top"><div class="streak-title">🔥 Monthly Streak — 1x multiplier</div><div class="streak-badge">WEEK 1</div></div>
+    <div class="sdots"><div class="sd today">⭐</div><div class="sd"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
+    <div class="streak-note">Complete 2 more actions this week to unlock 2x multiplier</div>
   </div>
 
   <div class="sec">
     <div class="sec-title">Quick Actions</div>
     <div class="agrid">
       <div class="ac full" onclick="openM('ambulance')">
-        <div class="ai ai-r">&#x1F691;</div>
-        <div class="afi"><div class="an">Book Ambulance</div><div class="ad">9 emergency types</div><div class="ap ap-r">+50 pts</div></div>
+        <div class="ai ai-r">🚑</div>
+        <div class="afi"><div class="an">Book Ambulance</div><div class="ad">9 emergency types · Dispatch in minutes</div><div class="ap ap-r">+30 pts</div></div>
       </div>
-      <div class="ac" onclick="openM('blood')"><div class="ai ai-g">&#x1FA78;</div><div class="an">Blood Donation</div><div class="ad">Verified by hospital</div><div class="ap ap-g">+200 pts</div></div>
-      <div class="ac" onclick="go('firstaid')"><div class="ai ai-b">&#x1F4CB;</div><div class="an">First Aid Quiz</div><div class="ad">Learn & earn</div><div class="ap ap-b">+100 pts</div></div>
-      <div class="ac" onclick="go('community')"><div class="ai ai-t">&#x1F3E5;</div><div class="an">Health Camp</div><div class="ad">Weekend checkups</div><div class="ap ap-t">+150 pts</div></div>
-      <div class="ac" onclick="go('community')"><div class="ai ai-p">&#x1F4DA;</div><div class="an">Teach & Educate</div><div class="ad">Weekend classes</div><div class="ap ap-p">+120 pts</div></div>
+      <div class="ac" onclick="openM('blood')"><div class="ai ai-g">🩸</div><div class="an">Blood Donation</div><div class="ad">Verification code required</div><div class="ap ap-g">+100 pts</div></div>
+      <div class="ac" onclick="go('firstaid')"><div class="ai ai-b">📋</div><div class="an">First Aid Quiz</div><div class="ad">Learn & earn — choose difficulty</div><div class="ap ap-b">Up to +120 pts</div></div>
+      <div class="ac" onclick="go('community')"><div class="ai ai-t">🏥</div><div class="an">Health Camp</div><div class="ad">Weekend checkups near you</div><div class="ap ap-t">+80 pts</div></div>
+      <div class="ac" onclick="go('community')"><div class="ai ai-p">📚</div><div class="an">Teach & Educate</div><div class="ad">Weekend classes for kids</div><div class="ap ap-p">+60 pts</div></div>
     </div>
   </div>
 
@@ -343,68 +572,118 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
     <div class="ec">
       <div class="ec-hd"><div class="datebox"><div class="datebox-d">15</div><div class="datebox-m">Mar</div></div><div class="ei"><div class="etitle">Free Health Checkup Camp</div><div class="emeta">Lions Club Ground · 9AM–2PM</div></div></div>
       <div class="etags"><span class="etag tag-h">Health</span><span class="etag tag-f">Free</span><span class="etag tag-w">Saturday</span></div>
-      <div class="efooter"><div style="font-size:10px;color:var(--mu)">23 volunteers needed</div><div class="epts">+150 pts</div></div>
+      <div class="efooter"><div style="font-size:10px;color:var(--mu)">23 volunteers needed</div><div class="epts">+80 pts</div></div>
     </div>
     <div class="ec">
       <div class="ec-hd"><div class="datebox" style="background:var(--pl)"><div class="datebox-d" style="color:var(--p)">16</div><div class="datebox-m" style="color:var(--p)">Mar</div></div><div class="ei"><div class="etitle">Sunday Education Drive</div><div class="emeta">Community Hall, Behrampura · 10AM</div></div></div>
       <div class="etags"><span class="etag tag-e">Education</span><span class="etag tag-f">Free</span><span class="etag tag-w">Sunday</span></div>
-      <div class="efooter"><div style="font-size:10px;color:var(--mu)">12 teachers needed</div><div class="epts">+120 pts</div></div>
+      <div class="efooter"><div style="font-size:10px;color:var(--mu)">12 teachers needed</div><div class="epts">+60 pts</div></div>
     </div>
   </div>
 
   <div class="sec">
     <div class="sec-title">Recent Activity <span class="see" onclick="go('rewards')">All</span></div>
-    <div id="txn-home"></div>
+    <div id="txn-home"><div style="font-size:11px;color:var(--mu);padding:12px 0;text-align:center">No activity yet. Start earning!</div></div>
   </div>
 
   <div class="sec">
     <div class="sec-title">Powered by</div>
     <div class="srow">
-      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F48A;</div><div class="sname">Apollo</div><div class="stype">Medical</div></div>
-      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F4F1;</div><div class="sname">PhonePe</div><div class="stype">Cashback</div></div>
-      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F354;</div><div class="sname">Swiggy</div><div class="stype">Food</div></div>
-      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F52C;</div><div class="sname">Thyrocare</div><div class="stype">Checkup</div></div>
-      <div class="schip"><div style="font-size:16px;margin-bottom:3px">&#x1F6D2;</div><div class="sname">Amazon</div><div class="stype">Voucher</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">💊</div><div class="sname">Apollo</div><div class="stype">Medical</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">📱</div><div class="sname">PhonePe</div><div class="stype">Cashback</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">🍔</div><div class="sname">Swiggy</div><div class="stype">Food</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">🔬</div><div class="sname">Thyrocare</div><div class="stype">Checkup</div></div>
+      <div class="schip"><div style="font-size:16px;margin-bottom:3px">🛒</div><div class="sname">Amazon</div><div class="stype">Voucher</div></div>
     </div>
   </div>
 </div>
 
 <!-- COMMUNITY -->
 <div id="s-community" class="scr">
-  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Volunteer Events</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Weekend drives near you</div></div>
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Volunteer Events</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Weekend drives near you · Tap "Details" to learn more</div></div>
   <div class="sec" style="margin-top:12px">
     <div class="sec-title">Health Camps</div>
-    <div class="ec"><div class="ec-hd"><div class="datebox"><div class="datebox-d">15</div><div class="datebox-m">Mar</div></div><div class="ei"><div class="etitle">Free Health Checkup Camp</div><div class="emeta">Lions Club Ground · 9AM–2PM</div></div></div><div class="etags"><span class="etag tag-h">Health</span><span class="etag tag-f">Free</span><span class="etag tag-w">Saturday</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">BP, sugar, eye & dental. Doctors by Apollo.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">23 of 40 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:57%;background:var(--t);border-radius:2px"></div></div></div><button class="jbtn" onclick="joinEv(this,150,'&#x1F3E5; Health Camp')">Join +150 pts</button></div></div>
-    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--pkl)"><div class="datebox-d" style="color:var(--pk)">22</div><div class="datebox-m" style="color:var(--pk)">Mar</div></div><div class="ei"><div class="etitle">Mental Health Awareness Camp</div><div class="emeta">Community Centre, Nikol · 10AM</div></div></div><div class="etags"><span class="etag" style="background:var(--pkl);color:var(--pk)">Mental Health</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">Counselling for daily wage workers.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">8 of 20 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--pk);border-radius:2px"></div></div></div><button class="jbtn" onclick="joinEv(this,150,'&#x1F9E0; Mental Health Camp')">Join +150 pts</button></div></div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox"><div class="datebox-d">15</div><div class="datebox-m">Mar</div></div><div class="ei"><div class="etitle">Free Health Checkup Camp</div><div class="emeta">Lions Club Ground · 9AM–2PM · Sat</div></div></div>
+      <div class="etags"><span class="etag tag-h">Health</span><span class="etag tag-f">Free</span><span class="etag tag-w">Saturday</span></div>
+      <div class="edesc"><strong>What you'll do:</strong> Help patients register at the desk, guide them through checkup stations (BP, blood sugar, eye, dental), assist doctors with basic tasks and crowd management. No medical background needed — a friendly attitude is all that's required.<br><br><strong>What to bring:</strong> Comfortable footwear, water bottle, ID proof. Lunch provided by Lions Club.<br><br><strong>Impact:</strong> Last camp served 340 patients in one day. Doctors from Apollo & Fortis volunteering on-site.</div>
+      <div class="efooter"><div><div style="font-size:10px;color:var(--mu)">23 of 40 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:57%;background:var(--t);border-radius:2px"></div></div></div><div style="display:flex;gap:6px"><span class="vexp" onclick="toggleDesc(this)">Details ▼</span><button class="jbtn" onclick="joinEv(this,80,'🏥 Health Camp')">Join +80 pts</button></div></div>
+    </div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox" style="background:var(--pkl)"><div class="datebox-d" style="color:var(--pk)">22</div><div class="datebox-m" style="color:var(--pk)">Mar</div></div><div class="ei"><div class="etitle">Mental Health Awareness Camp</div><div class="emeta">Community Centre, Nikol · 10AM</div></div></div>
+      <div class="etags"><span class="etag" style="background:var(--pkl);color:var(--pk)">Mental Health</span><span class="etag tag-f">Free</span></div>
+      <div class="edesc"><strong>What you'll do:</strong> Assist trained counsellors in reaching daily wage workers. Help set up awareness booths, distribute pamphlets in Gujarati & Hindi, listen empathetically and guide people to counsellors. Sensitivity training provided on the day.<br><br><strong>Why it matters:</strong> Daily wage workers have the highest rate of untreated anxiety in Gujarat. This camp aims to screen 200 individuals and refer 50 for free follow-up sessions.<br><br><strong>Requirement:</strong> 18+, basic language skills in Gujarati/Hindi. Empathy is your superpower here.</div>
+      <div class="efooter"><div><div style="font-size:10px;color:var(--mu)">8 of 20 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--pk);border-radius:2px"></div></div></div><div style="display:flex;gap:6px"><span class="vexp" onclick="toggleDesc(this)">Details ▼</span><button class="jbtn" onclick="joinEv(this,80,'🧠 Mental Health Camp')">Join +80 pts</button></div></div>
+    </div>
   </div>
   <div class="sec">
     <div class="sec-title">Education Drives</div>
-    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--pl)"><div class="datebox-d" style="color:var(--p)">16</div><div class="datebox-m" style="color:var(--p)">Mar</div></div><div class="ei"><div class="etitle">Sunday Education Drive</div><div class="emeta">Community Hall · 10AM–1PM</div></div></div><div class="etags"><span class="etag tag-e">Education</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">Math & English for kids 8–14. Any graduate can volunteer.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">12 of 30 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--p);border-radius:2px"></div></div></div><button class="jbtn" style="background:var(--p)" onclick="joinEv(this,120,'&#x1F4DA; Education Drive')">Join +120 pts</button></div></div>
-    <div class="ec"><div class="ec-hd"><div class="datebox" style="background:var(--bl)"><div class="datebox-d" style="color:var(--b)">23</div><div class="datebox-m" style="color:var(--b)">Mar</div></div><div class="ei"><div class="etitle">Digital Literacy Workshop</div><div class="emeta">Govt School, Odhav · 11AM</div></div></div><div class="etags"><span class="etag tag-e">Digital</span><span class="etag tag-f">Free</span></div><div style="font-size:11px;color:var(--mu);margin-bottom:9px;line-height:1.5">UPI & govt apps for elderly adults.</div><div class="efooter"><div><div style="font-size:10px;color:var(--mu)">5 of 15 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:33%;background:var(--b);border-radius:2px"></div></div></div><button class="jbtn" style="background:var(--b)" onclick="joinEv(this,120,'&#x1F4BB; Digital Literacy')">Join +120 pts</button></div></div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox" style="background:var(--pl)"><div class="datebox-d" style="color:var(--p)">16</div><div class="datebox-m" style="color:var(--p)">Mar</div></div><div class="ei"><div class="etitle">Sunday Education Drive</div><div class="emeta">Community Hall, Behrampura · 10AM–1PM</div></div></div>
+      <div class="etags"><span class="etag tag-e">Education</span><span class="etag tag-f">Free</span></div>
+      <div class="edesc"><strong>What you'll teach:</strong> Math (basic arithmetic, fractions) and English (reading, simple sentences) for children aged 8–14 from low-income families. Lesson plans are pre-prepared — you just need to explain them clearly and interact warmly with kids.<br><br><strong>Who can volunteer:</strong> Any graduate or 12th-pass student. Teaching experience is a plus but not mandatory. We pair first-timers with experienced volunteers.<br><br><strong>Impact so far:</strong> 890 kids taught across 48 sessions. 12 children secured school scholarships this year through this programme.</div>
+      <div class="efooter"><div><div style="font-size:10px;color:var(--mu)">12 of 30 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:40%;background:var(--p);border-radius:2px"></div></div></div><div style="display:flex;gap:6px"><span class="vexp" onclick="toggleDesc(this)">Details ▼</span><button class="jbtn" style="background:var(--p)" onclick="joinEv(this,60,'📚 Education Drive')">Join +60 pts</button></div></div>
+    </div>
+    <div class="ec">
+      <div class="ec-hd"><div class="datebox" style="background:var(--bl)"><div class="datebox-d" style="color:var(--b)">23</div><div class="datebox-m" style="color:var(--b)">Mar</div></div><div class="ei"><div class="etitle">Digital Literacy Workshop</div><div class="emeta">Govt School, Odhav · 11AM</div></div></div>
+      <div class="etags"><span class="etag tag-e">Digital</span><span class="etag tag-f">Free</span></div>
+      <div class="edesc"><strong>What you'll teach:</strong> How to use UPI apps (PhonePe, GPay) for safe payments, how to access government portals (Digilocker, Aadhaar, ration card), and how to avoid online scams. Target audience: elderly adults, 55–75 years.<br><br><strong>Approach:</strong> Hands-on, phone-in-hand sessions. We sit with each participant 1-on-1 for 20 minutes. Patience is the #1 skill needed.<br><br><strong>Bring:</strong> Your own smartphone. We'll have demo phones available. Gujarati speakers strongly preferred.</div>
+      <div class="efooter"><div><div style="font-size:10px;color:var(--mu)">5 of 15 spots</div><div style="height:4px;background:var(--br);border-radius:2px;width:110px;margin-top:4px"><div style="height:100%;width:33%;background:var(--b);border-radius:2px"></div></div></div><div style="display:flex;gap:6px"><span class="vexp" onclick="toggleDesc(this)">Details ▼</span><button class="jbtn" style="background:var(--b)" onclick="joinEv(this,60,'💻 Digital Literacy')">Join +60 pts</button></div></div>
+    </div>
   </div>
   <div class="sec">
-    <div class="sec-title">More Slots</div>
-    <div class="vslot"><div class="vi" style="background:var(--al)">&#x1F371;</div><div class="vinfo"><div class="vtitle">Food distribution</div><div class="vsub">Every Sunday · Old City · 7AM</div></div><div><div class="vpts">+80 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,80,'&#x1F371; Food Drive')">Join</button></div></div>
-    <div class="vslot"><div class="vi" style="background:var(--gl)">&#x1F333;</div><div class="vinfo"><div class="vtitle">Tree plantation</div><div class="vsub">Last Sunday · Sabarmati</div></div><div><div class="vpts">+80 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,80,'&#x1F333; Tree Plantation')">Join</button></div></div>
-    <div class="vslot"><div class="vi" style="background:var(--bl)">&#x1F9F9;</div><div class="vinfo"><div class="vtitle">Neighbourhood cleanup</div><div class="vsub">2nd Saturday</div></div><div><div class="vpts">+60 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,60,'&#x1F9F9; Cleanup')">Join</button></div></div>
-    <div class="vslot"><div class="vi" style="background:var(--pkl)">&#x1F474;</div><div class="vinfo"><div class="vtitle">Visit old age home</div><div class="vsub">Every Saturday · 3PM</div></div><div><div class="vpts">+90 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,90,'&#x1F474; Old Age Home')">Join</button></div></div>
+    <div class="sec-title">More Volunteer Slots</div>
+    <div class="vslot" id="vs1">
+      <div class="vs-top"><div class="vi" style="background:var(--al)">🍱</div><div class="vinfo"><div class="vtitle">Food distribution — Old City</div><div class="vsub">Every Sunday · 7AM · 2–3 hrs</div></div><div style="text-align:right"><div class="vpts">+40 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,40,'🍱 Food Drive')">Join</button></div></div>
+      <div class="vdesc">Pack and distribute food to 200+ homeless individuals near Manek Chowk and Lal Darwaja. Donated food is freshly cooked by partner NGO Roti Bank. You'll help in sorting, packing into containers, and distribution. Gloves and aprons provided. <strong>Great first-time volunteer role.</strong></div>
+      <span class="vexp" onclick="toggleVDesc(this)" style="margin-top:6px;display:inline-block">Details ▼</span>
+    </div>
+    <div class="vslot" id="vs2">
+      <div class="vs-top"><div class="vi" style="background:var(--gl)">🌳</div><div class="vinfo"><div class="vtitle">Tree plantation — Sabarmati</div><div class="vsub">Last Sunday · 7AM · 3 hrs</div></div><div style="text-align:right"><div class="vpts">+40 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,40,'🌳 Tree Plantation')">Join</button></div></div>
+      <div class="vdesc">Plant saplings along the Sabarmati Riverfront as part of the Green Ahmedabad initiative. Supervised by Forest Department officers. We plant 500 saplings per session; each volunteer is responsible for 10 saplings including digging, planting, and watering. <strong>Wear old clothes.</strong> Saplings & tools provided. Light breakfast included.</div>
+      <span class="vexp" onclick="toggleVDesc(this)" style="margin-top:6px;display:inline-block">Details ▼</span>
+    </div>
+    <div class="vslot" id="vs3">
+      <div class="vs-top"><div class="vi" style="background:var(--bl)">🧹</div><div class="vinfo"><div class="vtitle">Neighbourhood cleanup</div><div class="vsub">2nd Saturday · 8AM · 2 hrs</div></div><div style="text-align:right"><div class="vpts">+35 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,35,'🧹 Cleanup')">Join</button></div></div>
+      <div class="vdesc">Join the Swachh Ahmedabad drive. Volunteers clean streets, parks, and public toilets in Asarwa and Gomtipur wards — two of the most garbage-affected areas. Gloves, masks, and garbage bags provided. Municipal Corporation supervisors will be present. <strong>Certificates of appreciation issued to all volunteers.</strong></div>
+      <span class="vexp" onclick="toggleVDesc(this)" style="margin-top:6px;display:inline-block">Details ▼</span>
+    </div>
+    <div class="vslot" id="vs4">
+      <div class="vs-top"><div class="vi" style="background:var(--pkl)">👴</div><div class="vinfo"><div class="vtitle">Visit old age home</div><div class="vsub">Every Saturday · 3PM · 2 hrs</div></div><div style="text-align:right"><div class="vpts">+50 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,50,'👴 Old Age Home')">Join</button></div></div>
+      <div class="vdesc">Spend meaningful time with elderly residents at Vriddhashram, Maninagar. Activities include: reading newspaper together, playing carrom/chess, singing bhajans, and simply having conversations. Many residents haven't had visitors in months. <strong>This is one of our most emotionally rewarding volunteering slots.</strong> No skills needed — just compassion and 2 hours of your Saturday.</div>
+      <span class="vexp" onclick="toggleVDesc(this)" style="margin-top:6px;display:inline-block">Details ▼</span>
+    </div>
+    <div class="vslot" id="vs5">
+      <div class="vs-top"><div class="vi" style="background:var(--rl)">🩺</div><div class="vinfo"><div class="vtitle">Blood camp coordination</div><div class="vsub">Monthly · Civil Hospital</div></div><div style="text-align:right"><div class="vpts">+60 pts</div><button class="jbtn" style="margin-top:5px;font-size:9px;padding:5px 9px" onclick="joinEv(this,60,'🩺 Blood Camp Coord')">Join</button></div></div>
+      <div class="vdesc">Help run the monthly blood donation camp at Civil Hospital. Tasks: registering donors, issuing verification codes, managing donor queue, serving juice and biscuits post-donation. You'll work alongside Red Cross Society staff. <strong>Age 18+ required. Must not be anaemic or on medication.</strong> Training provided on the day. 4 hours, 9AM–1PM.</div>
+      <span class="vexp" onclick="toggleVDesc(this)" style="margin-top:6px;display:inline-block">Details ▼</span>
+    </div>
   </div>
 </div>
 
 <!-- BLOOD REQUESTS -->
 <div id="s-requests" class="scr">
-  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Live Blood Requests</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Near Ahmedabad</div></div>
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Live Blood Requests</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Near Ahmedabad · Tap to donate & enter your verification code</div></div>
   <div class="sec" style="margin-top:12px">
     <div class="breq urg" style="flex-direction:column;align-items:flex-start;gap:7px">
-      <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:#F7C1C1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#791F1F;flex-shrink:0">O&#8722;</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Fortis Hospital, SG Highway</div><div style="font-size:10px;color:var(--mu)">3.2 km · 20 mins ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:#F7C1C1;color:#791F1F">CRITICAL</div></div>
-      <div style="font-size:11px;color:#791F1F">Accident victim. Need 2 units O&#8722; immediately.</div>
-      <button class="sbtn btn-r" onclick="earn(200,'&#x1FA78; Blood Donation','Fortis Hospital')">I can donate — +200 pts</button>
+      <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:#F7C1C1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#791F1F;flex-shrink:0">O−</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Fortis Hospital, SG Highway</div><div style="font-size:10px;color:var(--mu)">3.2 km · 20 mins ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:#F7C1C1;color:#791F1F">CRITICAL</div></div>
+      <div style="font-size:11px;color:#791F1F">Accident victim. Need 2 units O− immediately. Please contact blood bank before arriving.</div>
+      <div style="font-size:10px;color:var(--mu);background:rgba(0,0,0,.05);border-radius:7px;padding:6px 9px;width:100%">📞 Blood Bank: 079-2261-2345 | 🕐 Open 24/7 | Contact Dr. Patel on arrival</div>
+      <button class="sbtn btn-r" onclick="openDonate('Fortis Hospital','O−','FORT')" id="don-btn-1">I can donate — +100 pts</button>
     </div>
     <div style="height:9px"></div>
     <div class="breq" style="flex-direction:column;align-items:flex-start;gap:7px">
       <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:var(--gl);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--g);flex-shrink:0">B+</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Apollo Hospital, Bopal</div><div style="font-size:10px;color:var(--mu)">5.8 km · 2 hrs ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:var(--al);color:var(--a)">MODERATE</div></div>
-      <div style="font-size:11px;color:var(--mu)">Scheduled surgery tomorrow.</div>
-      <button class="sbtn btn-g" onclick="earn(200,'&#x1FA78; Blood Donation','Apollo Hospital')">I can donate — +200 pts</button>
+      <div style="font-size:11px;color:var(--mu)">Scheduled surgery tomorrow. 1 unit B+ needed by evening.</div>
+      <div style="font-size:10px;color:var(--mu);background:rgba(0,0,0,.05);border-radius:7px;padding:6px 9px;width:100%">📞 Blood Bank: 079-6678-9012 | 🕐 8AM–8PM | Contact nurse on duty</div>
+      <button class="sbtn btn-g" onclick="openDonate('Apollo Hospital','B+','APCB')" id="don-btn-2">I can donate — +100 pts</button>
+    </div>
+    <div style="height:9px"></div>
+    <div class="breq" style="flex-direction:column;align-items:flex-start;gap:7px">
+      <div style="display:flex;align-items:center;gap:10px;width:100%"><div style="width:40px;height:40px;background:var(--bl);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--b);flex-shrink:0">AB+</div><div class="vinfo"><div style="font-size:12px;font-weight:500;color:var(--tx)">Red Cross Society, Ashram Rd</div><div style="font-size:10px;color:var(--mu)">2.1 km · 4 hrs ago</div></div><div style="font-size:9px;padding:2px 6px;border-radius:20px;font-weight:700;background:var(--gl);color:var(--g)">LOW</div></div>
+      <div style="font-size:11px;color:var(--mu)">Platelet request for cancer patient. Please book appointment before visiting.</div>
+      <div style="font-size:10px;color:var(--mu);background:rgba(0,0,0,.05);border-radius:7px;padding:6px 9px;width:100%">📞 Blood Bank: 079-2754-0001 | 🕐 9AM–5PM | By appointment only</div>
+      <button class="sbtn btn-b" onclick="openDonate('Red Cross Society','AB+','RCAH')" id="don-btn-3">I can donate — +100 pts</button>
     </div>
   </div>
 </div>
@@ -413,14 +692,22 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 <div id="s-leaderboard" class="scr">
   <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">City Leaderboard</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Ahmedabad · This month</div></div>
   <div class="sec" style="margin-top:12px">
-    <div class="lbi"><div class="rank" style="color:#BA7517">1</div><div class="av" style="background:var(--al);color:var(--a)">PR</div><div class="lb-info"><div class="lb-name">Priya Rao</div><div class="lb-acts">12 donations · 8 ambulances</div></div><div class="lb-pts">4,800</div></div>
-    <div class="lbi"><div class="rank" style="color:#888780">2</div><div class="av" style="background:var(--gl);color:var(--g)">MK</div><div class="lb-info"><div class="lb-name">Manish Kumar</div><div class="lb-acts">10 donations · 4 education</div></div><div class="lb-pts">3,950</div></div>
-    <div class="lbi"><div class="rank" style="color:#993C1D">3</div><div class="av" style="background:var(--pl);color:var(--p)">SJ</div><div class="lb-info"><div class="lb-name">Shreya Joshi</div><div class="lb-acts">9 donations · 3 ambulances</div></div><div class="lb-pts">3,100</div></div>
-    <div class="lbi"><div class="rank" style="color:var(--mu)">4</div><div class="av" style="background:var(--rl);color:var(--r)">NK</div><div class="lb-info"><div class="lb-name">Nikhil Khatri</div></div><div class="lb-pts">2,600</div></div>
-    <div class="lbi"><div class="rank" style="color:var(--mu)">5</div><div class="av" style="background:var(--tl);color:var(--t)">AM</div><div class="lb-info"><div class="lb-name">Ananya Mehta</div></div><div class="lb-pts">2,100</div></div>
+    <div style="background:var(--bg2);border-radius:12px;padding:10px;margin-bottom:12px;font-size:10px;color:var(--mu);line-height:1.6">
+      <strong style="color:var(--tx)">Rank Tiers:</strong> 🥉 Rookie (0–499) → 🥈 Helper (500–1499) → 🏅 Champion (1500–2999) → 🏆 Hero (3000–4999) → ⭐ Legend (5000+)
+    </div>
+    <div class="lbi"><div class="rank" style="color:#BA7517">1</div><div class="av" style="background:var(--al);color:var(--a)">PR</div><div class="lb-info"><div class="lb-name">Priya Rao <span class="lb-rank-badge" style="background:var(--al);color:var(--a)">⭐ LEGEND</span></div><div class="lb-acts">12 donations · 8 ambulances · 15 events</div></div><div class="lb-pts">5,200</div></div>
+    <div class="lbi"><div class="rank" style="color:#888780">2</div><div class="av" style="background:var(--gl);color:var(--g)">MK</div><div class="lb-info"><div class="lb-name">Manish Kumar <span class="lb-rank-badge" style="background:var(--rl);color:var(--r)">🏆 HERO</span></div><div class="lb-acts">10 donations · 4 education · 12 events</div></div><div class="lb-pts">4,100</div></div>
+    <div class="lbi"><div class="rank" style="color:#993C1D">3</div><div class="av" style="background:var(--pl);color:var(--p)">SJ</div><div class="lb-info"><div class="lb-name">Shreya Joshi <span class="lb-rank-badge" style="background:var(--pl);color:var(--p)">🏆 HERO</span></div><div class="lb-acts">9 donations · 3 ambulances · 10 events</div></div><div class="lb-pts">3,400</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">4</div><div class="av" style="background:var(--rl);color:var(--r)">NK</div><div class="lb-info"><div class="lb-name">Nikhil Khatri <span class="lb-rank-badge" style="background:var(--bl);color:var(--b)">🏅 CHAMPION</span></div></div><div class="lb-pts">2,700</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">5</div><div class="av" style="background:var(--tl);color:var(--t)">AM</div><div class="lb-info"><div class="lb-name">Ananya Mehta <span class="lb-rank-badge" style="background:var(--bl);color:var(--b)">🏅 CHAMPION</span></div></div><div class="lb-pts">2,200</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">6</div><div class="av" style="background:var(--gl);color:var(--g)">RV</div><div class="lb-info"><div class="lb-name">Rohan Verma</div></div><div class="lb-pts">1,800</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">7</div><div class="av" style="background:var(--al);color:var(--a)">PS</div><div class="lb-info"><div class="lb-name">Pooja Shah</div></div><div class="lb-pts">1,500</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">8</div><div class="av" style="background:var(--pkl);color:var(--pk)">DM</div><div class="lb-info"><div class="lb-name">Dev Mehta</div></div><div class="lb-pts">1,200</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">9</div><div class="av" style="background:var(--tl);color:var(--t)">KP</div><div class="lb-info"><div class="lb-name">Kavya Patel</div></div><div class="lb-pts">900</div></div>
+    <div class="lbi"><div class="rank" style="color:var(--mu)">10</div><div class="av" style="background:var(--rl);color:var(--r)">AS</div><div class="lb-info"><div class="lb-name">Aarav Shah</div></div><div class="lb-pts">650</div></div>
     <div style="height:9px"></div>
-    <div class="you-row lbi" style="border-bottom:none"><div class="rank" style="color:var(--b)">14</div><div class="av" style="background:var(--bl);color:var(--b)">AS</div><div class="lb-info"><div class="lb-name">Arjun Sharma <span style="font-size:9px;color:var(--b)">(You)</span></div></div><div class="lb-pts" style="color:var(--b)" id="lb-mypts">1,240</div></div>
-    <div style="font-size:10px;color:var(--mu);text-align:center;margin-top:7px" id="lb-gap">860 pts to reach top 10</div>
+    <div class="you-row lbi" style="border-bottom:none"><div class="rank" style="color:var(--b)" id="lb-myrank">–</div><div class="av" style="background:var(--bl);color:var(--b)" id="lb-av">?</div><div class="lb-info"><div class="lb-name" id="lb-myname">You</div><div class="lb-acts" id="lb-myacts"></div></div><div class="lb-pts" style="color:var(--b)" id="lb-mypts">0</div></div>
+    <div style="font-size:10px;color:var(--mu);text-align:center;margin-top:7px" id="lb-gap">Keep going! Every action moves you up.</div>
   </div>
 </div>
 
@@ -428,30 +715,50 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 <div id="s-rewards" class="scr">
   <div style="padding:16px 18px 6px;display:flex;justify-content:space-between;align-items:center">
     <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Rewards</div>
-    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--g)" id="rw-bal">1,240 pts available</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--g)" id="rw-bal">0 pts available</div>
   </div>
-  <div class="sec" style="margin-top:12px">
+  <div style="font-size:10px;color:var(--mu);margin:0 18px 12px;line-height:1.5;background:var(--bg2);border-radius:10px;padding:9px 11px;">
+    🔄 Rewards refresh every time you redeem one. Earn more points to unlock better rewards!
+  </div>
+  <div class="sec" style="margin-top:0">
     <div class="sec-title">Redeem with Karma Points</div>
     <div class="rgrid" id="rgrid"></div>
   </div>
   <div class="sec">
     <div class="sec-title">Transaction History</div>
-    <div id="txn-full"></div>
+    <div id="txn-full"><div style="font-size:11px;color:var(--mu);padding:12px 0;text-align:center">No transactions yet</div></div>
   </div>
 </div>
 
-<!-- FIRST AID -->
+<!-- FIRST AID QUIZ -->
 <div id="s-firstaid" class="scr">
-  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">First Aid Quiz</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Answer correctly to earn your badge</div></div>
+  <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">First Aid Quiz</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Learn life-saving skills & earn Karma points</div></div>
   <div style="padding:12px 18px 0">
-    <div style="font-size:10px;color:var(--mu);margin-bottom:5px;display:flex;justify-content:space-between"><span id="qnum">Q 1 of 4</span><span id="qsc">Score: 0</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="pfill" style="width:25%"></div></div>
-    <div class="qcard"><div class="qq" id="qq"></div><div class="qopts" id="qopts"></div></div>
-    <div class="quiz-win" id="qwin">
-      <div style="font-size:28px;margin-bottom:7px">&#x1F389;</div>
-      <div class="quiz-pts" id="qearned">+100 pts</div>
-      <div style="font-size:11px;color:var(--g);margin-top:2px">First Aid Badge Earned!</div>
-      <button class="sbtn btn-b" style="margin-top:11px" onclick="resetQuiz()">Try again</button>
+    <!-- Difficulty selector -->
+    <div id="diff-screen">
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--tx)">Choose Difficulty</div>
+      <div class="diff-sel">
+        <div class="diff-btn" id="db-easy" onclick="startQuiz('easy')">🟢<br>Easy<br><span style="font-size:9px;font-weight:400;color:var(--mu)">5 Q · +5 pts each</span></div>
+        <div class="diff-btn" id="db-med" onclick="startQuiz('medium')">🟡<br>Medium<br><span style="font-size:9px;font-weight:400;color:var(--mu)">8 Q · +10 pts each</span></div>
+        <div class="diff-btn" id="db-hard" onclick="startQuiz('hard')">🔴<br>Hard<br><span style="font-size:9px;font-weight:400;color:var(--mu)">12 Q · +15 pts each</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--mu);background:var(--bg2);border-radius:10px;padding:10px 12px;line-height:1.6">
+        💡 Higher difficulty = more points per question. All questions include explanations after answering. Complete all questions to earn your First Aid badge!
+      </div>
+    </div>
+    <!-- Quiz UI -->
+    <div id="quiz-screen" style="display:none">
+      <div style="font-size:10px;color:var(--mu);margin-bottom:5px;display:flex;justify-content:space-between"><span id="qnum">Q 1</span><span id="qsc">Score: 0</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="pfill"></div></div>
+      <div id="qdiff-badge-wrap"></div>
+      <div class="qcard"><div class="qq" id="qq"></div><div class="qopts" id="qopts"></div><div class="qexplain" id="qexplain" style="display:none"></div></div>
+      <div class="quiz-win" id="qwin">
+        <div style="font-size:28px;margin-bottom:7px">🎉</div>
+        <div class="quiz-pts" id="qearned">+0 pts</div>
+        <div style="font-size:11px;color:var(--g);margin-top:2px">First Aid Badge Earned!</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:4px" id="qsummary"></div>
+        <button class="sbtn btn-g" style="margin-top:11px" onclick="backToDiff()">Try another level</button>
+      </div>
     </div>
   </div>
 </div>
@@ -460,33 +767,44 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
 <div id="s-notifs" class="scr">
   <div style="padding:16px 18px 6px"><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx)">Notifications</div></div>
   <div class="sec" style="margin-top:12px">
-    <div class="ni" style="background:var(--rl);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--r);margin-top:4px"></div><div><div class="ntitle">Urgent O&#8722; needed at Fortis Hospital <span class="ntag ntag-u">URGENT</span></div><div class="ntime">3.2 km away · 20 minutes ago</div></div></div>
+    <div class="ni" style="background:var(--rl);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--r);margin-top:4px"></div><div><div class="ntitle">Urgent O− needed at Fortis Hospital <span class="ntag ntag-u">URGENT</span></div><div class="ntime">3.2 km away · 20 minutes ago</div></div></div>
     <div class="ni" style="background:var(--tl);border-radius:11px;padding:11px;margin:3px 0;border-bottom:none"><div class="ndot" style="background:var(--t);margin-top:4px"></div><div><div class="ntitle">Health Camp Sat Mar 15 — 23 slots left</div><div class="ntime">Lions Club Ground · 1 hr ago</div></div></div>
-    <div class="ni" style="background:var(--al);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--a);margin-top:4px"></div><div><div class="ntitle">Apollo coupon expires in 3 days <span class="ntag ntag-e">EXPIRING</span></div><div class="ntime">Redeem before March 16</div></div></div>
+    <div class="ni" style="background:var(--al);border-radius:11px;padding:11px;margin-bottom:3px;border-bottom:none"><div class="ndot" style="background:var(--a);margin-top:4px"></div><div><div class="ntitle">Reward expires in 3 days <span class="ntag ntag-e">EXPIRING</span></div><div class="ntime">Redeem before March 16</div></div></div>
     <div class="ni"><div class="ndot" style="background:var(--p)"></div><div><div class="ntitle">Education Drive needs 12 more teachers</div><div class="ntime">Yesterday</div></div></div>
-    <div class="ni"><div class="ndot" style="background:var(--g)"></div><div><div class="ntitle">First Aid badge earned! +100 pts added</div><div class="ntime">Yesterday</div></div></div>
+    <div class="ni"><div class="ndot" style="background:var(--g)"></div><div><div class="ntitle">New rewards available in your rewards tab</div><div class="ntime">Yesterday</div></div></div>
   </div>
 </div>
 
 <!-- PROFILE -->
 <div id="s-profile" class="scr">
   <div style="padding:20px 18px 10px;text-align:center">
-    <div style="width:64px;height:64px;border-radius:50%;background:var(--rl);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--r);margin:0 auto 9px">A</div>
-    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx)">Arjun Sharma</div>
-    <div style="font-size:11px;color:var(--mu);margin-top:2px">arjun@gmail.com · Blood: O+</div>
-    <div style="margin-top:9px;display:inline-flex;align-items:center;background:var(--rl);padding:5px 12px;border-radius:20px"><span style="font-size:10px;color:var(--r);font-family:'Syne',sans-serif;font-weight:700">HERO LEVEL 3</span></div>
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--rl);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--r);margin:0 auto 9px" id="prof-avatar">?</div>
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx)" id="prof-name">Your Name</div>
+    <div style="font-size:11px;color:var(--mu);margin-top:2px" id="prof-sub">—</div>
+    <div style="margin-top:9px;display:inline-flex;align-items:center;background:var(--rl);padding:5px 12px;border-radius:20px"><span style="font-size:10px;color:var(--r);font-family:'Syne',sans-serif;font-weight:700" id="prof-rank-lbl">🥉 ROOKIE</span></div>
+    <div style="margin-top:10px"><button class="prof-edit-btn" onclick="openM('editprof')">✏️ Edit Profile</button> <button class="prof-edit-btn" onclick="logout()" style="color:var(--r)">🚪 Sign Out</button></div>
+  </div>
+  <div class="sec" style="margin-top:4px">
+    <div class="sec-title">Personal Information</div>
+    <div style="background:var(--card);border:.5px solid var(--br);border-radius:14px;padding:4px 14px;">
+      <div class="pinfo-row"><div class="pinfo-lbl">Full Name</div><div class="pinfo-val" id="pi-name">—</div></div>
+      <div class="pinfo-row"><div class="pinfo-lbl">Email</div><div class="pinfo-val" id="pi-email">—</div></div>
+      <div class="pinfo-row"><div class="pinfo-lbl">Mobile</div><div class="pinfo-val" id="pi-mobile">—</div></div>
+      <div class="pinfo-row"><div class="pinfo-lbl">Date of Birth</div><div class="pinfo-val" id="pi-dob">—</div></div>
+      <div class="pinfo-row"><div class="pinfo-lbl">Blood Group</div><div class="pinfo-val" id="pi-blood">—</div></div>
+      <div class="pinfo-row"><div class="pinfo-lbl">City</div><div class="pinfo-val" id="pi-city">—</div></div>
+      <div class="pinfo-row" style="border-bottom:none"><div class="pinfo-lbl">Age Eligibility</div><div class="pinfo-val" id="pi-age-elig" style="color:var(--g)">—</div></div>
+    </div>
   </div>
   <div class="sec">
     <div class="sec-title">Social Passport</div>
     <div class="sgrid">
-      <div class="sbox"><div class="sv" style="color:var(--g)" id="pp-don">4</div><div class="sl">Blood Donations</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--r)" id="pp-amb">3</div><div class="sl">Ambulances</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--t)">3</div><div class="sl">Health Camps</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--p)">3</div><div class="sl">Education Drives</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--b)">2</div><div class="sl">FA Badges</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--a)" id="pp-total">1,240</div><div class="sl">Total Karma Pts</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--p)">14</div><div class="sl">City Rank</div></div>
-      <div class="sbox"><div class="sv" style="color:var(--a)">&#x1F525; 3x</div><div class="sl">Multiplier</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--g)" id="pp-don">0</div><div class="sl">Blood Donations</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--r)" id="pp-amb">0</div><div class="sl">Ambulances</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--t)" id="pp-ev">0</div><div class="sl">Events Joined</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--p)" id="pp-fa">0</div><div class="sl">FA Badges</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--a)" id="pp-total">0</div><div class="sl">Total Karma Pts</div></div>
+      <div class="sbox"><div class="sv" style="color:var(--b)" id="pp-rank">–</div><div class="sl">City Rank</div></div>
     </div>
   </div>
   <div class="fbk">
@@ -494,7 +812,7 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
     <div style="font-size:11px;color:var(--mu);margin-bottom:12px">Help us improve Karma+</div>
     <div id="fbk-form">
       <div style="display:flex;gap:6px;margin-bottom:12px" id="stars">
-        <span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(1)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(2)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(3)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(4)">&#x2B50;</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(5)">&#x2B50;</span>
+        <span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(1)">⭐</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(2)">⭐</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(3)">⭐</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(4)">⭐</span><span style="font-size:22px;cursor:pointer;filter:grayscale(1)" onclick="star(5)">⭐</span>
       </div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px">
         <div class="fcat" onclick="this.classList.toggle('sel')">Design</div>
@@ -507,78 +825,115 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
       <textarea class="fi" placeholder="Tell us what you think..."></textarea>
       <button class="sbtn btn-b" style="margin-top:10px" onclick="submitFbk()">Submit Feedback</button>
     </div>
-    <div id="fbk-done" style="display:none;text-align:center;padding:16px"><div style="font-size:32px;margin-bottom:8px">&#x1F64F;</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--tx)">Thank you!</div></div>
+    <div id="fbk-done" style="display:none;text-align:center;padding:16px"><div style="font-size:32px;margin-bottom:8px">🙏</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--tx)">Thank you!</div></div>
   </div>
 </div>
 
 <nav class="nav">
-  <div class="nv on" onclick="go('home')" id="n-home"><div class="nv-ic">&#x1F3E0;</div><div>Home</div></div>
-  <div class="nv" onclick="go('community')" id="n-community"><div class="nv-ic">&#x1F91D;</div><div>Volunteer</div></div>
-  <div class="nv" onclick="go('requests')" id="n-requests"><div class="nv-ic">&#x1FA78;</div><div>Blood</div></div>
-  <div class="nv" onclick="go('leaderboard')" id="n-leaderboard"><div class="nv-ic">&#x1F3C6;</div><div>Ranks</div></div>
-  <div class="nv" onclick="go('rewards')" id="n-rewards"><div class="nv-ic">&#x1F381;</div><div>Rewards</div></div>
-  <div class="nv" onclick="go('firstaid')" id="n-firstaid"><div class="nv-ic">&#x1FA7A;</div><div>First Aid</div></div>
-  <div class="nv" onclick="go('notifs')" id="n-notifs"><div class="nv-ic">&#x1F514;<span class="nb">3</span></div><div>Alerts</div></div>
-  <div class="nv" onclick="go('profile')" id="n-profile"><div class="nv-ic">&#x1F464;</div><div>Profile</div></div>
+  <div class="nv on" onclick="go('home')" id="n-home"><div class="nv-ic">🏠</div><div>Home</div></div>
+  <div class="nv" onclick="go('community')" id="n-community"><div class="nv-ic">🤝</div><div>Volunteer</div></div>
+  <div class="nv" onclick="go('requests')" id="n-requests"><div class="nv-ic">🩸</div><div>Blood</div></div>
+  <div class="nv" onclick="go('leaderboard')" id="n-leaderboard"><div class="nv-ic">🏆</div><div>Ranks</div></div>
+  <div class="nv" onclick="go('rewards')" id="n-rewards"><div class="nv-ic">🎁</div><div>Rewards</div></div>
+  <div class="nv" onclick="go('firstaid')" id="n-firstaid"><div class="nv-ic">🩺</div><div>First Aid</div></div>
+  <div class="nv" onclick="go('notifs')" id="n-notifs"><div class="nv-ic">🔔<span class="nb">3</span></div><div>Alerts</div></div>
+  <div class="nv" onclick="go('profile')" id="n-profile"><div class="nv-ic">👤</div><div>Profile</div></div>
 </nav>
-</div>
+</div><!-- end wrap -->
+</div><!-- end app -->
 
-<!-- AMBULANCE MODAL -->
+<!-- ===== AMBULANCE MODAL ===== -->
 <div class="mbg" id="m-ambulance" onclick="closeM(event,'ambulance')">
   <div class="modal"><div class="mh"></div>
     <div id="amb-form">
-      <div class="mt">&#x1F691; Book an Ambulance</div><div class="ms">Select emergency type — help dispatched immediately</div>
+      <div class="mt">🚑 Book an Ambulance</div><div class="ms">Select emergency type — help dispatched immediately</div>
       <div class="fg"><label class="fl">Type of Emergency</label>
         <div class="egrid">
-          <div class="eb" onclick="pickEmerg(this,'Cardiac Arrest')"><div class="eb-ic">&#x2764;&#xFE0F;</div><div class="eb-lbl">Cardiac</div><div class="eb-desc">Heart attack</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Road Accident')"><div class="eb-ic">&#x1F697;</div><div class="eb-lbl">Accident</div><div class="eb-desc">Trauma injury</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Breathing')"><div class="eb-ic">&#x1FAB7;</div><div class="eb-lbl">Breathing</div><div class="eb-desc">Asthma / resp</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Stroke')"><div class="eb-ic">&#x1F9E0;</div><div class="eb-lbl">Stroke</div><div class="eb-desc">Speech / numb</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Fire / Burns')"><div class="eb-ic">&#x1F525;</div><div class="eb-lbl">Fire / Burns</div><div class="eb-desc">Burns / acid</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Maternity')"><div class="eb-ic">&#x1F930;</div><div class="eb-lbl">Maternity</div><div class="eb-desc">Labour / preg</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Child Emergency')"><div class="eb-ic">&#x1F476;</div><div class="eb-lbl">Child</div><div class="eb-desc">Seizure / fever</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Poisoning')"><div class="eb-ic">&#x2620;&#xFE0F;</div><div class="eb-lbl">Poisoning</div><div class="eb-desc">Overdose / chem</div></div>
-          <div class="eb" onclick="pickEmerg(this,'Other')"><div class="eb-ic">&#x1F198;</div><div class="eb-lbl">Other</div><div class="eb-desc">Any emergency</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Cardiac Arrest')"><div class="eb-ic">❤️</div><div class="eb-lbl">Cardiac</div><div class="eb-desc">Heart attack</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Road Accident')"><div class="eb-ic">🚗</div><div class="eb-lbl">Accident</div><div class="eb-desc">Trauma injury</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Breathing')"><div class="eb-ic">🫁</div><div class="eb-lbl">Breathing</div><div class="eb-desc">Asthma / resp</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Stroke')"><div class="eb-ic">🧠</div><div class="eb-lbl">Stroke</div><div class="eb-desc">Speech / numb</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Fire / Burns')"><div class="eb-ic">🔥</div><div class="eb-lbl">Fire / Burns</div><div class="eb-desc">Burns / acid</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Maternity')"><div class="eb-ic">🤰</div><div class="eb-lbl">Maternity</div><div class="eb-desc">Labour / preg</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Child Emergency')"><div class="eb-ic">👶</div><div class="eb-lbl">Child</div><div class="eb-desc">Seizure / fever</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Poisoning')"><div class="eb-ic">☠️</div><div class="eb-lbl">Poisoning</div><div class="eb-desc">Overdose / chem</div></div>
+          <div class="eb" onclick="pickEmerg(this,'Other')"><div class="eb-ic">🆘</div><div class="eb-lbl">Other</div><div class="eb-desc">Any emergency</div></div>
         </div>
       </div>
       <div class="slab" id="slab">Selected: —</div>
       <div class="fg"><label class="fl">Urgency</label>
         <div class="urgrow">
-          <div class="ub" onclick="pickUrg(this,'lo')">&#x1F7E2; Can wait</div>
-          <div class="ub" onclick="pickUrg(this,'md')">&#x1F7E1; Urgent</div>
-          <div class="ub" onclick="pickUrg(this,'hi')">&#x1F534; Critical</div>
+          <div class="ub" onclick="pickUrg(this,'lo')">🟢 Can wait</div>
+          <div class="ub" onclick="pickUrg(this,'md')">🟡 Urgent</div>
+          <div class="ub" onclick="pickUrg(this,'hi')">🔴 Critical</div>
         </div>
       </div>
-      <div class="fg"><label class="fl">Location</label><input class="fi2" placeholder="Address or GPS..."/></div>
-      <div class="fg"><label class="fl">Contact</label><input class="fi2" placeholder="+91 98765 43210"/></div>
-      <button class="sbtn btn-r" onclick="dispatchAmb()">Dispatch — +50 pts</button>
+      <div class="fg"><label class="fl">Location / Address</label><input class="fi2" id="amb-loc" placeholder="Address or describe your location..."/></div>
+      <div class="fg"><label class="fl">Contact Number</label><input class="fi2" id="amb-tel" placeholder="+91 98765 43210"/></div>
+      <button class="sbtn btn-r" onclick="dispatchAmb()">Dispatch — +30 pts</button>
     </div>
     <div id="amb-ok" style="display:none;text-align:center;padding:14px 0">
-      <div style="font-size:44px;margin-bottom:9px">&#x1F691;</div>
+      <div style="font-size:44px;margin-bottom:9px">🚑</div>
       <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);margin-bottom:5px">Ambulance Dispatched!</div>
       <div style="font-size:12px;color:var(--mu);margin-bottom:12px">Help is on the way. Stay with the patient.</div>
-      <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--g)">+50 pts</div>
+      <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--g)">+30 pts</div>
       <div style="font-size:11px;color:var(--mu);margin-bottom:14px">added to your balance</div>
       <button class="sbtn btn-g" onclick="closeM(null,'ambulance',1);resetAmb()">Done</button>
     </div>
   </div>
 </div>
 
-<!-- BLOOD MODAL -->
+<!-- ===== BLOOD LOG MODAL (manual) ===== -->
 <div class="mbg" id="m-blood" onclick="closeM(event,'blood')">
-  <div class="modal"><div class="mh"></div><div class="mt">&#x1FA78; Log Blood Donation</div><div class="ms">Verified by hospital one-time code</div>
-    <div class="vbox"><div style="font-size:14px;flex-shrink:0">&#x1F510;</div><div class="vtext">Enter the one-time code from the hospital. Each code redeems once only.</div></div>
-    <div class="fg"><label class="fl">Verification Code</label><input class="fi2" placeholder="FORT-2024-BLD-4821" style="font-family:monospace;letter-spacing:1px"/></div>
-    <div class="fg"><label class="fl">Hospital / NGO</label><select class="fs"><option>Select...</option><option>Fortis Hospital</option><option>Apollo Hospital</option><option>Red Cross Society</option><option>Lions Blood Bank</option></select></div>
-    <div class="fg"><label class="fl">Date</label><input class="fi2" type="date"/></div>
-    <button class="sbtn btn-g" onclick="earn(200,'&#x1FA78; Blood Donation','Hospital verified');closeM(null,'blood',1)">Submit — +200 pts</button>
+  <div class="modal"><div class="mh"></div><div class="mt">🩸 Log Blood Donation</div><div class="ms">Enter your hospital-issued 12-character verification code</div>
+    <div class="age-warn" id="blood-age-warn">🚫 You must be 18 or older to donate blood. Thank you for your intent!</div>
+    <div class="vbox"><div style="font-size:14px;flex-shrink:0">🔐</div><div class="vtext">Enter the one-time 12-character code from the hospital. Each code can only be redeemed once and cannot be shared.</div></div>
+    <div class="fg"><label class="fl">Verification Code (12 characters)</label>
+      <div class="vcode-wrap">
+        <input class="vcode-seg" id="vc0" maxlength="3" oninput="vcNext(this,1)" onkeydown="vcKey(event,this,-1,0)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="vc1" maxlength="3" oninput="vcNext(this,2)" onkeydown="vcKey(event,this,0,1)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="vc2" maxlength="3" oninput="vcNext(this,3)" onkeydown="vcKey(event,this,1,2)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="vc3" maxlength="3" oninput="vcNext(this,-1)" onkeydown="vcKey(event,this,2,3)"/>
+      </div>
+      <div class="auth-err" id="err-vcode" style="text-align:center">Invalid or already used code</div>
+    </div>
+    <div class="fg"><label class="fl">Hospital / NGO</label><select class="fs" id="blood-hosp"><option>Select...</option><option>Fortis Hospital</option><option>Apollo Hospital</option><option>Red Cross Society</option><option>Lions Blood Bank</option><option>Civil Hospital</option></select></div>
+    <div class="fg"><label class="fl">Donation Date</label><input class="fi2" id="blood-date" type="date"/></div>
+    <button class="sbtn btn-g" onclick="submitBlood()">Submit — +100 pts</button>
   </div>
 </div>
 
-<!-- REDEEM CONFIRM MODAL -->
+<!-- ===== DONATE (from blood request page) ===== -->
+<div class="mbg" id="m-donate" onclick="closeM(event,'donate')">
+  <div class="modal"><div class="mh"></div>
+    <div class="mt" id="don-title">🩸 Confirm Blood Donation</div>
+    <div class="ms" id="don-sub">Enter verification code from the hospital</div>
+    <div class="age-warn" id="donate-age-warn">🚫 You must be 18 or older to donate blood. Thank you for your intent!</div>
+    <div class="vbox"><div style="font-size:14px;flex-shrink:0">🔐</div><div class="vtext">After donating, hospital staff will give you a unique 12-character one-time code. Enter it below to earn your Karma points.</div></div>
+    <div class="fg"><label class="fl">Verification Code (12 characters)</label>
+      <div class="vcode-wrap">
+        <input class="vcode-seg" id="dvc0" maxlength="3" oninput="dvcNext(this,1)" onkeydown="dvcKey(event,this,-1,0)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="dvc1" maxlength="3" oninput="dvcNext(this,2)" onkeydown="dvcKey(event,this,0,1)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="dvc2" maxlength="3" oninput="dvcNext(this,3)" onkeydown="dvcKey(event,this,1,2)"/>
+        <span class="vcode-dash">-</span>
+        <input class="vcode-seg" id="dvc3" maxlength="3" oninput="dvcNext(this,-1)" onkeydown="dvcKey(event,this,2,3)"/>
+      </div>
+      <div class="auth-err" id="err-dvcode" style="text-align:center">Invalid or already used code</div>
+    </div>
+    <button class="sbtn btn-g" onclick="submitDonate()">Confirm Donation — +100 pts</button>
+    <div style="font-size:10px;color:var(--mu);text-align:center;margin-top:10px">Test code: use <strong>ABC-DEF-GHI-JKL</strong> (any hospital)</div>
+  </div>
+</div>
+
+<!-- ===== REDEEM CONFIRM MODAL ===== -->
 <div class="mbg" id="m-redeem" onclick="closeM(event,'redeem')">
   <div class="modal" style="text-align:center"><div class="mh"></div>
-    <div style="font-size:40px;margin-bottom:9px" id="rd-ic">&#x1F381;</div>
+    <div style="font-size:40px;margin-bottom:9px" id="rd-ic">🎁</div>
     <div class="mt" id="rd-title" style="text-align:center"></div>
     <div class="ms" id="rd-sub" style="text-align:center"></div>
     <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--r);margin:10px 0" id="rd-cost"></div>
@@ -589,33 +944,307 @@ body.dk .kcard{background:#242438;border:.5px solid rgba(255,255,255,.08);}
   </div>
 </div>
 
+<!-- ===== EDIT PROFILE MODAL ===== -->
+<div class="mbg" id="m-editprof" onclick="closeM(event,'editprof')">
+  <div class="modal"><div class="mh"></div>
+    <div class="mt">✏️ Edit Profile</div>
+    <div class="ms">Update your personal information</div>
+    <div class="auth-row" style="margin-bottom:11px">
+      <div><label class="fl">First Name</label><input class="fi2" id="ep-fname"/></div>
+      <div><label class="fl">Last Name</label><input class="fi2" id="ep-lname"/></div>
+    </div>
+    <div class="fg"><label class="fl">Mobile Number</label><input class="fi2" id="ep-mobile"/></div>
+    <div class="fg"><label class="fl">City</label><input class="fi2" id="ep-city"/></div>
+    <div class="fg">
+      <label class="fl">Blood Group</label>
+      <select class="fs" id="ep-blood">
+        <option value="">Select…</option>
+        <option>A+</option><option>A−</option><option>B+</option><option>B−</option>
+        <option>AB+</option><option>AB−</option><option>O+</option><option>O−</option>
+      </select>
+    </div>
+    <button class="sbtn btn-b" onclick="saveProfile()">Save Changes</button>
+  </div>
+</div>
+
 <script>
-var pts = 1240;
+// ===== STATE =====
+var USER = null; // logged-in user object
+var pts = 0;
 var dk = false;
 var pendingR = null;
+var donatedCodes = {}; // used verification codes
+var pendingDonation = null; // {hospital, blood, prefix}
+var stats = {don:0, amb:0, ev:0, fa:0};
+var TXN = [];
 
-var REWARDS = [
-  {ic:'&#x1F48A;',type:'rt-med',typeLbl:'Medical',brand:'Apollo Pharmacy',title:'20% off medicines',cost:500},
-  {ic:'&#x1F4F1;',type:'rt-cash',typeLbl:'Cashback',brand:'PhonePe / GPay',title:'&#x20B9;100 cashback',cost:400},
-  {ic:'&#x1F354;',type:'rt-food',typeLbl:'Food',brand:'Swiggy',title:'Free delivery x5',cost:300},
-  {ic:'&#x1F52C;',type:'rt-med',typeLbl:'Checkup',brand:'Thyrocare',title:'Free health checkup',cost:800},
-  {ic:'&#x1F6D2;',type:'rt-cash',typeLbl:'Voucher',brand:'Amazon',title:'&#x20B9;200 gift card',cost:700},
-  {ic:'&#x1FA77;',type:'rt-med',typeLbl:'Dental',brand:'Clove Dental',title:'Free consultation',cost:350}
+// Captcha state
+var capA = 0, capB = 0, cap2A = 0, cap2B = 0;
+
+// ===== RANK SYSTEM =====
+var RANKS = [
+  {min:0,    max:499,   label:'🥉 ROOKIE',   color:'var(--mu)'},
+  {min:500,  max:1499,  label:'🥈 HELPER',   color:'var(--b)'},
+  {min:1500, max:2999,  label:'🏅 CHAMPION', color:'var(--p)'},
+  {min:3000, max:4999,  label:'🏆 HERO',     color:'var(--r)'},
+  {min:5000, max:99999, label:'⭐ LEGEND',   color:'var(--a)'},
 ];
-var redeemed = {};
+function getRank(p){
+  for(var i=RANKS.length-1;i>=0;i--) if(p>=RANKS[i].min) return RANKS[i];
+  return RANKS[0];
+}
 
-var TXN = [
-  {ic:'&#x1FA78;',name:'Blood Donation',note:'Fortis Hospital',pts:200,t:'earn',when:'Mar 10'},
-  {ic:'&#x1F691;',name:'Ambulance Booked',note:'Sector 17',pts:50,t:'earn',when:'Mar 8'},
-  {ic:'&#x1F4CB;',name:'First Aid Badge',note:'CPR Module',pts:100,t:'earn',when:'Mar 5'},
-  {ic:'&#x1F3E5;',name:'Health Camp',note:'Lions Club',pts:150,t:'earn',when:'Mar 2'},
-  {ic:'&#x1F4F1;',name:'Redeemed: &#x20B9;100 cashback',note:'PhonePe',pts:400,t:'spend',when:'Feb 28'}
+// ===== REWARDS POOL =====
+var ALL_REWARDS = [
+  {ic:'💊',type:'rt-med',typeLbl:'Medical',brand:'Apollo Pharmacy',title:'15% off medicines',cost:300,expiry:'30 days'},
+  {ic:'📱',type:'rt-cash',typeLbl:'Cashback',brand:'PhonePe / GPay',title:'₹50 cashback',cost:200,expiry:'15 days'},
+  {ic:'🍔',type:'rt-food',typeLbl:'Food',brand:'Swiggy',title:'Free delivery x3',cost:150,expiry:'7 days'},
+  {ic:'🔬',type:'rt-med',typeLbl:'Checkup',brand:'Thyrocare',title:'Free health checkup',cost:500,expiry:'60 days'},
+  {ic:'🛒',type:'rt-cash',typeLbl:'Voucher',brand:'Amazon',title:'₹100 gift card',cost:400,expiry:'90 days'},
+  {ic:'🦷',type:'rt-wellness',typeLbl:'Dental',brand:'Clove Dental',title:'Free dental checkup',cost:200,expiry:'30 days'},
+  {ic:'🧘',type:'rt-wellness',typeLbl:'Wellness',brand:'Cult.fit',title:'1 week free pass',cost:250,expiry:'14 days'},
+  {ic:'📚',type:'rt-med',typeLbl:'Education',brand:'BYJU\'S',title:'1 month free class',cost:350,expiry:'30 days'},
+  {ic:'☕',type:'rt-food',typeLbl:'Food',brand:'Café Coffee Day',title:'Buy 1 Get 1 free',cost:100,expiry:'7 days'},
+  {ic:'🚌',type:'rt-cash',typeLbl:'Travel',brand:'RedBus',title:'₹75 off bus ticket',cost:175,expiry:'30 days'},
+  {ic:'💉',type:'rt-med',typeLbl:'Medical',brand:'Medplus',title:'10% off prescription',cost:180,expiry:'15 days'},
+  {ic:'🏋️',type:'rt-wellness',typeLbl:'Fitness',brand:'Gold\'s Gym',title:'3-day trial pass',cost:220,expiry:'14 days'},
+  {ic:'🎬',type:'rt-cash',typeLbl:'Entertainment',brand:'BookMyShow',title:'₹100 movie voucher',cost:300,expiry:'30 days'},
+  {ic:'🌿',type:'rt-wellness',typeLbl:'Wellness',brand:'Organic India',title:'10% off wellness teas',cost:120,expiry:'30 days'},
+  {ic:'💸',type:'rt-cash',typeLbl:'Cashback',brand:'Paytm',title:'₹25 wallet cashback',cost:80,expiry:'7 days'},
 ];
 
-function toggleDark(){dk=!dk;document.body.classList.toggle('dk',dk);}
+// Active rewards slot (6 shown, replaced on redeem)
+var activeRewards = [];
+var redeemed = {}; // index in activeRewards → true
 
-(function tick(){var n=new Date();document.getElementById('clk').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');setTimeout(tick,1000);})();
+function initRewards(){
+  // Pick 6 random from pool
+  var pool = ALL_REWARDS.slice();
+  activeRewards = [];
+  for(var i=0;i<6&&pool.length;i++){
+    var idx = Math.floor(Math.random()*pool.length);
+    activeRewards.push(pool.splice(idx,1)[0]);
+  }
+  redeemed = {};
+}
 
+function refreshReward(slotIdx){
+  // Replace redeemed slot with a new unused reward
+  var usedTitles = activeRewards.map(function(r){return r.title;});
+  var pool = ALL_REWARDS.filter(function(r){return usedTitles.indexOf(r.title)===-1;});
+  if(!pool.length) pool = ALL_REWARDS.slice();
+  var r = pool[Math.floor(Math.random()*pool.length)];
+  activeRewards[slotIdx] = r;
+  delete redeemed[slotIdx];
+}
+
+// ===== QUIZ DATA =====
+var QUIZ = {
+  easy:[
+    {q:"What is the first thing to do when someone faints?",opts:["Give them water","Call for help and lay them down safely","Slap their face","Give them food"],ok:1,exp:"Keep the person safe, call for help, and lay them on their back. Never give anything by mouth to an unconscious person."},
+    {q:"To stop bleeding from a cut, you should:",opts:["Apply ice directly","Apply firm pressure with a clean cloth","Remove anything stuck in the wound","Pour water on it"],ok:1,exp:"Direct pressure is the most effective way to stop bleeding. Keep pressing firmly without removing the cloth — add more cloth on top if needed."},
+    {q:"What does CPR stand for?",opts:["Cardiac Pulse Recovery","Cardiopulmonary Resuscitation","Critical Patient Response","Chest Pressure Release"],ok:1,exp:"CPR (Cardiopulmonary Resuscitation) is an emergency procedure combining chest compressions and rescue breaths to maintain circulation."},
+    {q:"If someone has a mild burn, you should first:",opts:["Apply butter or toothpaste","Cool with running water for 10–20 minutes","Pop any blisters","Cover tightly with bandage"],ok:1,exp:"Cool running water reduces tissue damage. Never use butter, toothpaste, or ice — they can worsen burns or cause infection."},
+    {q:"The recovery position is used when someone is:",opts:["Having a heart attack","Unconscious but breathing","Choking","Not breathing at all"],ok:1,exp:"The recovery position prevents an unconscious breathing person from choking on vomit or fluid. It keeps the airway open."},
+  ],
+  medium:[
+    {q:"CPR chest compressions should be performed at what rate?",opts:["30 per minute","60 per minute","100–120 per minute","150 per minute"],ok:2,exp:"100–120 compressions per minute — same tempo as 'Stayin' Alive' by Bee Gees. Push hard and fast: at least 2 inches deep on adults."},
+    {q:"For a suspected spinal injury victim, you should:",opts:["Sit them up immediately","Move them to a comfortable position","Not move them unless there's immediate danger","Give them water"],ok:2,exp:"Moving someone with a spinal injury can cause paralysis. Only move if there is immediate danger (fire, drowning). Call 112 immediately."},
+    {q:"Signs of heat stroke include:",opts:["Shivering and pale skin","Hot dry skin, confusion, no sweating","Sweating profusely with headache","Cold clammy hands"],ok:1,exp:"Heat stroke is life-threatening. The body's cooling mechanism fails. Move to shade, cool with water, and call emergency services."},
+    {q:"For a diabetic person who is unconscious, you should:",opts:["Give them sugar immediately","Give insulin","Call for emergency help — do not give food/drink","Make them exercise"],ok:2,exp:"An unconscious person cannot swallow safely. Call 112. If they are conscious and hypoglycaemic, then glucose can help — but NOT if unconscious."},
+    {q:"When someone has a seizure, you should:",opts:["Hold them down firmly","Put something in their mouth","Clear the area and protect their head","Pour water on their face"],ok:2,exp:"Never restrain someone having a seizure. Clear the area of hazards, place something soft under their head, and time the seizure. Call help if it lasts >5 minutes."},
+    {q:"The correct ratio of chest compressions to rescue breaths in adult CPR is:",opts:["15:2","30:2","50:2","100:0"],ok:1,exp:"30 compressions followed by 2 rescue breaths is the standard adult CPR ratio. If untrained, hands-only CPR (no breaths) is better than nothing."},
+    {q:"Signs that a snake bite may be venomous include:",opts:["Two fang marks only","Severe pain, swelling, nausea, dizziness","Single puncture mark","No pain at all"],ok:1,exp:"Venomous bites often cause rapid swelling, intense pain, nausea, and dizziness. Immobilise the limb, keep below heart level, and rush to hospital — do not cut or suck the wound."},
+    {q:"What is the Heimlich manoeuvre used for?",opts:["Heart attacks","Choking","Drowning","Fractures"],ok:1,exp:"The Heimlich manoeuvre (abdominal thrusts) dislodges objects blocking the airway. Apply to conscious choking adults by standing behind them and thrusting inward and upward."},
+  ],
+  hard:[
+    {q:"Which of the following is NOT a sign of anaphylaxis?",opts:["Hives and swelling","Difficulty breathing","High fever above 40°C","Drop in blood pressure"],ok:2,exp:"Anaphylaxis presents with hives, swelling, breathing difficulty, and low blood pressure. High fever is not a feature — that suggests infection. Administer epinephrine (EpiPen) immediately."},
+    {q:"In AED use, after the shock is delivered, you should:",opts:["Check for pulse first","Immediately resume CPR for 2 minutes","Wait for the patient to regain consciousness","Give rescue breaths only"],ok:1,exp:"Immediately resume CPR for 2 minutes after each shock — the heart needs circulation support even if it restarts. The AED will re-analyse automatically after 2 minutes."},
+    {q:"A person presents with FAST symptoms. FAST stands for:",opts:["Fever, Ache, Stroke, Treatment","Face drooping, Arm weakness, Speech difficulty, Time to call","Fall, Arthritis, Spinal, Trauma","Fever, Awareness, Sensation, Tremor"],ok:1,exp:"FAST is the stroke recognition tool: Face drooping, Arm weakness, Speech difficulty, Time to call 112. Every minute counts — brain cells die rapidly during stroke."},
+    {q:"A tension pneumothorax is a life-threatening condition. Which sign best indicates it?",opts:["Coughing blood","Trachea deviation away from the injured side","Low fever","Muscle cramps"],ok:1,exp:"Tracheal deviation away from the injury is a late and critical sign of tension pneumothorax. It occurs because trapped air displaces mediastinal structures. This requires immediate needle decompression."},
+    {q:"When managing an open chest wound, you should:",opts:["Seal all four sides with tape immediately","Create a flutter valve by sealing three sides","Leave the wound completely open","Apply firm direct pressure"],ok:1,exp:"A 3-sided occlusive dressing creates a flutter valve — it allows air out during exhalation but prevents air from entering during inhalation, reducing risk of tension pneumothorax."},
+    {q:"What is the correct indication for tourniquet use?",opts:["Any cut that bleeds","Life-threatening limb haemorrhage uncontrollable by direct pressure","Deep wounds to the torso","Suspected fractures"],ok:1,exp:"Tourniquets are for life-threatening extremity bleeding that cannot be controlled. Apply 2–3 inches above the wound, note the time of application, and never remove in the field."},
+    {q:"In a paediatric choking child under 1 year, you should perform:",opts:["Heimlich manoeuvre","Back blows followed by chest thrusts (never abdominal thrusts)","Abdominal thrusts only","Finger sweeps into the mouth"],ok:1,exp:"Infants cannot receive abdominal thrusts. Use 5 back blows with the heel of your hand, then 5 chest thrusts. Repeat until object dislodged or infant becomes unconscious."},
+    {q:"Which antidote is used for opioid overdose?",opts:["Activated charcoal","Epinephrine","Naloxone (Narcan)","Atropine"],ok:2,exp:"Naloxone rapidly reverses opioid overdose. Signs include pinpoint pupils, unconsciousness, and slow breathing. Administer naloxone and call emergency services immediately."},
+    {q:"During CPR, you discover a patient has a shockable rhythm. Which two rhythms are shockable?",opts:["Asystole and PEA","VF and pulseless VT","SVT and bradycardia","Atrial fibrillation and heart block"],ok:1,exp:"Ventricular Fibrillation (VF) and pulseless Ventricular Tachycardia (pVT) are the two shockable rhythms. Asystole and PEA are non-shockable and require only CPR and adrenaline."},
+    {q:"A patient with a suspected femur fracture can lose how much blood internally?",opts:["50–100 ml","500–1000 ml","1000–2000 ml","3000+ ml"],ok:2,exp:"A femur fracture can cause 1–2 litres of internal blood loss — enough to cause haemorrhagic shock. Traction splints reduce this by limiting movement. Immediate hospitalisation is essential."},
+    {q:"Which of the following is correct about managing an impaled object?",opts:["Remove it quickly to clean the wound","Leave it in place and stabilise around it","Apply pressure directly on the object","Push it further in to reduce bleeding"],ok:1,exp:"Never remove an impaled object — it may be tamponading a major vessel. Build padding around it to stabilise, prevent movement, and transport to hospital immediately."},
+    {q:"Signs of compartment syndrome after a fracture include:",opts:["Pain relieved with elevation","Pulselessness, pallor, and paraesthesia worsening despite treatment","Redness and warmth only","Mild aching when at rest"],ok:1,exp:"Compartment syndrome is a surgical emergency. The 6 P's: Pain (disproportionate), Pressure, Pallor, Pulselessness, Paraesthesia, Paralysis. Remove all constrictive bandages immediately and call for surgery."},
+  ]
+};
+
+var curDiff = null;
+var curQList = [];
+var curQ = 0;
+var qScore = 0;
+var quizComplete = {};
+
+// ===== CAPTCHA =====
+function newCaptcha(){
+  capA = Math.floor(Math.random()*10)+1;
+  capB = Math.floor(Math.random()*10)+1;
+  document.getElementById('cap-q').textContent = capA + ' + ' + capB;
+  document.getElementById('cap-ans').value = '';
+}
+function newCaptcha2(){
+  cap2A = Math.floor(Math.random()*10)+1;
+  cap2B = Math.floor(Math.random()*10)+1;
+  document.getElementById('cap-q2').textContent = cap2A + ' + ' + cap2B;
+  document.getElementById('cap-ans2').value = '';
+}
+newCaptcha(); newCaptcha2();
+
+// ===== AUTH =====
+function showAuth(type){
+  document.getElementById('sheet-register').classList.remove('op');
+  document.getElementById('sheet-login').classList.remove('op');
+  document.getElementById('sheet-'+type).classList.add('op');
+}
+
+function calcAge(dob){
+  var today = new Date();
+  var bd = new Date(dob);
+  var age = today.getFullYear() - bd.getFullYear();
+  var m = today.getMonth() - bd.getMonth();
+  if(m < 0 || (m===0 && today.getDate() < bd.getDate())) age--;
+  return age;
+}
+
+function doRegister(){
+  var fname = document.getElementById('reg-fname').value.trim();
+  var lname = document.getElementById('reg-lname').value.trim();
+  var email = document.getElementById('reg-email').value.trim();
+  var mobile = document.getElementById('reg-mobile').value.trim();
+  var dob = document.getElementById('reg-dob').value;
+  var blood = document.getElementById('reg-blood').value;
+  var gender = document.getElementById('reg-gender').value;
+  var city = document.getElementById('reg-city').value.trim();
+  var pass = document.getElementById('reg-pass').value;
+  var pass2 = document.getElementById('reg-pass2').value;
+  var capAns = parseInt(document.getElementById('cap-ans').value);
+
+  var ok = true;
+  ['fname','lname','email','mobile','dob','pass','pass2','cap'].forEach(function(id){
+    document.getElementById('err-'+id).classList.remove('show');
+  });
+
+  if(!fname){document.getElementById('err-fname').classList.add('show');ok=false;}
+  if(!lname){document.getElementById('err-lname').classList.add('show');ok=false;}
+  if(!email||!/^[^@]+@[^@]+\.[^@]+$/.test(email)){document.getElementById('err-email').classList.add('show');ok=false;}
+  if(!mobile||!/^\+?[0-9]{10,15}$/.test(mobile.replace(/\s/g,''))){document.getElementById('err-mobile').classList.add('show');ok=false;}
+  if(!dob){document.getElementById('err-dob').textContent='Please enter your date of birth';document.getElementById('err-dob').classList.add('show');ok=false;}
+  else{
+    var age = calcAge(dob);
+    if(age<13){document.getElementById('err-dob').textContent='You must be at least 13 to register';document.getElementById('err-dob').classList.add('show');ok=false;}
+  }
+  if(pass.length<8){document.getElementById('err-pass').classList.add('show');ok=false;}
+  if(pass!==pass2){document.getElementById('err-pass2').classList.add('show');ok=false;}
+  if(isNaN(capAns)||capAns!==capA+capB){document.getElementById('err-cap').classList.add('show');ok=false;}
+  if(!ok) return;
+
+  USER = {fname:fname,lname:lname,email:email,mobile:mobile,dob:dob,blood:blood||'—',gender:gender||'—',city:city||'—',pass:pass};
+  pts = 0; stats = {don:0,amb:0,ev:0,fa:0}; TXN = [];
+  initRewards();
+  document.getElementById('sheet-register').classList.remove('op');
+  launchApp();
+}
+
+function doLogin(){
+  var email = document.getElementById('log-email').value.trim();
+  var pass = document.getElementById('log-pass').value;
+  var capAns = parseInt(document.getElementById('cap-ans2').value);
+  document.getElementById('err-login').classList.remove('show');
+  document.getElementById('err-cap2').classList.remove('show');
+
+  if(isNaN(capAns)||capAns!==cap2A+cap2B){document.getElementById('err-cap2').classList.add('show');return;}
+
+  // For demo: if user previously registered in this session
+  if(USER && USER.email===email && USER.pass===pass){
+    document.getElementById('sheet-login').classList.remove('op');
+    launchApp();
+    return;
+  }
+  // Demo fallback user
+  if(email==='demo@karma.in'&&pass==='demo1234'){
+    USER={fname:'Arjun',lname:'Sharma',email:'demo@karma.in',mobile:'+91 98765 43210',dob:'1998-05-14',blood:'O+',gender:'Male',city:'Ahmedabad',pass:'demo1234'};
+    pts=0; stats={don:0,amb:0,ev:0,fa:0}; TXN=[];
+    initRewards();
+    document.getElementById('sheet-login').classList.remove('op');
+    launchApp();
+    return;
+  }
+  document.getElementById('err-login').classList.add('show');
+}
+
+function launchApp(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').classList.add('on');
+  updateProfileUI();
+  syncUI();
+  renderTxnHome();
+  renderRewards();
+  startClock();
+}
+
+function logout(){
+  if(!confirm('Sign out of Karma+?')) return;
+  document.getElementById('app').classList.remove('on');
+  document.getElementById('landing').style.display='flex';
+  pts=0; TXN=[]; stats={don:0,amb:0,ev:0,fa:0};
+  newCaptcha2();
+}
+
+// ===== PROFILE UI =====
+function updateProfileUI(){
+  if(!USER) return;
+  var fullName = USER.fname+' '+USER.lname;
+  var initials = USER.fname[0]+(USER.lname?USER.lname[0]:'');
+  document.getElementById('prof-avatar').textContent = initials.toUpperCase();
+  document.getElementById('prof-name').textContent = fullName;
+  document.getElementById('prof-sub').textContent = USER.email+' · Blood: '+(USER.blood||'—');
+  document.getElementById('pi-name').textContent = fullName;
+  document.getElementById('pi-email').textContent = USER.email;
+  document.getElementById('pi-mobile').textContent = USER.mobile||'—';
+  document.getElementById('pi-dob').textContent = USER.dob ? formatDOB(USER.dob) : '—';
+  document.getElementById('pi-blood').textContent = USER.blood||'—';
+  document.getElementById('pi-city').textContent = USER.city||'—';
+  var age = USER.dob ? calcAge(USER.dob) : 0;
+  var ageEl = document.getElementById('pi-age-elig');
+  if(age>=18){ageEl.textContent='✅ Eligible to donate blood (age '+age+')';ageEl.style.color='var(--g)';}
+  else{ageEl.textContent='⚠️ Under 18 — cannot donate blood (age '+age+')';ageEl.style.color='var(--r)';}
+  // lb avatar
+  var lbAv = document.getElementById('lb-av');
+  if(lbAv) lbAv.textContent=initials.toUpperCase();
+  var lbName = document.getElementById('lb-myname');
+  if(lbName) lbName.innerHTML=fullName+' <span style="font-size:9px;color:var(--b)">(You)</span>';
+}
+
+function formatDOB(d){
+  var p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0];
+}
+
+function openEditProf(){
+  if(!USER) return;
+  document.getElementById('ep-fname').value=USER.fname;
+  document.getElementById('ep-lname').value=USER.lname;
+  document.getElementById('ep-mobile').value=USER.mobile;
+  document.getElementById('ep-city').value=USER.city;
+  document.getElementById('ep-blood').value=USER.blood;
+  openM('editprof');
+}
+
+function saveProfile(){
+  if(!USER) return;
+  USER.fname=document.getElementById('ep-fname').value.trim()||USER.fname;
+  USER.lname=document.getElementById('ep-lname').value.trim()||USER.lname;
+  USER.mobile=document.getElementById('ep-mobile').value.trim()||USER.mobile;
+  USER.city=document.getElementById('ep-city').value.trim()||USER.city;
+  USER.blood=document.getElementById('ep-blood').value||USER.blood;
+  updateProfileUI();
+  closeM(null,'editprof',1);
+}
+
+// ===== NAV =====
 function go(id){
   document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
   document.querySelectorAll('.nv').forEach(function(n){n.classList.remove('on');});
@@ -624,34 +1253,91 @@ function go(id){
   if(n)n.classList.add('on');
   if(id==='rewards'){renderRewards();renderTxnFull();}
 }
-function openM(id){document.getElementById('m-'+id).classList.add('op');}
+
+function openM(id){
+  if(id==='editprof') openEditProf();
+  document.getElementById('m-'+id).classList.add('op');
+  // Check age for blood modal
+  if((id==='blood'||id==='donate')&&USER){
+    var age=calcAge(USER.dob);
+    var warnId=id==='blood'?'blood-age-warn':'donate-age-warn';
+    document.getElementById(warnId).classList.toggle('show',age<18);
+  }
+}
 function closeM(e,id,force){if(force||(e&&e.target===e.currentTarget))document.getElementById('m-'+id).classList.remove('op');}
 
-/* ---- POINTS ENGINE ---- */
+// ===== DARK MODE =====
+function toggleDark(){dk=!dk;document.body.classList.toggle('dk',dk);}
+
+// ===== CLOCK =====
+function startClock(){
+  (function tick(){var n=new Date();var el=document.getElementById('clk');if(el)el.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');setTimeout(tick,1000);})();
+}
+
+// ===== POINTS ENGINE =====
 function syncUI(){
   var f=pts.toLocaleString();
-  document.getElementById('kpts').innerHTML=f+'<small>pts</small>';
-  document.getElementById('tbpts').textContent=f+' pts';
-  document.getElementById('bb-val').textContent=f+' pts';
-  document.getElementById('rw-bal').textContent=f+' pts available';
-  document.getElementById('lb-mypts').textContent=f;
-  document.getElementById('pp-total').textContent=f;
-  var gap=2100-pts;
-  document.getElementById('lb-gap').textContent=gap>0?(gap.toLocaleString()+' pts to reach top 10'):'You\'re in the top 10! &#x1F389;';
-  /* balance bar: 0-4000 */
-  var pct=Math.min(100,Math.round(pts/4000*100));
-  document.getElementById('bb-fill').style.width=pct+'%';
+  var els=['kpts','bb-val','rw-bal','tbpts','lb-mypts','pp-total'];
+  els.forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(id==='kpts') el.innerHTML=f+'<small>pts</small>';
+    else if(id==='rw-bal') el.textContent=f+' pts available';
+    else if(id==='tbpts') el.textContent=f+' pts';
+    else el.textContent=f;
+  });
+  // Rank
+  var rank=getRank(pts);
+  var rankEl=document.getElementById('kcard-lvl');
+  if(rankEl) rankEl.textContent=rank.label;
+  var profRank=document.getElementById('prof-rank-lbl');
+  if(profRank) profRank.textContent=rank.label;
+  // Balance bar — levels at 500,1500,3000,5000
+  var levels=[500,1500,3000,5000];
+  var nextLevel=levels.find(function(l){return l>pts;})||levels[levels.length-1];
+  var prevLevel=0;
+  for(var i=levels.length-1;i>=0;i--){if(levels[i]<=pts){prevLevel=levels[i];break;}}
+  var pct=Math.min(100,Math.round((pts-prevLevel)/(nextLevel-prevLevel)*100));
+  var bbFill=document.getElementById('bb-fill');if(bbFill)bbFill.style.width=pct+'%';
+  var barNext=document.getElementById('bar-next-lbl');
+  if(barNext) barNext.textContent=rank.label+': '+nextLevel+' pts';
+  // Leaderboard
+  updateLeaderboard();
+  // Stats
+  document.getElementById('st-don').textContent=stats.don;
+  document.getElementById('st-amb').textContent=stats.amb;
+  document.getElementById('st-ev').textContent=stats.ev;
+  document.getElementById('st-fa').textContent=stats.fa;
+  document.getElementById('pp-don').textContent=stats.don;
+  document.getElementById('pp-amb').textContent=stats.amb;
+  document.getElementById('pp-ev').textContent=stats.ev;
+  document.getElementById('pp-fa').textContent=stats.fa;
+}
+
+function updateLeaderboard(){
+  // Static leaderboard entries sorted by pts, user inserted dynamically
+  var lb=[5200,4100,3400,2700,2200,1800,1500,1200,900,650];
+  var userRank=1;
+  lb.forEach(function(p){if(p>pts)userRank++;});
+  document.getElementById('lb-myrank').textContent=userRank;
+  document.getElementById('pp-rank').textContent=userRank;
+  var lbActs=document.getElementById('lb-myacts');
+  if(lbActs) lbActs.textContent=stats.don+' donations · '+stats.ev+' events';
+  var gap=document.getElementById('lb-gap');
+  if(userRank<=10&&gap) gap.textContent='You\'re in the top 10! 🎉';
+  else if(gap){var needed=lb[9]-pts;gap.textContent=Math.max(0,needed)+' pts to reach top 10';}
 }
 
 function flashBadge(type){
   var b=document.getElementById('tbpts');
+  if(!b)return;
   b.classList.remove('flash-up','flash-dn');
   void b.offsetWidth;
   b.classList.add(type==='earn'?'flash-up':'flash-dn');
   setTimeout(function(){b.classList.remove('flash-up','flash-dn');},700);
 }
 
-function popAnim(delta, type){
+function popAnim(delta,type){
   var pop=document.createElement('div');
   pop.className='pts-pop '+(type==='earn'?'earn':'spend');
   pop.textContent=(type==='earn'?'+':'-')+Math.abs(delta)+' pts';
@@ -661,24 +1347,9 @@ function popAnim(delta, type){
   setTimeout(function(){pop.remove();},950);
 }
 
-function animCount(from,to,el,suffix){
-  var dur=500,step=16,diff=to-from;
-  var t=0;
-  var id=setInterval(function(){
-    t+=step;
-    var cur=Math.round(from+diff*(t/dur));
-    el.textContent=cur.toLocaleString()+(suffix||'');
-    if(t>=dur){el.textContent=to.toLocaleString()+(suffix||'');clearInterval(id);}
-  },step);
-}
-
-function earn(amount, name, note){
-  var old=pts;
+function earn(amount,name,note){
   pts+=amount;
-  TXN.unshift({ic:amount===200?'&#x1FA78;':amount===50?'&#x1F691;':amount===150?'&#x1F3E5;':'&#x1F4CB;',name:name,note:note,pts:amount,t:'earn',when:'Just now'});
-  animCount(old,pts,document.getElementById('bb-val'),' pts');
-  animCount(old,pts,document.getElementById('kpts'));
-  document.getElementById('kpts').innerHTML=pts.toLocaleString()+'<small>pts</small>';
+  TXN.unshift({ic:name.indexOf('🩸')>-1?'🩸':name.indexOf('🚑')>-1?'🚑':name.indexOf('📋')>-1?'📋':'🎯',name:name,note:note,pts:amount,t:'earn',when:'Just now'});
   flashBadge('earn');
   popAnim(amount,'earn');
   syncUI();
@@ -686,14 +1357,10 @@ function earn(amount, name, note){
   if(document.getElementById('s-rewards').classList.contains('on')){renderRewards();renderTxnFull();}
 }
 
-function spend(amount, name, note){
+function spend(amount,name,note){
   if(pts<amount)return false;
-  var old=pts;
   pts-=amount;
-  TXN.unshift({ic:'&#x1F381;',name:'Redeemed: '+name,note:note,pts:amount,t:'spend',when:'Just now'});
-  animCount(old,pts,document.getElementById('bb-val'),' pts');
-  animCount(old,pts,document.getElementById('kpts'));
-  document.getElementById('kpts').innerHTML=pts.toLocaleString()+'<small>pts</small>';
+  TXN.unshift({ic:'🎁',name:'Redeemed: '+name,note:note,pts:amount,t:'spend',when:'Just now'});
   flashBadge('spend');
   popAnim(amount,'spend');
   syncUI();
@@ -703,32 +1370,44 @@ function spend(amount, name, note){
   return true;
 }
 
-/* ---- TXN RENDER ---- */
+// ===== TXN RENDER =====
 function txnRow(t){
   var bg=t.t==='earn'?'var(--gl)':'var(--rl)';
   var sign=t.t==='earn'?'+':'-';
   return '<div class="txn"><div class="txn-ic" style="background:'+bg+'">'+t.ic+'</div>'
-    +'<div class="txn-info"><div class="txn-name">'+t.name+'</div><div class="txn-note">'+t.note+' &middot; '+t.when+'</div></div>'
+    +'<div class="txn-info"><div class="txn-name">'+t.name+'</div><div class="txn-note">'+t.note+' · '+t.when+'</div></div>'
     +'<div class="txn-pts '+(t.t==='earn'?'txn-earn':'txn-spend')+'">'+sign+t.pts+'</div></div>';
 }
-function renderTxnHome(){var el=document.getElementById('txn-home');if(el)el.innerHTML=TXN.slice(0,4).map(txnRow).join('');}
-function renderTxnFull(){var el=document.getElementById('txn-full');if(el)el.innerHTML=TXN.map(txnRow).join('');}
+function renderTxnHome(){
+  var el=document.getElementById('txn-home');
+  if(!el)return;
+  if(!TXN.length){el.innerHTML='<div style="font-size:11px;color:var(--mu);padding:12px 0;text-align:center">No activity yet. Start earning!</div>';return;}
+  el.innerHTML=TXN.slice(0,4).map(txnRow).join('');
+}
+function renderTxnFull(){
+  var el=document.getElementById('txn-full');
+  if(!el)return;
+  if(!TXN.length){el.innerHTML='<div style="font-size:11px;color:var(--mu);padding:12px 0;text-align:center">No transactions yet</div>';return;}
+  el.innerHTML=TXN.map(txnRow).join('');
+}
 
-/* ---- REWARDS ---- */
+// ===== REWARDS =====
 function renderRewards(){
   var g=document.getElementById('rgrid');if(!g)return;
   g.innerHTML='';
-  REWARDS.forEach(function(r,i){
+  activeRewards.forEach(function(r,i){
     var can=pts>=r.cost, got=redeemed[i];
     var d=document.createElement('div');
     d.className='rcard '+(got?'got':can?'buyable':'locked');
     d.innerHTML='<div class="rtype '+r.type+'">'+r.typeLbl+'</div>'
-      +(got?'':'<div class="lock-ic">'+(can?'':'&#x1F512;')+'</div>')
+      +(got?'':'<div class="lock-ic">'+(can?'':'🔒')+'</div>')
+      +'<div style="font-size:18px;margin-bottom:3px">'+r.ic+'</div>'
       +'<div class="rbrand">'+r.brand+'</div>'
       +'<div class="rtitle">'+r.title+'</div>'
-      +'<div class="rcost '+(can&&!got?'ok':'no')+'">&#x1F525; '+r.cost+' pts</div>'
+      +'<div class="rexpiry">Expires in: '+r.expiry+'</div>'
+      +'<div class="rcost '+(can&&!got?'ok':'no')+'">🔥 '+r.cost+' pts</div>'
       +'<button class="rbtn '+(got?'done':can?'can':'cant')+'">'
-      +(got?'&#x2713; Redeemed':can?'Redeem now':'Need '+(r.cost-pts)+' more pts')
+      +(got?'✓ Redeemed':can?'Redeem now':'Need '+(r.cost-pts)+' more pts')
       +'</button>';
     if(can&&!got){
       (function(ri,rv){
@@ -749,15 +1428,19 @@ function confirmRedeem(i,r){
   document.getElementById('rd-btn').onclick=doRedeem;
   openM('redeem');
 }
+
 function doRedeem(){
   if(!pendingR)return;
-  spend(pendingR.r.cost, pendingR.r.title, pendingR.r.brand);
-  redeemed[pendingR.i]=true;
-  closeM(null,'redeem',1);
-  pendingR=null;
+  if(spend(pendingR.r.cost, pendingR.r.title, pendingR.r.brand)){
+    redeemed[pendingR.i]=true;
+    // Replace with new reward after short delay
+    (function(idx){setTimeout(function(){refreshReward(idx);renderRewards();},800);})(pendingR.i);
+    closeM(null,'redeem',1);
+    pendingR=null;
+  }
 }
 
-/* ---- AMBULANCE ---- */
+// ===== AMBULANCE =====
 function pickEmerg(el,name){
   document.querySelectorAll('.eb').forEach(function(b){b.classList.remove('sel');});
   el.classList.add('sel');
@@ -768,9 +1451,11 @@ function pickUrg(el,level){
   el.classList.add('u-'+level);
 }
 function dispatchAmb(){
-  earn(50,'&#x1F691; Ambulance Booked','Emergency dispatch');
+  earn(30,'🚑 Ambulance Booked','Emergency dispatch');
+  stats.amb++;
   document.getElementById('amb-form').style.display='none';
   document.getElementById('amb-ok').style.display='block';
+  syncUI();
 }
 function resetAmb(){
   document.getElementById('amb-form').style.display='block';
@@ -780,56 +1465,185 @@ function resetAmb(){
   document.getElementById('slab').classList.remove('show');
 }
 
-/* ---- JOIN EVENT ---- */
-function joinEv(btn,amount,name){
-  if(btn.classList.contains('jd'))return;
-  btn.textContent='Joined &#x2713;';btn.classList.add('jd');
-  earn(amount,name,'Weekend volunteer event');
+// ===== VERIFICATION CODE HELPERS =====
+function vcNext(el,next){
+  el.value=el.value.toUpperCase();
+  if(el.value.length===3&&next>-1) document.getElementById('vc'+next).focus();
+}
+function vcKey(e,el,prev,cur){
+  if(e.key==='Backspace'&&el.value===''&&prev>-1) document.getElementById('vc'+prev).focus();
+}
+function dvcNext(el,next){
+  el.value=el.value.toUpperCase();
+  if(el.value.length===3&&next>-1) document.getElementById('dvc'+next).focus();
+}
+function dvcKey(e,el,prev,cur){
+  if(e.key==='Backspace'&&el.value===''&&prev>-1) document.getElementById('dvc'+prev).focus();
 }
 
-/* ---- QUIZ ---- */
-var QS=[
-  {q:"When someone is having a heart attack, what should you do FIRST?",opts:["Give them water","Call emergency services (112)","Make them lie down flat","Give aspirin"],ok:1},
-  {q:"For a deep bleeding wound, the correct action is?",opts:["Remove embedded objects","Apply firm direct pressure","Elevate and do nothing","Apply ice directly"],ok:1},
-  {q:"CPR chest compressions should be at what rate?",opts:["30 per minute","60 per minute","100–120 per minute","150 per minute"],ok:2},
-  {q:"Someone is choking but can still cough. What do you do?",opts:["Perform Heimlich immediately","Encourage them to keep coughing","Give them water","Lay them face down"],ok:1}
-];
-var curQ=0,qScore=0;
+function getVCode(prefix){
+  return ['vc0','vc1','vc2','vc3'].map(function(id){return document.getElementById(id).value.toUpperCase();}).join('-');
+}
+function getDVCode(){
+  return ['dvc0','dvc1','dvc2','dvc3'].map(function(id){return document.getElementById(id).value.toUpperCase();}).join('-');
+}
+
+// Valid test codes
+var VALID_CODES = ['ABC-DEF-GHI-JKL','XYZ-123-ABC-456','RED-CRS-BLD-001','APO-LLO-B1D-007','FOR-TIS-001-XYZ'];
+
+function submitBlood(){
+  if(USER && calcAge(USER.dob)<18){
+    document.getElementById('blood-age-warn').classList.add('show');
+    return;
+  }
+  var code=getVCode();
+  var errEl=document.getElementById('err-vcode');
+  errEl.classList.remove('show');
+  if(code.length<11){errEl.textContent='Please enter complete code';errEl.classList.add('show');return;}
+  if(donatedCodes[code]){errEl.textContent='This code has already been used';errEl.classList.add('show');return;}
+  var valid=VALID_CODES.indexOf(code)>-1;
+  // Accept any well-formed code in demo
+  if(!valid&&code.replace(/-/g,'').length===12) valid=true;
+  if(!valid){errEl.textContent='Invalid verification code';errEl.classList.add('show');return;}
+  donatedCodes[code]=true;
+  var hosp=document.getElementById('blood-hosp').value||'Hospital';
+  earn(100,'🩸 Blood Donation',hosp);
+  stats.don++;
+  syncUI();
+  closeM(null,'blood',1);
+  ['vc0','vc1','vc2','vc3'].forEach(function(id){document.getElementById(id).value='';});
+}
+
+// ===== BLOOD DONATION FROM REQUEST PAGE =====
+function openDonate(hospital, blood, prefix){
+  if(USER && calcAge(USER.dob)<18){
+    openM('donate');
+    return;
+  }
+  pendingDonation={hospital:hospital,blood:blood,prefix:prefix};
+  document.getElementById('don-title').textContent='🩸 Donate at '+hospital;
+  document.getElementById('don-sub').textContent=blood+' needed · Enter verification code from blood bank staff';
+  ['dvc0','dvc1','dvc2','dvc3'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('err-dvcode').classList.remove('show');
+  openM('donate');
+}
+
+function submitDonate(){
+  if(!pendingDonation) return;
+  if(USER && calcAge(USER.dob)<18){
+    document.getElementById('donate-age-warn').classList.add('show');return;
+  }
+  var code=getDVCode();
+  var errEl=document.getElementById('err-dvcode');
+  errEl.classList.remove('show');
+  if(code.length<11){errEl.textContent='Please enter complete 12-character code';errEl.classList.add('show');return;}
+  if(donatedCodes[code]){errEl.textContent='This code has already been used — codes are single-use only';errEl.classList.add('show');return;}
+  // Accept valid test codes or any well-formed 12-char code
+  var valid=VALID_CODES.indexOf(code)>-1||(code.replace(/-/g,'').length===12);
+  if(!valid){errEl.textContent='Invalid verification code';errEl.classList.add('show');return;}
+  donatedCodes[code]=true;
+  earn(100,'🩸 Blood Donation',pendingDonation.hospital);
+  stats.don++;
+  syncUI();
+  closeM(null,'donate',1);
+  pendingDonation=null;
+}
+
+// ===== JOIN EVENT =====
+function joinEv(btn,amount,name){
+  if(btn.classList.contains('jd'))return;
+  btn.textContent='Joined ✓';btn.classList.add('jd');
+  earn(amount,name,'Weekend volunteer event');
+  stats.ev++;
+  syncUI();
+}
+
+// ===== VOLUNTEER EXPAND =====
+function toggleDesc(span){
+  var ec=span.closest('.ec');
+  var desc=ec.querySelector('.edesc');
+  var open=desc.style.display==='block';
+  desc.style.display=open?'none':'block';
+  span.textContent=open?'Details ▼':'Hide ▲';
+}
+function toggleVDesc(span){
+  var vs=span.closest('.vslot');
+  vs.classList.toggle('exp');
+  span.textContent=vs.classList.contains('exp')?'Hide ▲':'Details ▼';
+}
+
+// ===== QUIZ =====
+function startQuiz(diff){
+  curDiff=diff;
+  curQList=shuffle(QUIZ[diff].slice());
+  curQ=0; qScore=0;
+  document.getElementById('diff-screen').style.display='none';
+  document.getElementById('quiz-screen').style.display='block';
+  document.getElementById('qwin').classList.remove('show');
+  document.querySelector('.qcard').style.display='block';
+  renderQ();
+}
+
+function backToDiff(){
+  document.getElementById('diff-screen').style.display='block';
+  document.getElementById('quiz-screen').style.display='none';
+}
+
+function shuffle(arr){
+  for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}
+  return arr;
+}
+
 function renderQ(){
-  var q=QS[curQ];
-  document.getElementById('qq').textContent=q.q;
-  document.getElementById('qnum').textContent='Q '+(curQ+1)+' of '+QS.length;
+  var q=curQList[curQ];
+  var total=curQList.length;
+  document.getElementById('qnum').textContent='Q '+(curQ+1)+' of '+total;
   document.getElementById('qsc').textContent='Score: '+qScore;
-  document.getElementById('pfill').style.width=Math.round((curQ+1)/QS.length*100)+'%';
+  document.getElementById('pfill').style.width=Math.round((curQ+1)/total*100)+'%';
+  var dbWrap=document.getElementById('qdiff-badge-wrap');
+  var dclass=curDiff==='easy'?'qdiff-e':curDiff==='medium'?'qdiff-m':'qdiff-h';
+  var dpts=curDiff==='easy'?5:curDiff==='medium'?10:15;
+  dbWrap.innerHTML='<div class="qdiff-badge '+dclass+'">'+(curDiff.charAt(0).toUpperCase()+curDiff.slice(1))+' · '+dpts+' pts per correct</div>';
+  document.getElementById('qq').textContent=q.q;
+  document.getElementById('qexplain').style.display='none';
   var c=document.getElementById('qopts');c.innerHTML='';
   q.opts.forEach(function(o,i){
     var b=document.createElement('button');b.className='qopt';b.textContent=o;
-    b.onclick=function(){ansQ(i,b,q.ok);};c.appendChild(b);
+    b.onclick=function(){ansQ(i,b,q.ok,q.exp);};c.appendChild(b);
   });
 }
-function ansQ(chosen,btn,ok){
+
+function ansQ(chosen,btn,ok,exp){
+  var ptsPerQ=curDiff==='easy'?5:curDiff==='medium'?10:15;
   document.querySelectorAll('.qopt').forEach(function(b){b.onclick=null;});
-  if(chosen===ok){btn.classList.add('ok');qScore++;}
+  if(chosen===ok){btn.classList.add('ok');qScore+=ptsPerQ;}
   else{btn.classList.add('no');document.querySelectorAll('.qopt')[ok].classList.add('ok');}
+  var expEl=document.getElementById('qexplain');
+  expEl.textContent=exp;expEl.style.display='block';
   setTimeout(function(){
     curQ++;
-    if(curQ<QS.length){renderQ();}
+    var total=curQList.length;
+    if(curQ<total){renderQ();}
     else{
-      var e=Math.round(qScore/QS.length*100);
       document.querySelector('.qcard').style.display='none';
-      document.getElementById('qearned').textContent='+'+e+' pts';
+      document.getElementById('qearned').textContent='+'+qScore+' pts';
+      var pct=Math.round(qScore/(total*(curDiff==='easy'?5:curDiff==='medium'?10:15))*100);
+      document.getElementById('qsummary').textContent=pct+'% accuracy · '+total+' questions · '+(curDiff.charAt(0).toUpperCase()+curDiff.slice(1))+' level';
       document.getElementById('qwin').classList.add('show');
-      earn(e,'&#x1F4CB; First Aid Badge','Quiz completed');
+      if(!quizComplete[curDiff]){
+        earn(qScore,'📋 First Aid Badge','Quiz – '+curDiff+' level');
+        stats.fa++;syncUI();quizComplete[curDiff]=true;
+      }
     }
-  },900);
+  },1400);
 }
-function resetQuiz(){curQ=0;qScore=0;document.getElementById('qwin').classList.remove('show');document.querySelector('.qcard').style.display='block';renderQ();}
 
-/* ---- MISC ---- */
+// ===== MISC =====
 function star(n){document.querySelectorAll('#stars span').forEach(function(s,i){s.style.filter=i<n?'none':'grayscale(1)';});}
 function submitFbk(){document.getElementById('fbk-form').style.display='none';document.getElementById('fbk-done').style.display='block';}
 
-renderQ();
-renderTxnHome();
-syncUI();
+// ===== INIT =====
+initRewards();
 </script>
+</body>
+</html>
